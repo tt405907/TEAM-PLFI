@@ -1,4 +1,4 @@
-# exclusion des dossiers contenant les élements générés
+﻿# exclusion des dossiers contenant les élements générés
 **/out/
 **/target/
 **/build/
@@ -97,3 +97,16 @@ fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
 fastlane/readme.md
+
+andoird/*.iml
+android/.gradle
+android/local.properties
+android/.idea/libraries
+android/.idea/modules.xml
+android/.idea/workspace.xml
+android/.DS_Store
+android/build
+android/captures
+android/.externalNativeBuild
+
+android/app/build
