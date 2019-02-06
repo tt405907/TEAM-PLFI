@@ -1,4 +1,3 @@
-# TEAM-PLFI
 
 # TEAM-PLFI
 
