@@ -2,14 +2,15 @@
 
 * 1 - 8/02
   * Serveur et client android extrêmement basique.
-  * Lorem ipsum dolor sit amet.
 * 2 - 15/02
-  * Lorem ipsum dolor sit amet.
+  * Jeu de carré-triangle-rond basique, les formes sont envoyées du client avec des boutons et le serveur réponds avec un mouvement aléatoire et le résultat du match.
 * 3 - 28/02
   * Adaptation des itérations par rapport aux compléments sur le sujet.
-  * Lorem ipsum dolor sit amet.
+  * Dessin des formes sur le client et envoi de la forme dessinée à la place des boutons.
+  * Reconnaissance des formes de manière très sommaire sur le serveur.
 * 4 - 7/03
-  * Lorem ipsum dolor sit amet.
+  * Ajout du jeu de reproduction des formes.
+  * Amélioration de la reconnaissance des formes.
 * 5 - 14/03
   * Lorem ipsum dolor sit amet.
 * 6 - 20/03
@@ -19,6 +20,6 @@
   * Lorem ipsum dolor sit amet.
 * 8 - 04/04
   * Lorem ipsum dolor sit amet.
-* 9 - 18/04
+* 9 - 18/04 (itération finale)
   * Finalisations et corrections de bugs.
   * Soutenance.
