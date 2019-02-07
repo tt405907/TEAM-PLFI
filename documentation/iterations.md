@@ -1,6 +1,6 @@
 # Itérations
 
-* 1 - 8/02
+* 1 - 10/02
   * Serveur et client android extrêmement basique.
 * 2 - 15/02
   * Jeu de carré-triangle-rond basique, les formes sont envoyées du client avec des boutons et le serveur réponds avec un mouvement aléatoire et le résultat du match.
@@ -13,7 +13,7 @@
   * Amélioration de la reconnaissance des formes.
 * 5 - 14/03
   * Lorem ipsum dolor sit amet.
-* 6 - 20/03
+* 6 - 21/03
   * Adaptation des itérations par rapport aux compléments sur le sujet.
   * Lorem ipsum dolor sit amet.
 * 7 - 28/03
