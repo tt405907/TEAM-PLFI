@@ -7,15 +7,14 @@
 * 3 - 28/02
   * Adaptation des itérations par rapport aux compléments sur le sujet.
   * Dessin des formes sur le client et envoi de la forme dessinée à la place des boutons.
-  * Reconnaissance des formes de manière très sommaire sur le serveur.
 * 4 - 7/03
   * Ajout du jeu de reproduction des formes.
-  * Amélioration de la reconnaissance des formes.
+  * Reconnaissance des formes géométriques centrée et sans rotation sur le serveur.
 * 5 - 14/03
-  * Lorem ipsum dolor sit amet.
+  * Amélioration de la reconnaissance des formes par translation de la figure.
 * 6 - 20/03
   * Adaptation des itérations par rapport aux compléments sur le sujet.
-  * Lorem ipsum dolor sit amet.
+  * Ajout de la rotation des formes géometriques.
 * 7 - 28/03
   * Lorem ipsum dolor sit amet.
 * 8 - 04/04
