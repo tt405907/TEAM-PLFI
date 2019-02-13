@@ -73,7 +73,7 @@ public class Client {
                         else pas=+1;
 
 
-                        System.out.println(objects[1]);
+                        System.out.println("c quoi cette merde :" + objects[1]);
 
                         // conversion local en ArrayList, juste pour montrer
                         JSONArray tab = (JSONArray) objects[1];
