@@ -22,9 +22,10 @@ public class Serveur {
     SocketIOServer serveur;
     final Object attenteConnexion = new Object();
     private int àTrouvé = 42;
-    Identification leClient ;
+    Identification leClient;
 
     ArrayList<Coup> coups = new ArrayList<>();
+    
 
 
     public Serveur(Configuration config) {
