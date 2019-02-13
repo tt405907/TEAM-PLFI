@@ -1,4 +1,5 @@
 
+
 # TEAM-PLFI
 
 Comptes GitHub des membres de l'équipe :
@@ -9,8 +10,13 @@ Comptes GitHub des membres de l'équipe :
 * **aa303554** = Arnaud Arbona
 * **ThomasPortet** = Thomas Portet
 
-
 # Lancement du projet
+
+Lancer le serveur:
+
+* Aller dans `javastd`
+* Entrer dans un terminal `mvn install`
+* Dans `javastd/serveur` entrer `mvn exec:java`
 
 # Itérations
 
