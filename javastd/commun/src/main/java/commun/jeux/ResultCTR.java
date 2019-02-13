@@ -34,4 +34,9 @@ public class ResultCTR {
 	public String getResult() {
 		return result;
 	}
+
+	@Override
+	public String toString() {
+		return "ResultCTR [client=" + client + ", serveur=" + serveur + ", result=" + result + "]";
+	}
 }

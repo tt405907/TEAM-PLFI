@@ -1,17 +1,23 @@
 package serveur;
 
+import java.io.PrintStream;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.Random;
+
 import com.corundumstudio.socketio.AckRequest;
 import com.corundumstudio.socketio.Configuration;
 import com.corundumstudio.socketio.SocketIOClient;
 import com.corundumstudio.socketio.SocketIOServer;
 import com.corundumstudio.socketio.listener.ConnectListener;
 import com.corundumstudio.socketio.listener.DataListener;
-import commun.Coup;
-import commun.Identification;
 
-import java.io.PrintStream;
-import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
+import commun.Coup;
+import commun.Dessin;
+import commun.Forme;
+import commun.Identification;
+import commun.jeux.ResultCTR;
+import serveur.jeux.GameCTR;
 
 /**
  * attend une connexion, on envoie une question puis on attend une réponse, jusqu'à la découverte de la bonne réponse
@@ -26,6 +32,11 @@ public class Serveur {
 
     ArrayList<Coup> coups = new ArrayList<>();
     
+    
+    //Objets pour les jeux
+    private FormeMatcher matcher = new FormeMatcher();
+    private GameCTR ctr = new GameCTR();
+    private Random rand = new Random();
 
 
     public Serveur(Configuration config) {
@@ -78,9 +89,51 @@ public class Serveur {
 
             }
         });
+        
+        //Jeu du CTR
+        serveur.addEventListener("playctr", Dessin.class, new DataListener<Dessin>() {
+            @Override
+            public void onData(SocketIOClient socketIOClient, Dessin dessin, AckRequest ackRequest) throws Exception {
+                System.out.println(leClient.getNom()+" a envoyé un dessin pour une partie de CTR");
+                //Identifie la forme du client
+                Forme formeClient = matcher.identify(dessin);
+                //Joue une forme aléatoire
+                Forme formeServeur = randomForme();
+                //Joue la partie
+                ResultCTR res = ctr.play(formeClient, formeServeur);
+                System.out.println(res);
+                //Renvoie le résultat
+                renvoyerResultatCTR(socketIOClient, res);
+                //Si le client a battu le serveur
+                if (res.getResult().equals(ResultCTR.CLIENT_GAGNE)) {
+                    System.out.println("le client a gagné!");
+                    synchronized (attenteConnexion) {
+                        attenteConnexion.notify();
+                    }
+                }
+                else {
+                    System.out.println("le client n'a pas encore gagné");
+                }
 
+            }
+        });
 
-
+    }
+    
+    /**
+     * Donne une forme aléatoire pour une partie de CTR
+     */
+    private Forme randomForme() {
+    	int num = rand.nextInt(3);
+    	switch (num) {
+    	case 0:
+    		return Forme.CARRE;
+    	case 1:
+    		return Forme.TRIANGLE;
+    	case 2:
+    	default:
+    		return Forme.ROND;
+    	}
     }
 
 
@@ -110,6 +163,10 @@ public class Serveur {
 
     private void poserUneQuestion(SocketIOClient socketIOClient, boolean plusGrand) {
         socketIOClient.sendEvent("question", plusGrand, coups);
+    }
+    
+    private void renvoyerResultatCTR(SocketIOClient socketIOClient, ResultCTR result) {
+        socketIOClient.sendEvent("resultctr", result);
     }
 
 
