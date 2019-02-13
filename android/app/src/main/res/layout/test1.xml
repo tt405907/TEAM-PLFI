@@ -19,12 +19,11 @@
     android:text="@string/hello_world">
 </TextView>
 
-<ListView android:id="@+id/sampleList"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="5dp"
-    android:animateLayoutChanges="true"
-    android:drawSelectorOnTop="true">
+    <Button
+        android:id="@+id/buttonStartRTC"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="PLAY RTC" />
 
-</ListView>
+
 </LinearLayout>
