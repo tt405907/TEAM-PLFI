@@ -18,4 +18,8 @@ public class Dessin {
 	public int getValeur() {
 		return forme;
 	}
+	
+	public void setValeur(int forme) {
+		this.forme = forme;
+	}
 }

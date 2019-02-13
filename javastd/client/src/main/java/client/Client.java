@@ -1,18 +1,22 @@
 package client;
 
-import commun.Coup;
-import commun.Identification;
-import io.socket.client.IO;
-import io.socket.client.Socket;
-import io.socket.emitter.Emitter;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import commun.Coup;
+import commun.Dessin;
+import commun.Forme;
+import commun.Identification;
+import commun.jeux.ResultCTR;
+import io.socket.client.IO;
+import io.socket.client.Socket;
+import io.socket.emitter.Emitter;
 
 public class Client {
 
@@ -61,38 +65,26 @@ public class Client {
             connexion.on("question", new Emitter.Listener() {
                 @Override
                 public void call(Object... objects) {
-                    int pas = 1;
-                    System.out.println("on a reçu une question avec "+objects.length+" paramètre(s) ");
+                    System.out.println("Question!");
+                    envoyerForme();
+                }
+            });
+            
+            connexion.on("resultctr", new Emitter.Listener() {
+                @Override
+                public void call(Object... objects) {
+                    System.out.println("on a reçu un résultat avec "+objects.length+" paramètre(s) ");
                     if (objects.length > 0 ) {
-                        System.out.println("la réponse précédente était : "+objects[0]);
-
-                        boolean plusGrand = (Boolean)objects[0];
-                        // false, c'est plus petit... !! erreur... dans les commit d'avant
-
-                        if (plusGrand)  pas=-1;
-                        else pas=+1;
-
-
-                        System.out.println("c quoi cette merde :" + objects[1]);
-
-                        // conversion local en ArrayList, juste pour montrer
-                        JSONArray tab = (JSONArray) objects[1];
-                        ArrayList<Coup> coups = new ArrayList<Coup>();
-                        for(int i = 0; i < tab.length(); i++) {
-
-                            try {
-                                coups.add(new Coup(tab.getJSONObject(i).getInt("coup"), tab.getJSONObject(i).getBoolean("plusGrand")));
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-
-                        System.out.println(coups);
-
+                    	JSONObject result = (JSONObject)objects[0];
+                    	
+                        System.out.println(result);
+                        /*if (result.getResult().equals(ResultCTR.CLIENT_GAGNE)) {
+                        	System.out.println("gg no re");
+                        	return;
+                        }*/
                     }
-                    propositionCourante += pas;
-                    System.out.println("on répond "+propositionCourante);
-                    connexion.emit("réponse",  propositionCourante);
+                    System.out.println("On rejoue");
+                    envoyerForme();
                 }
             });
 
@@ -102,6 +94,10 @@ public class Client {
             e.printStackTrace();
         }
 
+    }
+    
+    private void envoyerForme() {
+        connexion.emit("playctr",  new JSONObject(new Dessin(Forme.CARRE.ordinal())));
     }
 
     private void seConnecter() {
