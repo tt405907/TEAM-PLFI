@@ -1,7 +1,88 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-xmlns:custom="http://schemas.android.com/apk/res-auto"
-android:orientation="vertical"
-tools:context=".gameRTC"/>
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".gameRTC">
+    //TODO : Change this too something that we can change the text
+
+    <TextView
+        android:id="@+id/textServeur"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:text="MESSAGE DU SERVEUR"
+        android:textAlignment="center" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
+        android:paddingTop="20dp"
+        android:text="@string/choix_forme_client" />
+    //TODO: FAIRE UNE IMAGE D'INIT CLIENT  TOUTES LES DOIVENT FAIRE LA MEME TAILLE en pixels
+
+    <ImageView
+        android:id="@+id/imageViewClient"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:src="@drawable/image_init_client" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
+        android:paddingTop="20dp"
+        android:text="@string/choix_forme_serveur" />
+    //TODO: FAIRE UNE IMAGE D'INIT SERVEUR TOUTES LES DOIVENT FAIRE LA MEME TAILLE en pixels
+
+    <ImageView
+        android:id="@+id/imageViewServeur"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        custom:srcCompat="@drawable/image_init_serveur" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal|center_vertical"
+        android:orientation="horizontal"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp">
+
+        <Button
+            android:id="@+id/buttonCercle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cercle" />
+
+        <Button
+            android:id="@+id/buttonCarre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Carre" />
+
+        <Button
+            android:id="@+id/buttonTriangle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Triangle" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/buttonValider"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:text="VALIDER" />
+
+
+</LinearLayout>
