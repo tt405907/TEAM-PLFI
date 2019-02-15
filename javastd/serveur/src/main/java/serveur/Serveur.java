@@ -107,9 +107,6 @@ public class Serveur {
                 //Si le client a battu le serveur
                 if (res.getResult().equals(ResultCTR.CLIENT_GAGNE)) {
                     System.out.println("le client a gagné!");
-                    synchronized (attenteConnexion) {
-                        attenteConnexion.notify();
-                    }
                 }
                 else {
                     System.out.println("le client n'a pas encore gagné");
