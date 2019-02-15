@@ -109,8 +109,29 @@ public class gameRTC extends AppCompatActivity {
             else if(imageId == 4){
                 connexion.sendForme(4);
             }
+            JSONObject r = connexion.getRes();  // JSONOBJECT de la response a changer pour repponse
+            int forme;
 
-            
+            try{
+                String winner = r.getString("Result");
+                String imageserv = r.getString("formeServeur");
+                forme = Integer.parseInt(imageserv);
+            }
+            catch (JSONException e){
+                System.out.println(e);
+            }
+            forme = 2;
+
+            imageInitServeur = (ImageView) findViewById(R.id.imageViewServeur);
+            if(forme == 2){
+                imageInitServeur.setImageResource(R.drawable.triangle);
+            }
+            else if(forme == 3){
+                imageInitServeur.setImageResource(R.drawable.carre);
+            }
+            else if(forme == 4){
+                imageInitServeur.setImageResource(R.drawable.cercle);
+            }
         }
         }
     }

@@ -8,7 +8,11 @@ import org.json.JSONObject;
 
 import java.net.URISyntaxException;
 import java.util.ArrayList;
-
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import commun.Coup;
 import commun.Identification;
 import io.socket.client.IO;
@@ -36,7 +40,7 @@ public class Connexion  {
 
     private final Controleur controleur;
     Socket connexion;
-
+    public JSONObject res;
     public Connexion(String urlServeur, Controleur ctrl) {
         this.controleur = ctrl;
         controleur.setConnexion(this);
@@ -82,16 +86,13 @@ public class Connexion  {
                     System.out.println("on a reçu un résultat avec "+objects.length+" paramètre(s) ");
                     if (objects.length > 0 ) {
                         JSONObject result = (JSONObject)objects[0];
-
-
-
+                        res = result;
+                        System.out.println(res);
                         /*if (result.getResult().equals(ResultCTR.CLIENT_GAGNE)) {
                         	System.out.println("gg no re");
                         	return;
                         }*/
                     }
-                    System.out.println("On rejoue");
-                    envoyerForme();
                 }
             });
 
@@ -102,26 +103,32 @@ public class Connexion  {
         }
 
     }
+
+
+    public JSONObject getRes(){
+        return this.res;
+    }
+
     private void envoyerForme() {
         Dessin dessin = new Dessin(2);
         JSONObject pieceJointe = new JSONObject();
         try {
-            pieceJointe.put("formes", dessin.getValeur());
+            pieceJointe.put("formes", dessin);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        connexion.emit("identification", pieceJointe);
+        connexion.emit("playctr", pieceJointe);
     }
 
     public void sendForme(int forme) {
         Dessin dessin = new Dessin(forme);
         JSONObject pieceJointe = new JSONObject();
         try {
-            pieceJointe.put("formes", dessin.getValeur());
+            pieceJointe.put("valeur", dessin.getValeur());
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        connexion.emit("identification", pieceJointe);
+        connexion.emit("playctr", pieceJointe);
     }
     public void seConnecter() {
         // on se connecte
