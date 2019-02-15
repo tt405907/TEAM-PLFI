@@ -4,7 +4,7 @@ Enchainement des maquettes :
 
 Tâches réalisable:
 -Sur PageAccueil:
-  -Lorsque on appuit sur le bouton "play RTC" il y a un changement de vue.
+  -Lorsque on appuit sur le bouton "play RTC" il y a un changement de vue sur "LeJeu".
   
  -Sur LeJeu :
   - Il faut appuyer sur un des 3 boutons : carré, rond, triangle. Ensuite il faut appuyer sur "valider",
