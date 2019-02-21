@@ -1,6 +1,5 @@
 package plfi.plfi;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -12,6 +11,7 @@ public class gameRTC extends AppCompatActivity {
     Button buttonCarre;
     Button buttonTriangle;
     Button buttonCercle;
+    Button buttonValider;
 
     // Mes Images à afficher pour le serveur et le client
     ImageView imageInitClient; // Image de depart du cleint
@@ -27,6 +27,7 @@ public class gameRTC extends AppCompatActivity {
         //Image Client
         imageViewClient = (ImageView) findViewById(R.id.imageViewClient);
 
+
         //Carre
         buttonCarre = (Button) findViewById(R.id.buttonCarre);
         buttonCarre.setOnClickListener(new ButtonCarreClick());
@@ -38,6 +39,10 @@ public class gameRTC extends AppCompatActivity {
         //Cercle
         buttonCercle = (Button) findViewById(R.id.buttonCercle);
         buttonCercle.setOnClickListener(new ButtonCercleClick());
+
+        //Valider
+        buttonValider = (Button) findViewById(R.id.buttonValider);
+        buttonValider.setOnClickListener(new ButtonValiderClick());
     }
 
     //TODO: REFAIRE IMAGE CARRE
@@ -45,6 +50,7 @@ public class gameRTC extends AppCompatActivity {
 
         @Override
         public void onClick(View v) {
+
             imageViewClient.setImageResource(R.drawable.carre);
         }
     }
@@ -59,7 +65,13 @@ public class gameRTC extends AppCompatActivity {
     class ButtonCercleClick implements  View.OnClickListener{
         @Override
         public void onClick(View v){
-            imageInitClient.setImageResource(R.drawable.cercle);
+            imageViewClient.setImageResource(R.drawable.cercle);
+        }
+    }
+    class ButtonValiderClick implements  View.OnClickListener{
+        @Override
+        public void onClick(View v){
+            //TODO: METTRE L'APPELLE AU SERVEUR ET
         }
     }
 }
