@@ -1,0 +1,13 @@
+Enchainement des maquettes :
+-PageAccueil
+-LeJeu
+
+Tâches réalisable:
+-Sur PageAccueil:
+  -Lorsque on appuit sur le bouton "play RTC" il y a un changement de vue sur "LeJeu".
+  
+ -Sur LeJeu :
+  - Il faut appuyer sur un des 3 boutons : carré, rond, triangle. Ensuite il faut appuyer sur "valider",
+  une image s'affiche dans le rectangle du joueur en fonction de son choix, le serveur reçoit le choix du joueur,
+  fait un choix aléatoire entre carré rond triangle, analyse le résultat et renvoie le choix aléatoire de celui-ci 
+  ainsi que l'image associée à ce choix et qui a gagné ou perdu dans un champs de texte.
