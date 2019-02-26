@@ -98,7 +98,7 @@ public class gameRTC extends AppCompatActivity {
         @Override
         public void onClick(View v){
             controleur = new Controleur();
-            Connexion connexion = new Connexion("http://10.0.2.2:10101", controleur);
+            Connexion connexion = new Connexion("http://127.0.0.1:10101", controleur);
             connexion.seConnecter();
             if(imageId == 2){
                 connexion.sendForme(2);
