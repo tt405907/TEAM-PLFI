@@ -5,7 +5,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".gameRTC">
-    //TODO : Change this too something that we can change the text
+    //TODO: Change this too something that we can change the text
+
+    <include layout="@layout/my_toolbar_rtc"/>
 
     <TextView
         android:id="@+id/textServeur"
