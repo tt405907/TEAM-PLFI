@@ -3,13 +3,11 @@ package commun;
 public class Identification {
 
     private String nom ;
-    private int niveau;
 
     public Identification() {}
 
-    public Identification(String nom, int level) {
+    public Identification(String nom) {
         this.nom = nom;
-        niveau = level;
     }
 
 
@@ -19,13 +17,5 @@ public class Identification {
 
     public void setNom(String nom) {
         this.nom = nom;
-    }
-
-    public int getNiveau() {
-        return niveau;
-    }
-
-    public void setNiveau(int niveau) {
-        this.niveau = niveau;
     }
 }
