@@ -3,6 +3,6 @@
 ### Tâches réalisées
 
 
-* Serveur : Connexion client/serveir mais on ne peut pas encore configurer les ip depuis maven.
-* Client Android : Dessin de formes sur l'application mais on ne peut pas l'envoyer au serveur (en cours de correction).
-* Nettoyage des traces de "trouver le nombre"
+* Serveur : Connexion client/serveur mais on ne peut pas encore configurer les ip depuis maven.
+* Client Android : Dessin de formes sur l'application et envoi au serveur, les formes ne sont pas encore reconnues.
+* Nettoyage des traces de "trouver le nombre".
