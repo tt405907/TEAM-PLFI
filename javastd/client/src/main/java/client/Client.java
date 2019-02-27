@@ -3,13 +3,10 @@ package client;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import commun.Coup;
 import commun.Dessin;
 import commun.Forme;
 import commun.Identification;
@@ -20,10 +17,9 @@ import io.socket.emitter.Emitter;
 
 public class Client {
 
-    Identification moi = new Identification("Chicken dinner K/D GOD", 42);
+    Identification moi = new Identification("Chicken dinner K/D GOD");
 
     Socket connexion;
-    int propositionCourante = 50;
 
     // Objet de synchro
     final Object attenteDéconnexion = new Object();
@@ -75,13 +71,14 @@ public class Client {
                 public void call(Object... objects) {
                     System.out.println("on a reçu un résultat avec "+objects.length+" paramètre(s) ");
                     if (objects.length > 0 ) {
-                    	JSONObject result = (JSONObject)objects[0];
+                    	ResultCTR result = resultFromJSON((JSONObject)objects[0]);
                     	
                         System.out.println(result);
-                        /*if (result.getResult().equals(ResultCTR.CLIENT_GAGNE)) {
+                        if (result != null && result.getResult().equals(ResultCTR.CLIENT_GAGNE)) {
                         	System.out.println("gg no re");
+                        	connexion.close();
                         	return;
-                        }*/
+                        }
                     }
                     System.out.println("On rejoue");
                     envoyerForme();
@@ -94,6 +91,17 @@ public class Client {
             e.printStackTrace();
         }
 
+    }
+    
+    private static ResultCTR resultFromJSON(JSONObject json) {
+    	try {
+			return new ResultCTR(Forme.valueOf(json.getString("formeClient")), 
+					Forme.valueOf(json.getString("formeServeur")), 
+					json.getString("result"));
+		} catch (JSONException e) {
+			e.printStackTrace();
+			return null;
+		}
     }
     
     private void envoyerForme() {

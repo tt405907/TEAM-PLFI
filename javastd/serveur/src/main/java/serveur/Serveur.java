@@ -2,7 +2,6 @@ package serveur;
 
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
 import java.util.Random;
 
 import com.corundumstudio.socketio.AckRequest;
@@ -12,7 +11,6 @@ import com.corundumstudio.socketio.SocketIOServer;
 import com.corundumstudio.socketio.listener.ConnectListener;
 import com.corundumstudio.socketio.listener.DataListener;
 
-import commun.Coup;
 import commun.Dessin;
 import commun.Forme;
 import commun.Identification;
@@ -27,10 +25,7 @@ public class Serveur {
 
     SocketIOServer serveur;
     final Object attenteConnexion = new Object();
-    private int àTrouvé = 42;
     Identification leClient;
-
-    ArrayList<Coup> coups = new ArrayList<>();
     
     
     //Objets pour les jeux
@@ -61,32 +56,10 @@ public class Serveur {
             @Override
             public void onData(SocketIOClient socketIOClient, Identification identification, AckRequest ackRequest) throws Exception {
                 System.out.println("Le client est "+identification.getNom());
-                leClient = new Identification(identification.getNom(), identification.getNiveau());
+                leClient = new Identification(identification.getNom());
 
                 // on enchaine sur une question
                 poserUneQuestion(socketIOClient);
-            }
-        });
-
-
-        // on attend une réponse
-        serveur.addEventListener("réponse", int.class, new DataListener<Integer>() {
-            @Override
-            public void onData(SocketIOClient socketIOClient, Integer integer, AckRequest ackRequest) throws Exception {
-                System.out.println("La réponse de  "+leClient.getNom()+" est "+integer);
-                Coup coup = new Coup(integer, integer > àTrouvé);
-                if (integer == àTrouvé) {
-                    System.out.println("le client a trouvé ! ");
-                    synchronized (attenteConnexion) {
-                        attenteConnexion.notify();
-                    }
-                } else
-                {
-                    coups.add(coup);
-                    System.out.println("le client doit encore cherché ");
-                    poserUneQuestion(socketIOClient, coup.isPlusGrand());
-                }
-
             }
         });
         
@@ -156,10 +129,6 @@ public class Serveur {
 
     private void poserUneQuestion(SocketIOClient socketIOClient) {
         socketIOClient.sendEvent("question");
-    }
-
-    private void poserUneQuestion(SocketIOClient socketIOClient, boolean plusGrand) {
-        socketIOClient.sendEvent("question", plusGrand, coups);
     }
     
     private void renvoyerResultatCTR(SocketIOClient socketIOClient, ResultCTR result) {
