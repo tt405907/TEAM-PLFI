@@ -1,59 +1,56 @@
 package plfi.plfi;
 
 import android.util.Log;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.net.URISyntaxException;
-import java.util.ArrayList;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
-import commun.Coup;
-import commun.Identification;
-import io.socket.client.IO;
-import io.socket.client.Socket;
-import io.socket.emitter.Emitter;
-import java.io.PrintStream;
-import java.io.UnsupportedEncodingException;
-import java.net.URISyntaxException;
-import java.util.ArrayList;
 
+import java.net.SocketAddress;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import commun.Coup;
-import commun.Dessin;
-import commun.Forme;
+import java.net.URISyntaxException;
 import commun.Identification;
-import commun.jeux.ResultCTR;
 import io.socket.client.IO;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
+
+
+import commun.Dessin;
 
 public class Connexion  {
 
     private final Controleur controleur;
     Socket connexion;
+    ImageView imageInitClient; // Image de depart du cleint
+    ImageView imageInitServeur; // Image de depart a voir si on l'a met pas apres le resultat pour temp, a voir avec le groupe
+    ImageView imageViewClient;
+
+    final Object attenteDéconnexion = new Object();
     public JSONObject res;
-    public Connexion(String urlServeur, Controleur ctrl) {
+    public String url;
+    public String ip;
+    public String port;
+
+    public Connexion(String ip,String port, Controleur ctrl) {
         this.controleur = ctrl;
         controleur.setConnexion(this);
 
         try {
-            connexion = IO.socket(urlServeur);
+            connexion = IO.socket("http://"+ip+":"+port);
 
-            System.out.println("on s'abonne à la connection / déconnection ");;
+            Log.e("playrtc", "on s'abonne à la connection / déconnection ");
 
             connexion.on("connect", new Emitter.Listener() {
                 @Override
                 public void call(Object... objects) {
                     System.out.println(" on est connecté ! et on s'identifie ");
+                    JSONObject json = new JSONObject();
+                    try {
+                        json.put("nom", controleur.getidentification().getNom());
+                        connexion.emit("identification", json);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
 
 
                 }
@@ -88,6 +85,18 @@ public class Connexion  {
                         JSONObject result = (JSONObject)objects[0];
                         res = result;
                         System.out.println(res);
+                        try{
+                            JSONObject r = res;
+                            String winner = r.getString("result");
+                            String imageserv = r.getString("formeServeur");
+                            controleur.resultCTR(winner, imageserv);
+                            /*
+
+                            */
+                        }
+                        catch (JSONException e){
+                            System.out.println(e);
+                        }
                         /*if (result.getResult().equals(ResultCTR.CLIENT_GAGNE)) {
                         	System.out.println("gg no re");
                         	return;
@@ -100,6 +109,7 @@ public class Connexion  {
 
         } catch (URISyntaxException e) {
             e.printStackTrace();
+            Log.e("playctr", "socket avec  pb !!!!!!!!!!!!!!!!!!!!!!!!!");
         }
 
     }
@@ -128,12 +138,13 @@ public class Connexion  {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        connexion.emit("playctr", pieceJointe);
+        this.connexion.emit("playctr", pieceJointe);
     }
     public void seConnecter() {
         // on se connecte
         Log.e("debug", "essaie de se connecter");
-        connexion.connect();
+        this.connexion.connect();
+        Log.e("debug", "connecté ?");
 
     }
 
@@ -142,7 +153,6 @@ public class Connexion  {
         JSONObject pieceJointe = new JSONObject();
         try {
             pieceJointe.put("nom", moi.getNom());
-            pieceJointe.put("niveau", moi.getNiveau());
         } catch (JSONException e) {
             e.printStackTrace();
         }

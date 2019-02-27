@@ -2,7 +2,6 @@ package plfi.plfi;
 
 import java.util.ArrayList;
 
-import commun.Coup;
 import commun.Identification;
 
 public class Controleur {
@@ -10,9 +9,14 @@ public class Controleur {
     Connexion connexion;
 
     int dernierCoup = -1;
+    String nom = "mon nom";
+    int level = 1000;
+    Identification moi = new Identification("identification");
+    private DisplayRTC view;
 
-    final Identification moi = new Identification("Moi sur Android", 1000);
-
+    public Controleur(DisplayRTC view) {
+        setView(view);
+    }
 
 
     public Connexion getConnexion() {
@@ -29,5 +33,28 @@ public class Controleur {
 
     }
 
+    public String getNom(){
+        return this.nom;
+    }
 
+    public int getNiveau(){
+        return this.level;
+    }
+
+    public Identification getidentification(){
+        return this.moi;
+    }
+
+
+    public void resultCTR(String winner, String imageserv) {
+        view.updateGame(winner,imageserv);
+    }
+
+    public void setView(DisplayRTC view) {
+        this.view = view;
+    }
+
+    public DisplayRTC getView() {
+        return view;
+    }
 }
