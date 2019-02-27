@@ -31,11 +31,11 @@ public class gameRTC extends AppCompatActivity {
     Button buttonCarre;
     Button buttonTriangle;
     Button buttonCercle;
-<<<<<<< HEAD
+
     Button buttonValider;
-=======
+
     Button buttonValid;
->>>>>>> 3faeff422b26830ba7d9170686e4878c42aeb23d
+
 
     Connexion connexion;
     Controleur controleur;
@@ -67,15 +67,15 @@ public class gameRTC extends AppCompatActivity {
         buttonCercle = (Button) findViewById(R.id.buttonCercle);
         buttonCercle.setOnClickListener(new ButtonCercleClick());
 
-<<<<<<< HEAD
+
         //Valider
         buttonValider = (Button) findViewById(R.id.buttonValider);
         buttonValider.setOnClickListener(new ButtonValiderClick());
-=======
+
         //valide au serveur
         buttonValid = (Button) findViewById(R.id.buttonValider);
         buttonValid.setOnClickListener(new ButtonValid());
->>>>>>> 3faeff422b26830ba7d9170686e4878c42aeb23d
+
     }
 
     //TODO: REFAIRE IMAGE CARRE
@@ -101,14 +101,14 @@ public class gameRTC extends AppCompatActivity {
         @Override
         public void onClick(View v){
             imageViewClient.setImageResource(R.drawable.cercle);
-<<<<<<< HEAD
+
         }
     }
     class ButtonValiderClick implements  View.OnClickListener{
         @Override
         public void onClick(View v){
             //TODO: METTRE L'APPELLE AU SERVEUR ET
-=======
+
             imageId = 4;
         }
     }
@@ -152,7 +152,7 @@ public class gameRTC extends AppCompatActivity {
                 imageInitServeur.setImageResource(R.drawable.cercle);
             }
         }
->>>>>>> 3faeff422b26830ba7d9170686e4878c42aeb23d
+
         }
     }
 

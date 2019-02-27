@@ -1,0 +1,90 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".gamePRINT" >
+
+    <include layout="@layout/my_toolbar"/>
+
+    <TextView
+        android:id="@+id/textServeur"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:text="MESSAGE DU SERVEUR"
+        android:textAlignment="center" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_gravity="left"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="170dp"
+            android:layout_weight="1"
+            android:text="@string/choix_forme_client" />
+
+        <Button
+            android:id="@+id/new_btn"
+            android:layout_width="30dp"
+            android:layout_height="fill_parent"
+            android:background="@drawable/new_pic"
+            android:contentDescription="@string/start_new" />
+
+        <Button
+            android:id="@+id/save_btn"
+            android:layout_width="30dp"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/save"
+            android:contentDescription="@string/save" />
+
+
+    </LinearLayout>
+
+    <plfi.plfi.gamePRINT
+        android:id="@+id/drawing"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="#FFFFFFF1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="15dp"
+            android:layout_weight="1"
+            android:text="@string/choix_forme_serveur" />
+
+        <ImageView
+            android:id="@+id/imageServeur"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            custom:srcCompat="@drawable/image_init_serveur" />
+    </LinearLayout>
+
+
+</LinearLayout>

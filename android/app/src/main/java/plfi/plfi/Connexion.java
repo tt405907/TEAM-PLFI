@@ -2,36 +2,13 @@ package plfi.plfi;
 
 import android.util.Log;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.net.URISyntaxException;
-import java.util.ArrayList;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import commun.Coup;
-import commun.Identification;
-import io.socket.client.IO;
-import io.socket.client.Socket;
-import io.socket.emitter.Emitter;
-import java.io.PrintStream;
-import java.io.UnsupportedEncodingException;
-import java.net.URISyntaxException;
-import java.util.ArrayList;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import commun.Coup;
 import commun.Dessin;
-import commun.Forme;
 import commun.Identification;
-import commun.jeux.ResultCTR;
 import io.socket.client.IO;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
@@ -151,5 +128,8 @@ public class Connexion  {
 
     public void envoyerCoup(int val) {
         connexion.emit("réponse",val);
+    }
+
+    public static class gamePRINT {
     }
 }
