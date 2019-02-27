@@ -85,6 +85,33 @@
             android:paddingTop="10dp"
             custom:srcCompat="@drawable/image_init_serveur" />
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal|center_vertical"
+        android:orientation="horizontal"
+        android:paddingTop="5dp"
+        android:paddingBottom="1dp">
+
+        <Button
+            android:id="@+id/buttonCercle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cercle" />
+
+        <Button
+            android:id="@+id/buttonCarre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Carre" />
+
+        <Button
+            android:id="@+id/buttonTriangle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Triangle" />
+    </LinearLayout>
+
 
 
 </LinearLayout>
