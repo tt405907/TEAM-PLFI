@@ -12,10 +12,11 @@ public enum Forme {
 	/**
 	 * Une forme inconnue, donc une erreur
 	 */
-	UNKNOWN;
+	UNKNOWN,
+	POLYGONE;
 	
 	/**
 	 * Toutes les formes non erreurs
 	 */
-	public static final Forme[] FORMES = {POINT, SEGMENT, TRIANGLE, CARRE, ROND};
+	public static final Forme[] FORMES = {POINT, SEGMENT, TRIANGLE, CARRE, ROND, POLYGONE};
 }

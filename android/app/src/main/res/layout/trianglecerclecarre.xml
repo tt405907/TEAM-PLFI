@@ -24,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="20dp"
-        android:paddingTop="20dp"
+        android:paddingTop="7dp"
         android:text="@string/choix_forme_client" />
     //TODO: FAIRE UNE IMAGE D'INIT CLIENT  TOUTES LES DOIVENT FAIRE LA MEME TAILLE en pixels
 
@@ -40,7 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="20dp"
-        android:paddingTop="20dp"
+        android:paddingTop="7dp"
         android:text="@string/choix_forme_serveur" />
     //TODO: FAIRE UNE IMAGE D'INIT SERVEUR TOUTES LES DOIVENT FAIRE LA MEME TAILLE en pixels
 
@@ -56,8 +56,8 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal|center_vertical"
         android:orientation="horizontal"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp">
+        android:paddingTop="5dp"
+        android:paddingBottom="1dp">
 
         <Button
             android:id="@+id/buttonCercle"

@@ -12,14 +12,18 @@
   * Remplacement des boutons par la reconnaissance des formes.
 * 5 - 14/03
   * Amélioration de la reconnaissance des formes par translation de la figure.
+  * Ajout du jeu de l'énigme 
 * 6 - 20/03
   * Adaptation des itérations par rapport aux compléments sur le sujet.
   * Ajout de la rotation des formes géometriques.
 * 7 - 28/03
   * Ajout du jeu de reproduction de la figure.
+  * Ajout du mode entraînement
 * 8 - 04/04
   * Ajout du jeu de la suite de formes.
   * Ajout de la reconnaissance des autres formes.
 * 9 - 18/04 (itération finale)
   * Finalisations et corrections de bugs.
   * Soutenance.
+
+

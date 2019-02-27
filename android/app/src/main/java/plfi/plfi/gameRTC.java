@@ -24,12 +24,14 @@ import io.socket.client.IO;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
 
-
-public class gameRTC extends AppCompatActivity  implements DisplayRTC{
-    //Mes boutons
+public class gameRTC extends AppCompatActivity implements DisplayRTC {
+    // Mes boutons
     Button buttonCarre;
     Button buttonTriangle;
     Button buttonCercle;
+
+    Button buttonValider;
+
     Button buttonValid;
 
     Connexion connexion;
@@ -37,64 +39,64 @@ public class gameRTC extends AppCompatActivity  implements DisplayRTC{
     int imageId;
     // Mes Images à afficher pour le serveur et le client
     ImageView imageInitClient; // Image de depart du cleint
-    ImageView imageInitServeur; // Image de depart a voir si on l'a met pas apres le resultat pour temp, a voir avec le groupe
+    ImageView imageInitServeur; // Image de depart a voir si on l'a met pas apres le resultat pour temp, a voir
+                                // avec le groupe
     ImageView imageViewClient;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.trianglecerclecarre);
 
-        //Image Client
+        // Image Client
         imageViewClient = (ImageView) findViewById(R.id.imageViewClient);
         imageInitServeur = (ImageView) findViewById(R.id.imageViewServeur);
 
-
-        //Carre
+        // Carre
         buttonCarre = (Button) findViewById(R.id.buttonCarre);
         buttonCarre.setOnClickListener(new ButtonCarreClick());
 
-        //Triangle
+        // Triangle
         buttonTriangle = (Button) findViewById(R.id.buttonTriangle);
         buttonTriangle.setOnClickListener(new ButtonTriangleClick());
 
-        //Cercle
+        // Cercle
         buttonCercle = (Button) findViewById(R.id.buttonCercle);
         buttonCercle.setOnClickListener(new ButtonCercleClick());
 
-        //valide au serveur
+        // Valider
+        buttonValider = (Button) findViewById(R.id.buttonValider);
+        buttonValider.setOnClickListener(new ButtonValiderClick());
+
+        // valide au serveur
         buttonValid = (Button) findViewById(R.id.buttonValider);
         buttonValid.setOnClickListener(new ButtonValid());
 
-        controleur = new Controleur( gameRTC.this);
-        Connexion connexion = new Connexion("192.168.0.101","10101", controleur);
+        controleur = new Controleur(gameRTC.this);
+        Connexion connexion = new Connexion("192.168.0.101", "10101", controleur);
         connexion.seConnecter();
         this.connexion = connexion;
     }
 
     @Override
-    public void updateGame(String winner,final String img) {
+    public void updateGame(String winner, final String img) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if(img.equals("TRIANGLE")){
+                if (img.equals("TRIANGLE")) {
                     imageInitServeur.setImageResource(R.drawable.triangle);
-                }
-                else if(img.equals("CARRE")){
+                } else if (img.equals("CARRE")) {
                     imageInitServeur.setImageResource(R.drawable.carre);
-                }
-                else if(img.equals("ROND")){
+                } else if (img.equals("ROND")) {
                     imageInitServeur.setImageResource(R.drawable.cercle);
-                }
-                else{
+                } else {
                     imageInitServeur.setImageResource(R.drawable.carre);
                 }
             }
         });
     }
 
-    //TODO: REFAIRE IMAGE CARRE
+    // TODO: REFAIRE IMAGE CARRE
     class ButtonCarreClick implements View.OnClickListener {
 
         @Override
@@ -104,47 +106,47 @@ public class gameRTC extends AppCompatActivity  implements DisplayRTC{
             imageId = 3;
         }
     }
-    //TODO: REFAIRE L'IMAGE TRIANGLE
-    class ButtonTriangleClick implements  View.OnClickListener{
+
+    // TODO: REFAIRE L'IMAGE TRIANGLE
+    class ButtonTriangleClick implements View.OnClickListener {
         @Override
-        public void onClick(View v){
+        public void onClick(View v) {
             imageViewClient.setImageResource(R.drawable.triangle);
             imageId = 2;
         }
     }
-    //TODO: REFAIRE L'IMAGE CERCLE
-    class ButtonCercleClick implements  View.OnClickListener{
+
+    // TODO: REFAIRE L'IMAGE CERCLE
+    class ButtonCercleClick implements View.OnClickListener {
         @Override
-        public void onClick(View v){
+        public void onClick(View v) {
             imageViewClient.setImageResource(R.drawable.cercle);
+
+        }
+    }
+
+    class ButtonValiderClick implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            // TODO: METTRE L'APPELLE AU SERVEUR ET
+
             imageId = 4;
         }
     }
 
-
-    class ButtonValid implements  View.OnClickListener{
+    class ButtonValid implements View.OnClickListener {
         @Override
-        public void onClick(View v){
-            if(imageId == 2){
+        public void onClick(View v) {
+            if (imageId == 2) {
                 connexion.sendForme(Forme.TRIANGLE.ordinal());
-            }
-            else if(imageId == 3){
+            } else if (imageId == 3) {
                 connexion.sendForme(Forme.CARRE.ordinal());
-            }
-            else if(imageId == 4){
+            } else if (imageId == 4) {
                 connexion.sendForme(Forme.ROND.ordinal());
-            }
-            else{
+            } else {
                 connexion.sendForme(Forme.TRIANGLE.ordinal());
-            }  // JSONOBJECT de la response a changer pour repponse
+            } // JSONOBJECT de la response a changer pour repponse
 
-
-
-
-        }
         }
     }
-
-
-
-
+}
