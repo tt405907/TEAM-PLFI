@@ -47,6 +47,9 @@ public class gameRTCPrint extends AppCompatActivity implements DisplayRTC {
     // temporaire pour tester notre truck
     int imageId;
 
+    // temporaire pour tester notre truck
+    int imageId;
+
     // Image à afficher pour le serveur
     ImageView imageViewServeur;
 
@@ -118,7 +121,7 @@ public class gameRTCPrint extends AppCompatActivity implements DisplayRTC {
         @Override
         public void onClick(View v) {
 
-            imageId = 3 ;
+            imageId = 3;
         }
     }
 

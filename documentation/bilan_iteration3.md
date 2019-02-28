@@ -2,9 +2,7 @@
 
 ### Tâches réalisées
 
-* Lorem ipsum dolor sit amet
 
-### Tests réalisés
-
-* Amet sit dolor ipsum lorem
-
+* Serveur : Connexion client/serveur mais on ne peut pas encore configurer les ip depuis maven.
+* Client Android (testé sur Nexus 5X) : Dessin de formes sur l'application et envoi au serveur, les formes ne sont pas encore reconnues.
+* Nettoyage des traces de "trouver le nombre".
