@@ -1,0 +1,15 @@
+Enchainement des maquettes :
+-PageAccueil
+-Play_print
+
+Tâches réalisable:
+-Sur PageAccueil:
+  -Lorsque on appuit sur le bouton "play RTC" il y a un changement de vue sur "LeJeu" et si on appuit sur le bouton "PLAY PRINT" 
+  il a un changement de vue sur "Play_print".
+  
+ -Sur LeJeu :
+ Voir commentaire maquette précédente
+ 
+ -Sur Play_print:
+ -il s'agit du même jeu que sur "LeJeu" à la seule différence quil faut dessiner au lieu d'appuyer sur un bouton. Pour effacer un
+ mauvais dessin il faut utiliser la gomme (en haut à droite) et pour envoyer l'avion (en haut à droite aussi).
