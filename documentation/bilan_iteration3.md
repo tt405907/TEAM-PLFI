@@ -4,5 +4,5 @@
 
 
 * Serveur : Connexion client/serveur mais on ne peut pas encore configurer les ip depuis maven.
-* Client Android : Dessin de formes sur l'application et envoi au serveur, les formes ne sont pas encore reconnues.
+* Client Android (testé sur Nexus 5X) : Dessin de formes sur l'application et envoi au serveur, les formes ne sont pas encore reconnues.
 * Nettoyage des traces de "trouver le nombre".
