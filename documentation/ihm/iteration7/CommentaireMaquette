@@ -1,0 +1,14 @@
+Enchainement des maquettes :
+-PageAccueil
+-Reproduction
+-Entrainement
+
+Tâches réalisable:
+-Sur PageAccueil:
+  -Même fonctionnement que dans les explications précédentes, sélectionner "Reproduction" ou "Entrainement" pour accéder au nouveau jeu
+  
+ -Sur Reproduction :
+  - Reproduire le dessin demandé par le serveur.
+
+-Sur entraînement :
+- Entrainement sur plusieurs jeu en mode hors-ligne.
