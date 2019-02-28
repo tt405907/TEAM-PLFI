@@ -1,0 +1,13 @@
+Enchainement des maquettes :
+-PageAccueil
+-Enigme
+
+Tâches réalisable:
+-Sur PageAccueil:
+  -Même fonctionnement que dans les explications précédentes, sélectionner "Enigme" pour accéder au nouveau jeu
+  
+ -Sur Engime :
+  - Le serveur envoie une phrase (énigme) qui donne des indications sur une forme a dessiner ou a séléctionner,l'utilisateur 
+  doit alors trouver la bonne réponse. A chaque essaie le serveur compare la réponse en fonction du dessin ou choix de l'utilisateur 
+  avec la réponse associé à l'énigme. Le serveur renvoie gagner ou perdu et le joueur efface alors ça réponse pour essayer de 
+  nouveau.
