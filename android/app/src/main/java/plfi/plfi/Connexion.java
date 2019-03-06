@@ -9,7 +9,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.List;
+
 import commun.Identification;
+import commun.Point;
 import io.socket.client.IO;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
@@ -71,7 +75,6 @@ public class Connexion {
                 @Override
                 public void call(Object... objects) {
                     System.out.println("Question!");
-                    envoyerForme();
                 }
             });
 
@@ -113,26 +116,30 @@ public class Connexion {
         return this.res;
     }
 
-    private void envoyerForme() {
-        Dessin dessin = new Dessin(2);
-        JSONObject pieceJointe = new JSONObject();
-        try {
-            pieceJointe.put("formes", dessin);
-        } catch (JSONException e) {
-            e.printStackTrace();
+    private JSONObject dessinToJSON(Dessin dessin) throws JSONException {
+        JSONObject json = new JSONObject();
+        JSONArray points = new JSONArray(dessin.getPoints());
+        for (Point p : dessin.getPoints()) {
+            JSONObject jp = new JSONObject();
+            jp.put("x", p.getX());
+            jp.put("y", p.getY());
+            points.put(jp);
         }
-        connexion.emit("playctr", pieceJointe);
+        json.put("points", points);
+        return json;
     }
 
     public void sendForme(int forme) {
-        Dessin dessin = new Dessin(forme);
-        JSONObject pieceJointe = new JSONObject();
+        //TODO: vrais points, pour l'instant c'est juste pour marcher avec la "reconnaissance" temporaire
+        List<Point> points = new ArrayList<>();
+        for (int i = 0; i < forme; i++) points.add(new Point(0, 0));
+
+        Dessin dessin = Dessin.fromList(points);
         try {
-            pieceJointe.put("valeur", dessin.getValeur());
+            this.connexion.emit("playctr", dessinToJSON(dessin));
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        this.connexion.emit("playctr", pieceJointe);
     }
 
     public void seConnecter() {
