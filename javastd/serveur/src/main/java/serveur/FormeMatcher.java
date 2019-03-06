@@ -1,5 +1,7 @@
 package serveur;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -21,16 +23,20 @@ public class FormeMatcher {
 		points = d.asList();
 		float xmax = points.stream().max(Comparator.comparingDouble(Point::getX)).get().getX();
 		float xmin = points.stream().min(Comparator.comparingDouble(Point::getX)).get().getX();
-		float ymax = points.stream().max(Comparator.comparingDouble(Point::getX)).get().getY();
-		float ymin = points.stream().min(Comparator.comparingDouble(Point::getX)).get().getY();
-		float ratio = 100/((xmax - xmin + ymax - ymin) / 2);
-		points.forEach(p -> {p.setX((float) (p.getX() *ratio)); p.setY((float) (p.getY() *ratio));});
+		float ymax = points.stream().max(Comparator.comparingDouble(Point::getY)).get().getY();
+		float ymin = points.stream().min(Comparator.comparingDouble(Point::getY)).get().getY();
+		float ratio = 100 / ((xmax - xmin + ymax - ymin) / 2);
+		points.forEach(p -> {
+			p.setX((float) (p.getX() * ratio));
+			p.setY((float) (p.getY() * ratio));
+		});
+		d.setPoints(points.toArray(new Point[points.size()]));
 		Point barycentre = barycentre(points);
 		float iHu1 = huInvariant(points, 1);
 		float iHu2 = huInvariant(points, 2);
 		float iHu3 = huInvariant(points, 3);
 		float iHu4 = huInvariant(points, 4);
-		if (iHu3 < 0.1 && iHu4 < 0.1) {
+		if (iHu3 < 200 || iHu4 < 200) {
 			if (iHu2 < 50000)
 				return Forme.SEGMENT;
 			return Forme.CARRE;
@@ -107,11 +113,37 @@ public class FormeMatcher {
 		Dessin triangleParfait = new Dessin(pointsTriangle);
 		Dessin segmentParfait = new Dessin(
 				new Point[] { new Point(300, 200), new Point(300, 400), new Point(300, 300) });
+		fm.identify(carreParfait);
+		fm.identify(cercleParfait);
+		fm.identify(triangleParfait);
+		fm.identify(segmentParfait);
 		List<Point> pointsc = carreParfait.asList();
 		List<Point> pointsr = cercleParfait.asList();
 		List<Point> pointst = triangleParfait.asList();
 		List<Point> pointss = segmentParfait.asList();
+		List<Point> points = new ArrayList<>();
 
+		float xStart = 500, yStart = 150, steplen = 9, steps = 14;
+
+		// Haut gauche -> haut droit
+		for (int i = 0; i < steps; i++) {
+			points.add(new Point(xStart + steplen * i, yStart));
+		}
+		// Haut droit -> bas droit
+		for (int i = 0; i < steps; i++) {
+			points.add(new Point(xStart + steplen * steps, yStart + steplen * i));
+		}
+		// Bas droit -> bas gauche
+		for (int i = 0; i < steps; i++) {
+			points.add(new Point(xStart + steplen * (steps - i), yStart + steplen * steps));
+		}
+		// Bas gauche -> haut gauche
+		for (int i = 0; i < steps; i++) {
+			points.add(new Point(xStart, yStart + steplen * (steps - i)));
+		}
+		Dessin CarreCompose = Dessin.fromList(points);
+		fm.identify(CarreCompose);
+		points = CarreCompose.asList();
 		System.out.println("Carre parfait :" + " " + fm.barycentre(pointsc).getX() + " " + fm.barycentre(pointsc).getY()
 				+ " " + fm.huInvariant(pointsc, 1) + " " + fm.huInvariant(pointsc, 2) + " " + fm.huInvariant(pointsc, 3)
 				+ " " + fm.huInvariant(pointsc, 4));
@@ -124,5 +156,8 @@ public class FormeMatcher {
 		System.out.println("Segment parfait :" + " " + fm.barycentre(pointss).getX() + " "
 				+ fm.barycentre(pointss).getY() + " " + fm.huInvariant(pointss, 1) + " " + fm.huInvariant(pointss, 2)
 				+ " " + fm.huInvariant(pointss, 3) + " " + fm.huInvariant(pointss, 4));
+		System.out.println("Carre compose :" + " " + fm.barycentre(points).getX() + " " + fm.barycentre(points).getY()
+				+ " " + fm.huInvariant(points, 1) + " " + fm.huInvariant(points, 2) + " " + fm.huInvariant(points, 3)
+				+ " " + fm.huInvariant(points, 4));
 	}
 }
