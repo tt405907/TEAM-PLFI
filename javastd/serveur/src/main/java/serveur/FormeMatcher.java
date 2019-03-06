@@ -28,12 +28,12 @@ public class FormeMatcher {
 				return Forme.SEGMENT;
 			return Forme.CARRE;
 		}
-		if (iHu3 > 100 && iHu4 > 100) {
-			return Forme.ROND;
+		if (iHu3 > 10E6 || iHu4 > 10E6) {
+			return Forme.TRIANGLE;
 		}
 
 		// Aucune forme reconnue
-		return Forme.TRIANGLE;
+		return Forme.ROND;
 	}
 
 	private Point barycentre(List<Point> points) {
