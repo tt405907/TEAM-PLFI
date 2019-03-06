@@ -2,8 +2,6 @@ package serveur;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.List;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -11,15 +9,10 @@ import commun.Dessin;
 import commun.Forme;
 import commun.Point;
 
-public class FormeMatcherTest {
+import static serveur.DessinUtils.*;
+
+public class FormeMatcherCarreTest {
 	private FormeMatcher fm;
-	
-	//Fonctions utilitaires
-	private Dessin translate(Dessin d, double x, double y) {
-		List<Point> points = d.asList();
-		points.forEach(p -> {p.setX((float) (p.getX() + x)); p.setY((float) (p.getY() + y));});
-		return Dessin.fromList(points);
-	}
 	
 	@Before
 	public void setup() {
@@ -35,11 +28,11 @@ public class FormeMatcherTest {
 
 	@Test
 	public void translationCarre() {
-		Dessin carre = new Dessin(new Point[] {new Point(100, 100), new Point(300, 100), new Point(300, 300), new Point(100, 300)});
+		Dessin carre = new Dessin(new Point[] {new Point(200, 200), new Point(400, 200), new Point(400, 400), new Point(200, 400)});
 		
 		//Translate dans pleins de directions
-		for (int x = -100; x <= 100; x += 100) {
-			for (int y = -100; y <= 100; y += 100) {
+		for (int x = -200; x <= 200; x += 200) {
+			for (int y = -200; y <= 200; y += 200) {
 				assertEquals(Forme.CARRE, fm.identify(translate(carre, x, y)));
 			}
 		}
