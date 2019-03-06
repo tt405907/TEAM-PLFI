@@ -1,76 +1,84 @@
 package plfi.plfi;
 
-import android.support.v7.widget.Toolbar;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity {
-
-    // Mes Boutons
-    Button ButtonStartRTC;
-    Button ButtonStartPRINT;
-
-    // Ma Toolbar de genie
-    Toolbar toolbar;
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.accueil);
-
-        // Button Game RTC
-        ButtonStartRTC = (Button)findViewById(R.id.buttonStartRTC);
-        ButtonStartRTC.setOnClickListener(new ButtonGameRTC());
-
-        // Button Game PRINT
-        ButtonStartPRINT = (Button) findViewById(R.id.buttonStartPrint);
-        ButtonStartPRINT.setOnClickListener(new ButtonGamePRINT());
+        setContentView(R.layout.activity_main);
 
         // Toolbar
-        toolbar = (Toolbar) findViewById(R.id.toolbarmain);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_main);
         setSupportActionBar(toolbar);
 
 
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
     }
 
-    // Action de ButtonGameRTC
-    class ButtonGameRTC implements View.OnClickListener {
-
-        @Override
-        public void onClick(View v) {
-            Intent intent = new Intent(MainActivity.this, gameRTC.class);  //Lancer l'activité DisplayVue
-            startActivity(intent);    //Afficher la vue
-        }
-    }
-
-    // Action de ButtonGamePRINT
-    class ButtonGamePRINT implements View.OnClickListener{
-        @Override
-        public void onClick(View v ){
-           Intent intent = new Intent ( MainActivity.this, gameRTCPrint.class);
-           startActivity(intent);
-
-        }
-    }
-
-    // TODO: MENU à FAIRE pour + de SWAG
     @Override
-    public boolean onCreateOptionsMenu(Menu menu){
-        getMenuInflater().inflate(R.menu.menu_main,menu);
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
+
+
+    @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onOptionsItemSelected(MenuItem item){
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
         int id = item.getItemId();
-        return super.onOptionsItemSelected(item);
-    }
 
-    }
+        if (id == R.id.nav_view){
 
+        }
+        else if (id == R.id.bouton1_main_menu)
+        {
+            Intent intent = new Intent(MainActivity.this, gameRTC.class);  //Lancer l'activité DisplayVue
+            startActivity(intent);    //Afficher la vue
+        } else if (id == R.id.bouton2_main_menu)
+        {
+            Intent intent = new Intent(MainActivity.this, gameRTCPrint.class);  //Lancer l'activité DisplayVue
+            startActivity(intent);    //Afficher la vue
+
+        } else if (id == R.id.bouton3_main_menu) {
+
+        } else if (id == R.id.bouton4_main_menu) {
+            //iteration 4
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+}

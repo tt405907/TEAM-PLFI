@@ -7,7 +7,7 @@
     tools:context=".gameRTC">
     //TODO: Change this too something that we can change the text
 
-    <include layout="@layout/my_toolbar_rtc"/>
+    <include layout="@layout/my_toolbar_rtc" />
 
     <TextView
         android:id="@+id/textServeur"

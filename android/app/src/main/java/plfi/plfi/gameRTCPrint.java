@@ -1,34 +1,16 @@
 package plfi.plfi;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.util.Log;
 
-import java.io.PrintStream;
-import java.io.UnsupportedEncodingException;
-import java.net.URISyntaxException;
-import java.util.ArrayList;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import commun.Dessin;
 import commun.Forme;
-import commun.Identification;
-import commun.jeux.ResultCTR;
-import io.socket.client.IO;
-import io.socket.client.Socket;
-import io.socket.emitter.Emitter;
 
 public class gameRTCPrint extends AppCompatActivity implements DisplayRTC {
 
@@ -44,6 +26,7 @@ public class gameRTCPrint extends AppCompatActivity implements DisplayRTC {
     Connexion connexion;
     Controleur controleur;
 
+
     // temporaire pour tester notre truck
     int imageId;
 
@@ -54,7 +37,12 @@ public class gameRTCPrint extends AppCompatActivity implements DisplayRTC {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.print);
+        setContentView(R.layout.activity_game_print);
+
+        Toolbar toolbar = findViewById(R.id.toolbar_rtc_print);
+        setSupportActionBar(toolbar);
+        getSupportActionBar()
+                .setDisplayHomeAsUpEnabled(true);
 
         // image du serveur
         imageViewServeur = (ImageView) findViewById(R.id.imageServeur);
@@ -85,6 +73,34 @@ public class gameRTCPrint extends AppCompatActivity implements DisplayRTC {
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_print, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch(item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+
+            case R.id.menu_rtc_offline:
+                //TODO : A FINIR
+            case R.id.menu_rtc_online:
+                //TODO : A FINIR
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        this.finish();
+        Intent intent = new Intent (this,MainActivity.class);
+        startActivity(intent);
+    }
     @Override
     public void updateGame(String winner, final String img) {
         runOnUiThread(new Runnable() {
