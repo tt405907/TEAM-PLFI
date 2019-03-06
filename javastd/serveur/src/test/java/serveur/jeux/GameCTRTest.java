@@ -40,24 +40,27 @@ public class GameCTRTest {
 
 	@Test
 	public void isValidForm() {
-
-		formeClient = Forme.UNKNOWN;
-		assertFalse(game.isValidForm(formeClient));
-		formeClient = Forme.ROND;
-		assertTrue(game.isValidForm(formeClient));
+		assertTrue(game.isValidForm(Forme.CARRE));
+		assertTrue(game.isValidForm(Forme.TRIANGLE));
+		assertTrue(game.isValidForm(Forme.ROND));
+		
+		assertFalse(game.isValidForm(Forme.POINT));
+		assertFalse(game.isValidForm(Forme.SEGMENT));
+		assertFalse(game.isValidForm(Forme.POLYGONE));
+		assertFalse(game.isValidForm(Forme.UNKNOWN));
 	}
 
 	@Test
 	public void bat() {
-		formeClient = Forme.ROND;
-		formeServeur = Forme.TRIANGLE;
-		assertTrue(game.bat(formeClient, formeServeur));
-		formeClient = Forme.CARRE;
-
-		assertFalse(game.bat(formeClient, formeServeur));
-		formeClient = Forme.TRIANGLE;
-		formeServeur = Forme.CARRE;
-		assertTrue(game.bat(formeClient, formeServeur));
+		//Carré bat Rond
+		assertTrue(game.bat(Forme.CARRE, Forme.ROND));
+		assertFalse(game.bat(Forme.ROND, Forme.CARRE));
+		//Triangle bat Carré
+		assertTrue(game.bat(Forme.TRIANGLE, Forme.CARRE));
+		assertFalse(game.bat(Forme.CARRE, Forme.TRIANGLE));
+		//Rond bat Triangle
+		assertTrue(game.bat(Forme.ROND, Forme.TRIANGLE));
+		assertFalse(game.bat(Forme.TRIANGLE, Forme.ROND));
 
 	}
 
