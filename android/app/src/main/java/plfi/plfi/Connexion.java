@@ -118,7 +118,7 @@ public class Connexion {
 
     private JSONObject dessinToJSON(Dessin dessin) throws JSONException {
         JSONObject json = new JSONObject();
-        JSONArray points = new JSONArray(dessin.getPoints());
+        JSONArray points = new JSONArray();
         for (Point p : dessin.getPoints()) {
             JSONObject jp = new JSONObject();
             jp.put("x", p.getX());
@@ -129,10 +129,9 @@ public class Connexion {
         return json;
     }
 
-    public void sendForme(int forme) {
-        //TODO: vrais points, pour l'instant c'est juste pour marcher avec la "reconnaissance" temporaire
-        List<Point> points = new ArrayList<>();
-        for (int i = 0; i < forme; i++) points.add(new Point(0, 0));
+    public void sendForme(List<Point> points) {
+
+
 
         Dessin dessin = Dessin.fromList(points);
         try {
