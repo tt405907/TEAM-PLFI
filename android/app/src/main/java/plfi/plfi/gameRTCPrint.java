@@ -67,7 +67,7 @@ public class gameRTCPrint extends AppCompatActivity implements DisplayRTC {
         save_btn = (Button) findViewById(R.id.save_btn);
         save_btn.setOnClickListener(new ButtonSave_Btn());
         controleur = new Controleur(gameRTCPrint.this);
-        Connexion connexion = new Connexion("192.168.0.101", "10101", controleur);
+        Connexion connexion = new Connexion("192.168.0.105", "10101", controleur);
         connexion.seConnecter();
         this.connexion = connexion;
 
@@ -161,15 +161,8 @@ public class gameRTCPrint extends AppCompatActivity implements DisplayRTC {
 
         @Override
         public void onClick(View v) {
-            if (imageId == 2) {
-                connexion.sendForme(Forme.TRIANGLE.ordinal());
-            } else if (imageId == 3) {
-                connexion.sendForme(Forme.CARRE.ordinal());
-            } else if (imageId == 4) {
-                connexion.sendForme(Forme.ROND.ordinal());
-            } else {
-                connexion.sendForme(Forme.TRIANGLE.ordinal());
-            }
+            //System.out.println("points " + gamePrint.getPoints());
+            connexion.sendForme(gamePrint.getPoints());
         }
     }
 

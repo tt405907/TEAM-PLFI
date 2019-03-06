@@ -9,12 +9,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import commun.Point;
 
 
+import java.util.ArrayList;
 import java.util.jar.Attributes;
 
 public class gamePRINT extends View {
-    
+    ArrayList<Point> points;
     Paint paint;
     Path path;
     public gamePRINT(Context context, AttributeSet attrs) {
@@ -26,6 +28,7 @@ public class gamePRINT extends View {
         paint.setStrokeJoin(Paint.Join.ROUND);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(5f);
+        points = new ArrayList<>();
 
     }
 
@@ -41,6 +44,7 @@ public class gamePRINT extends View {
         float xPos = event.getX();
         float yPos = event.getY();
 
+        points.add(new Point(xPos,yPos));
         switch (event.getAction())
         {
             case MotionEvent.ACTION_DOWN:
@@ -58,7 +62,12 @@ public class gamePRINT extends View {
         return true;
     }
 
+    public ArrayList<Point> getPoints() {
+        return points;
+    }
+
     public void reset(){
+        this.points.clear();
         path.reset();
         invalidate();
     }

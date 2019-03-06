@@ -19,7 +19,8 @@ import serveur.jeux.GameCTR;
 
 /**
  * attend une connexion, on envoie une question puis on attend une réponse,
- * jusqu'à la découverte de la bonne réponse le client s'identifie (som, niveau)
+ * jusqu'à la découverte de la bonne réponse le client s'identifie (som, ni
+ * eau)
  */
 public class Serveur {
 
@@ -67,6 +68,7 @@ public class Serveur {
             @Override
             public void onData(SocketIOClient socketIOClient, Dessin dessin, AckRequest ackRequest) throws Exception {
                 System.out.println(leClient.getNom() + " a envoyé un dessin pour une partie de CTR");
+                // System.out.println(dessin.asList());
                 // Identifie la forme du client
                 Forme formeClient = matcher.identify(dessin);
                 // Joue une forme aléatoire
@@ -139,7 +141,7 @@ public class Serveur {
         }
 
         Configuration config = new Configuration();
-        config.setHostname("127.0.0.1");
+        config.setHostname("192.168.0.105");
         config.setPort(10101);
 
         Serveur serveur = new Serveur(config);
@@ -148,6 +150,5 @@ public class Serveur {
         System.out.println("fin du main");
 
     }
-
 
 }

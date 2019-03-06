@@ -160,15 +160,6 @@ public class gameRTC extends AppCompatActivity implements DisplayRTC {
     class ButtonValid implements View.OnClickListener {
         @Override
         public void onClick(View v) {
-            if (imageId == 2) {
-                connexion.sendForme(Forme.TRIANGLE.ordinal());
-            } else if (imageId == 3) {
-                connexion.sendForme(Forme.CARRE.ordinal());
-            } else if (imageId == 4) {
-                connexion.sendForme(Forme.ROND.ordinal());
-            } else {
-                connexion.sendForme(Forme.TRIANGLE.ordinal());
-            } // JSONOBJECT de la response a changer pour repponse
 
         }
     }
