@@ -24,6 +24,8 @@ public class FormeMatcher {
 		float iHu3 = huInvariant(points, 3);
 		float iHu4 = huInvariant(points, 4);
 		if (iHu3 < 0.1 && iHu4 < 0.1) {
+			if (iHu2 < 50000)
+				return Forme.SEGMENT;
 			return Forme.CARRE;
 		}
 		if (iHu3 > 100 && iHu4 > 100) {
@@ -69,12 +71,12 @@ public class FormeMatcher {
 		case 3:
 			float a = momentCentre(points, 3, 0) - 3 * momentCentre(points, 1, 2);
 			float b = 3 * momentCentre(points, 2, 1) - momentCentre(points, 0, 3);
-			System.out.println(a + " " + b);
+
 			return a * a + b * b;
 		case 4:
 			float c = momentCentre(points, 3, 0) + momentCentre(points, 1, 2);
 			float d = momentCentre(points, 2, 1) + momentCentre(points, 0, 3);
-			System.out.println(c + " " + d);
+
 			return c * c + d * d;
 		default:
 			return huInvariant(points, 1);
@@ -96,9 +98,13 @@ public class FormeMatcher {
 		Point[] pointsTriangle = new Point[] { new Point(200, 300), new Point(300, 300),
 				new Point(250, (float) (200 + 50 * Math.sqrt(3))) };
 		Dessin triangleParfait = new Dessin(pointsTriangle);
+		Dessin segmentParfait = new Dessin(
+				new Point[] { new Point(300, 200), new Point(300, 400), new Point(300, 300) });
 		List<Point> pointsc = carreParfait.asList();
 		List<Point> pointsr = cercleParfait.asList();
 		List<Point> pointst = triangleParfait.asList();
+		List<Point> pointss = segmentParfait.asList();
+
 		System.out.println("Carre parfait :" + " " + fm.barycentre(pointsc).getX() + " " + fm.barycentre(pointsc).getY()
 				+ " " + fm.huInvariant(pointsc, 1) + " " + fm.huInvariant(pointsc, 2) + " " + fm.huInvariant(pointsc, 3)
 				+ " " + fm.huInvariant(pointsc, 4));
@@ -108,5 +114,8 @@ public class FormeMatcher {
 		System.out.println("Triangle parfait :" + " " + fm.barycentre(pointst).getX() + " "
 				+ fm.barycentre(pointst).getY() + " " + fm.huInvariant(pointst, 1) + " " + fm.huInvariant(pointst, 2)
 				+ " " + fm.huInvariant(pointst, 3) + " " + fm.huInvariant(pointst, 4));
+		System.out.println("Segment parfait :" + " " + fm.barycentre(pointss).getX() + " "
+				+ fm.barycentre(pointss).getY() + " " + fm.huInvariant(pointss, 1) + " " + fm.huInvariant(pointss, 2)
+				+ " " + fm.huInvariant(pointss, 3) + " " + fm.huInvariant(pointss, 4));
 	}
 }
