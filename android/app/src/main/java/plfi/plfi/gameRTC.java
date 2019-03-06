@@ -36,7 +36,7 @@ public class gameRTC extends AppCompatActivity implements DisplayRTC {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_rtc);
 
-        Toolbar toolbar = findViewById(R.id.toolbar_rtc);
+        Toolbar toolbar = null; // findViewById(R.id.toolbar_rtc);
         setSupportActionBar(toolbar);
         getSupportActionBar()
                 .setDisplayHomeAsUpEnabled(true);

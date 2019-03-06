@@ -4,11 +4,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import commun.Forme;
 
@@ -21,6 +26,8 @@ public class gameRTCPrint extends AppCompatActivity implements DisplayRTC {
     Button buttonTriangle;
     Button buttonCercle;
 
+    //EditText
+    TextView messageServeur;
     // Notre canvas
     gamePRINT gamePrint;
     Connexion connexion;
@@ -36,13 +43,13 @@ public class gameRTCPrint extends AppCompatActivity implements DisplayRTC {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_game_print);
+
+        messageServeur = (TextView) findViewById(R.id.textServeur);
 
         Toolbar toolbar = findViewById(R.id.toolbar_rtc_print);
         setSupportActionBar(toolbar);
-        getSupportActionBar()
-                .setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // image du serveur
         imageViewServeur = (ImageView) findViewById(R.id.imageServeur);
@@ -105,7 +112,7 @@ public class gameRTCPrint extends AppCompatActivity implements DisplayRTC {
         startActivity(intent);
     }
     @Override
-    public void updateGame(String winner, final String img) {
+    public void updateGame(final String winner, final String img) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -118,6 +125,10 @@ public class gameRTCPrint extends AppCompatActivity implements DisplayRTC {
                 } else {
                     imageViewServeur.setImageResource(R.drawable.carre);
                 }
+
+                messageServeur.setText(winner);
+
+
             }
         });
     }
