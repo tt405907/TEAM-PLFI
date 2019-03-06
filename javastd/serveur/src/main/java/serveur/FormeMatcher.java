@@ -17,13 +17,21 @@ public class FormeMatcher {
 	public Forme identify(Dessin d) {
 		// TODO: vraie reconnaissance
 		// "Reconnaissance" TEMPORAIRE très aléatoire juste pour que ça fasse des choses
-		points = new ArrayList<Point>(Arrays.asList(d.getPoints()));
+		points = d.asList();
 		Point barycentre = barycentre(points);
-		for (Forme f : Forme.FORMES) {
-
+		float iHu1 = huInvariant(points, 1);
+		float iHu2 = huInvariant(points, 2);
+		float iHu3 = huInvariant(points, 3);
+		float iHu4 = huInvariant(points, 4);
+		if (iHu3 < 0.1 && iHu4 < 0.1) {
+			return Forme.CARRE;
 		}
+		if (iHu3 > 100 && iHu4 > 100) {
+			return Forme.ROND;
+		}
+
 		// Aucune forme reconnue
-		return Forme.UNKNOWN;
+		return Forme.TRIANGLE;
 	}
 
 	private Point barycentre(List<Point> points) {
@@ -53,21 +61,52 @@ public class FormeMatcher {
 		switch (i) {
 		case 1:
 			return momentCentre(points, 2, 0) + momentCentre(points, 0, 2);
-			
+
 		case 2:
 			return huInvariant(points, 1) * huInvariant(points, 1)
 					+ 4 * momentCentre(points, 1, 1) * momentCentre(points, 1, 1);
-			
+
 		case 3:
 			float a = momentCentre(points, 3, 0) - 3 * momentCentre(points, 1, 2);
 			float b = 3 * momentCentre(points, 2, 1) - momentCentre(points, 0, 3);
+			System.out.println(a + " " + b);
 			return a * a + b * b;
 		case 4:
 			float c = momentCentre(points, 3, 0) + momentCentre(points, 1, 2);
 			float d = momentCentre(points, 2, 1) + momentCentre(points, 0, 3);
+			System.out.println(c + " " + d);
 			return c * c + d * d;
 		default:
-			return huInvariant(points,1);
+			return huInvariant(points, 1);
 		}
+	}
+
+	public static void main(String[] args) {
+		FormeMatcher fm = new FormeMatcher();
+		Dessin carreParfait = new Dessin(
+				new Point[] { new Point(200, 100), new Point(400, 100), new Point(400, 300), new Point(200, 300) });
+
+		Dessin cercleParfait;
+		Point[] pointsCercle = new Point[360];
+		for (int i = 0; i < 360; i++) {
+			pointsCercle[i] = new Point((float) Math.cos(i * 2 * Math.PI / 360.0) * 100 + 250,
+					(float) Math.sin(i * 2 * Math.PI / 360.0) * 100 + 250);
+		}
+		cercleParfait = new Dessin(pointsCercle);
+		Point[] pointsTriangle = new Point[] { new Point(200, 300), new Point(300, 300),
+				new Point(250, (float) (200 + 50 * Math.sqrt(3))) };
+		Dessin triangleParfait = new Dessin(pointsTriangle);
+		List<Point> pointsc = carreParfait.asList();
+		List<Point> pointsr = cercleParfait.asList();
+		List<Point> pointst = triangleParfait.asList();
+		System.out.println("Carre parfait :" + " " + fm.barycentre(pointsc).getX() + " " + fm.barycentre(pointsc).getY()
+				+ " " + fm.huInvariant(pointsc, 1) + " " + fm.huInvariant(pointsc, 2) + " " + fm.huInvariant(pointsc, 3)
+				+ " " + fm.huInvariant(pointsc, 4));
+		System.out.println("Cercle parfait :" + " " + fm.barycentre(pointsr).getX() + " "
+				+ fm.barycentre(pointsr).getY() + " " + fm.huInvariant(pointsr, 1) + " " + fm.huInvariant(pointsr, 2)
+				+ " " + fm.huInvariant(pointsr, 3) + " " + fm.huInvariant(pointsr, 4));
+		System.out.println("Triangle parfait :" + " " + fm.barycentre(pointst).getX() + " "
+				+ fm.barycentre(pointst).getY() + " " + fm.huInvariant(pointst, 1) + " " + fm.huInvariant(pointst, 2)
+				+ " " + fm.huInvariant(pointst, 3) + " " + fm.huInvariant(pointst, 4));
 	}
 }
