@@ -6,7 +6,7 @@
     android:orientation="vertical"
     tools:context=".gamePRINT" >
 
-    <include layout="@layout/my_toolbar"/>
+    <include layout="@layout/my_toolbar_print"/>
 
     <TextView
         android:id="@+id/textServeur"

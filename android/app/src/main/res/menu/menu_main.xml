@@ -1,13 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:actionbarcompat_mse="http://schemas.android.com/apk/res-auto"
-    >
-
-    <item android:id="@+id/action_edit"
-        android:title="TODO"
-        android:icon="@drawable/menu_icon"
-        android:orderInCategory="100"
-        actionbarcompat_mse:showAsAction="never">
-
-    </item>
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
 </menu>

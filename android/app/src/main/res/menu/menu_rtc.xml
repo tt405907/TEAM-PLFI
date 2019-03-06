@@ -1,0 +1,18 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:actionbarcompat="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menu_rtc_offline"
+        android:orderInCategory="2"
+        android:title="OFFLINE"
+        actionbarcompat:showAsAction="never|ifRoom">
+
+    </item>
+    <item
+        android:id="@+id/menu_rtc_online"
+        android:orderInCategory="1"
+        android:title="ONLINE"
+        actionbarcompat:showAsAction="never|ifRoom">
+
+    </item>
+
+</menu>
