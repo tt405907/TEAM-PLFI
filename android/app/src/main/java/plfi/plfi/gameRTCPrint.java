@@ -78,6 +78,9 @@ public class gameRTCPrint extends AppCompatActivity implements DisplayRTC {
         // Envoit au serveur
         save_btn = (Button) findViewById(R.id.save_btn);
         save_btn.setOnClickListener(new ButtonSave_Btn());
+
+        gamePrint = (gamePRINT) findViewById(R.id.drawing);
+
         controleur = new Controleur(gameRTCPrint.this);
         Connexion connexion = new Connexion("192.168.0.105", "10101", controleur);
         connexion.seConnecter();
