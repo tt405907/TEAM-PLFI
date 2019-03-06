@@ -1,25 +1,27 @@
 package commun;
 
+import java.util.List;
+
 /**
  * Représente une forme dessinée
  */
 public class Dessin {
-	//Pour l'instant, on ne fait pas de dessin à proprement parler
-	//On se contente d'entiers pour identifier des formes prédéfinies
-	
-	private int forme;
+	private Point[] points;
 	
 	//Pour json
 	public Dessin() {}
-	public Dessin(int valeur) {
-		forme = valeur;
+	public Dessin(Point[] points) {
+		this.points = points;
 	}
 	
-	public int getValeur() {
-		return forme;
+	public Point[] getPoints() {
+		return points;
+	}
+	public void setPoints(Point[] points) {
+		this.points = points;
 	}
 	
-	public void setValeur(int forme) {
-		this.forme = forme;
+	public static Dessin fromList(List<Point> points) {
+		return new Dessin(points.toArray(new Point[0]));
 	}
 }

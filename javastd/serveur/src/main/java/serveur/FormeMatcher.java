@@ -8,9 +8,11 @@ import commun.Forme;
  */
 public class FormeMatcher {
 	public Forme identify(Dessin d) {
+		//TODO: vraie reconnaissance
+		//"Reconnaissance" TEMPORAIRE très aléatoire juste pour que ça fasse des choses
+		int tmp = d.getPoints().length % Forme.values().length;
 		for (Forme f : Forme.FORMES) {
-			//"Reconnaissance" temporaire tant que l'on n'a pas de dessin
-			if (d.getValeur() == f.ordinal()) return f;
+			if (tmp == f.ordinal()) return f;
 		}
 		//Aucune forme reconnue
 		return Forme.UNKNOWN;

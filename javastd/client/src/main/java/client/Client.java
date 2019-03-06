@@ -10,11 +10,15 @@ import org.json.JSONObject;
 import commun.Dessin;
 import commun.Forme;
 import commun.Identification;
+import commun.Point;
 import commun.jeux.ResultCTR;
 import io.socket.client.IO;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
 
+/**
+ * Utilisé pour tester rapidement les envois de dessins, car plus léger que le client Android
+ */
 public class Client {
 
     Identification moi = new Identification("Chicken dinner K/D GOD");
@@ -105,7 +109,9 @@ public class Client {
     }
     
     private void envoyerForme() {
-        connexion.emit("playctr",  new JSONObject(new Dessin(Forme.CARRE.ordinal())));
+    	JSONObject json = new JSONObject(new Dessin(new Point[]{new Point(0, 0), new Point(0.5F, -9), new Point(100, 20)}));
+        System.out.println(json);
+    	connexion.emit("playctr", json);
     }
 
     private void seConnecter() {
