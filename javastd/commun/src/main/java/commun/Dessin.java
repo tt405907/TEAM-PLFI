@@ -1,5 +1,7 @@
 package commun;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -23,5 +25,9 @@ public class Dessin {
 	
 	public static Dessin fromList(List<Point> points) {
 		return new Dessin(points.toArray(new Point[0]));
+	}
+	
+	public List<Point> asList() {
+		return new ArrayList<>(Arrays.asList(points));
 	}
 }

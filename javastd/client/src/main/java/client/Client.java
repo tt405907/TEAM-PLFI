@@ -32,6 +32,7 @@ public class Client {
 
         try {
             connexion = IO.socket(urlServeur);
+            
 
             System.out.println("on s'abonne à la connection / déconnection ");;
 
