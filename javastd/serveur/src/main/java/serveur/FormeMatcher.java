@@ -2,6 +2,7 @@ package serveur;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 import commun.Dessin;
@@ -18,6 +19,12 @@ public class FormeMatcher {
 		// TODO: vraie reconnaissance
 		// "Reconnaissance" TEMPORAIRE très aléatoire juste pour que ça fasse des choses
 		points = d.asList();
+		float xmax = points.stream().max(Comparator.comparingDouble(Point::getX)).get().getX();
+		float xmin = points.stream().min(Comparator.comparingDouble(Point::getX)).get().getX();
+		float ymax = points.stream().max(Comparator.comparingDouble(Point::getX)).get().getY();
+		float ymin = points.stream().min(Comparator.comparingDouble(Point::getX)).get().getY();
+		float ratio = 100/((xmax - xmin + ymax - ymin) / 2);
+		points.forEach(p -> {p.setX((float) (p.getX() *ratio)); p.setY((float) (p.getY() *ratio));});
 		Point barycentre = barycentre(points);
 		float iHu1 = huInvariant(points, 1);
 		float iHu2 = huInvariant(points, 2);
