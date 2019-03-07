@@ -5,6 +5,7 @@
 * Serveur
   * Reconnaissance de formes très sommaire et basique, peut reconnaître certaines formes géométriques parfaites mais n'est pas encore assez puissant pour les formes dessinées
 * Client
+  * Interface améliorée
   * Envoi du véritable dessin sur l'application pour qu'elle se fasse reconnaître au lieu d'envoyer directement la "forme"
   * Affichage du résultat de la partie de Carré Triangle Rond
  
