@@ -21,19 +21,19 @@ public class FormeMatcherSegmentTest {
 
 	@Test
 	public void segementParfait() {
-		Dessin segment = new Dessin(new Point[] {new Point(100, 100), new Point(300, 100), new Point(300, 300), new Point(100, 300)});
+		Dessin segment = new Dessin(new Point[] {new Point(400, 300), new Point(400, 500), new Point(400, 400)});
 		
-		assertEquals(Forme.CARRE, fm.identify(segment));
+		assertEquals(Forme.SEGMENT, fm.identify(segment));
 	}
 
 	@Test
-	public void translationCarre() {
-		Dessin carre = new Dessin(new Point[] {new Point(200, 200), new Point(400, 200), new Point(400, 400), new Point(200, 400)});
+	public void translationSegment() {
+		Dessin segment = new Dessin(new Point[] {new Point(200, 100), new Point(200, 300), new Point(200, 200)});
 		
 		//Translate dans pleins de directions
 		for (int x = -200; x <= 200; x += 200) {
 			for (int y = -200; y <= 200; y += 200) {
-				assertEquals(Forme.CARRE, fm.identify(translate(carre, x, y)));
+				assertEquals(Forme.SEGMENT, fm.identify(translate(segment, x, y)));
 			}
 		}
 		
