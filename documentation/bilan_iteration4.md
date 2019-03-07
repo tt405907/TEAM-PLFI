@@ -1,0 +1,13 @@
+## Bilan de l'itération 4
+
+### Tâches réalisées
+
+* Serveur
+  * Reconnaissance de formes très sommaire et basique, peut reconnaître certaines formes géométriques parfaites mais n'est pas encore assez puissant pour les formes dessinées
+* Client
+  * Affichage du résultat de la partie de Carré Triangle Rond
+  * Sûrement d'autres choses
+ 
+### Test réalisés
+
+* Reconnaissance de formes, teste sur quelques formes géométriques parfaites (carré, triangle, rond et segment) avec des variations comme la taille ou la translation, pas tous passent
