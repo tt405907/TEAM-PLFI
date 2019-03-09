@@ -25,4 +25,8 @@ public class Point {
 	public String toString() {
 		return "(" + x + ", " + y + ")";
 	}
+	
+	public Point copy() {
+		return new Point(x ,y);
+	}
 }
