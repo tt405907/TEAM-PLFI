@@ -15,4 +15,6 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <string name="r_ponse_serveur">Réponse Serveur :</string>
+    <string name="attente_de_votre_envoit_de_figure">Attente de votre envoit de figure</string>
 </resources>

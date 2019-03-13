@@ -111,6 +111,7 @@ public class gameRTCPrint extends AppCompatActivity implements DisplayRTC {
         Intent intent = new Intent (this,MainActivity.class);
         startActivity(intent);
     }
+
     @Override
     public void updateGame(final String winner, final String img) {
         runOnUiThread(new Runnable() {

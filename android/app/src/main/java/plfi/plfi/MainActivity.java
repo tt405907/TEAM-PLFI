@@ -10,6 +10,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -32,6 +34,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        Button btn_togamertc = (Button) findViewById(R.id.Button_main_togame);
+        btn_togamertc.setOnClickListener(new Button_togame());
+
+    }
+
+    // Action du click
+    class Button_togame implements View.OnClickListener {
+
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(MainActivity.this, gameEnigme.class);  //Lancer l'activité DisplayVue
+            startActivity(intent);    //Afficher la vue
+
+        }
     }
 
     @Override
@@ -64,8 +81,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         else if (id == R.id.bouton1_main_menu)
         {
-            Intent intent = new Intent(MainActivity.this, gameRTC.class);  //Lancer l'activité DisplayVue
-            startActivity(intent);    //Afficher la vue
+
         } else if (id == R.id.bouton2_main_menu)
         {
             Intent intent = new Intent(MainActivity.this, gameRTCPrint.class);  //Lancer l'activité DisplayVue

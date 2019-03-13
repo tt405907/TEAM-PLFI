@@ -1,0 +1,85 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".gameEnigme">
+
+    <include layout="@layout/my_toolbar_enigme"/>
+
+    <TextView
+        android:id="@+id/textview_enigme"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:gravity="top"
+        android:layout_marginLeft="@dimen/margin_text_left"
+        android:layout_marginRight="@dimen/margin_text_right"
+        android:layout_marginTop="@dimen/margin_text_top"
+        android:layout_marginBottom="@dimen/margin_text_bot"
+        android:text="A REMPLIR"
+        android:textSize="15dp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_gravity="left"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="170dp"
+            android:layout_weight="1"
+            android:text="@string/choix_forme_client" />
+
+        <Button
+            android:id="@+id/enigme_new_btn"
+            android:layout_width="30dp"
+            android:layout_height="fill_parent"
+            android:background="@drawable/new_pic"
+            android:contentDescription="@string/start_new" />
+
+        <Button
+            android:id="@+id/enigme_save_btn"
+            android:layout_width="30dp"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/save"
+            android:contentDescription="@string/save" />
+
+
+    </LinearLayout>
+    <plfi.plfi.gamePRINT
+        android:id="@+id/enigme_drawing"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="#FFFFFFF1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/r_ponse_serveur"/>
+        <TextView
+            android:id="@+id/textview_reponse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/attente_de_votre_envoit_de_figure"/>
+    </LinearLayout>
+
+
+</LinearLayout>
