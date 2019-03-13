@@ -78,6 +78,63 @@ public class Connexion {
                 }
             });
 
+            connexion.on("resultatenigme", new Emitter.Listener() {
+                @Override
+                public void call(Object... objects) {
+                    System.out.println("on a reçu un résultat avec " + objects.length + " paramètre(s) ");
+                    if (objects.length > 0) {
+                        JSONObject result = (JSONObject) objects[0];
+                        res = result;
+                        System.out.println(res);
+                        try {
+                            JSONObject r = res;
+                            Boolean enigme = r.getBoolean("reponseenigme");
+                            String out ;
+                            if (enigme){
+                                out = " JUSTE";
+                            }
+                            else {
+                                out = "  FAUX";
+                            }
+                            controleur.enigmeReponseTextview(out);
+                            /*
+
+                             */
+                        } catch (JSONException e) {
+                            System.out.println(e);
+                        }
+                        /*
+                         * if (result.getResult().equals(ResultCTR.CLIENT_GAGNE)) {
+                         * System.out.println("gg no re"); return; }
+                         */
+                    }
+                }
+            });
+            connexion.on("enigme", new Emitter.Listener() {
+                @Override
+                public void call(Object... objects) {
+                    System.out.println("on a reçu un résultat avec " + objects.length + " paramètre(s) ");
+                    if (objects.length > 0) {
+                        JSONObject result = (JSONObject) objects[0];
+                        res = result;
+                        System.out.println(res);
+                        try {
+                            JSONObject r = res;
+                            String enigme = r.getString("enigme");
+                            controleur.enigmeTextview(enigme);
+                            /*
+
+                             */
+                        } catch (JSONException e) {
+                            System.out.println(e);
+                        }
+                        /*
+                         * if (result.getResult().equals(ResultCTR.CLIENT_GAGNE)) {
+                         * System.out.println("gg no re"); return; }
+                         */
+                    }
+                }
+            });
             connexion.on("resultctr", new Emitter.Listener() {
                 @Override
                 public void call(Object... objects) {
@@ -159,6 +216,18 @@ public class Connexion {
         }
         connexion.emit("identification", pieceJointe);
     }
+
+    public void envoyerIdEnigme(Identification moi) {
+        // pas de conversion automatique obj <-> json avec le json de base d'android
+        JSONObject pieceJointe = new JSONObject();
+        try {
+            pieceJointe.put("nom", moi.getNom());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        connexion.emit("demandeenigme", pieceJointe);
+    }
+
 
     public void envoyerCoup(int val) {
         connexion.emit("réponse", val);

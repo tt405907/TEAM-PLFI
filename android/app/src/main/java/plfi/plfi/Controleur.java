@@ -13,10 +13,13 @@ public class Controleur {
     int level = 1000;
     Identification moi = new Identification("identification");
     private DisplayRTC view;
+    private DisplayEnigme viewEnigme;
 
     public Controleur(DisplayRTC view) {
         setView(view);
     }
+
+    public Controleur(DisplayEnigme view) {setViewEnigme(view);}
 
 
     public Connexion getConnexion() {
@@ -31,6 +34,10 @@ public class Controleur {
     public void aprèsConnexion() {
         connexion.envoyerId(moi);
 
+    }
+
+    public void apresConnexionEnigme(){
+        connexion.envoyerIdEnigme(moi);
     }
 
     public String getNom(){
@@ -50,11 +57,22 @@ public class Controleur {
         view.updateGame(winner,imageserv);
     }
 
+    public void enigmeTextview(String enigme){
+        viewEnigme.updateGameEnigme(enigme);
+    }
+
+    public void enigmeReponseTextview(String reponse){
+        viewEnigme.updateGameReponseEnigme(reponse);
+    }
+
     public void setView(DisplayRTC view) {
         this.view = view;
     }
 
+    public void setViewEnigme(DisplayEnigme view) { this.viewEnigme = view ; }
+
     public DisplayRTC getView() {
         return view;
     }
+    public  DisplayEnigme getViewEnigme() {return viewEnigme;}
 }
