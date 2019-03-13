@@ -12,7 +12,6 @@
 		<module>commun</module>
 		<module>serveur</module>
         <module>client</module>
-        <module>lanceur</module>
 	</modules>
 
 	<packaging>pom</packaging>
