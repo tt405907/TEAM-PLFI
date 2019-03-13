@@ -8,6 +8,9 @@ public class Point {
 		this.x = x;
 		this.y = y;
 	}
+	public Point(double x, double y) {
+		this((float)x, (float)y);
+	}
 	public float getX() {
 		return x;
 	}
