@@ -48,8 +48,23 @@ public class GameEnigme {
     }
 
     //Enigmes
-    private static final String[] EN_CARRE = {"Je suis un carré"};
-    private static final String[] EN_TRIANGLE = {"Je suis un triangle"};
-    private static final String[] EN_ROND = {"Je suis un rond", "Je suis un cercle"};
+    private static final String[] EN_CARRE = {
+    		"On me dit de quelqu'un d'organisé.",
+    		"Je ne suis pas un druide mais une racine porte mon nom.",
+    		"Quand un nombre se multiplie avec lui même, on lui ajoute mon nom.",
+    		"Mon premier est un bus qui relie les villes. Mon second est une note de musique et un poisson. Mon tout est la forme à dessiner."    
+    		};
+    private static final String[] EN_TRIANGLE = {
+    		"La somme de mes angles est égale à la température idéale de cuisson d'une tarte aux pommes.",
+    		"Pour me définir, il suffit de trouver 3 points non alignés", 
+    		"Je peux avoir au maximum un angle grave."
+    		};
+    private static final String[] EN_ROND = {
+    		"Mon périmètre vaut deux pierres.",
+    		"Mon aire est aussi une pierre carrée.",
+    		"Je suis la forme de la calvitie du Père Fouras.",
+    		"J'ai une infinité de tangente.",
+    		"Je ne suis pas un archer mais je possède des arcs et des cordes."
+    		};
     private static final String ERREUR = "Je suis une erreur qui est survenue sur le serveur";
 }
