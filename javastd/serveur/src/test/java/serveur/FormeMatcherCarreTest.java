@@ -1,11 +1,11 @@
 package serveur;
 
 import static org.junit.Assert.assertEquals;
-import static serveur.DessinUtils.translate;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -75,7 +75,7 @@ public class FormeMatcherCarreTest {
 		//Translate dans pleins de directions
 		for (int x = -210; x <= 210; x += 70) {
 			for (int y = -210; y <= 210; y += 70) {
-				assertEquals(Forme.CARRE, fm.identify(translate(carre, x, y)));
+				assertEquals(Forme.CARRE, fm.identify(DessinUtils.translate(carre, x, y)));
 			}
 		}
 		
@@ -115,6 +115,52 @@ public class FormeMatcherCarreTest {
 			Point[] p = new Point[]{new Point(100, 100), new Point(100+taille, 100), new Point(100+taille, 100+taille), new Point(100, 100+taille)};
 			assertEquals(Forme.CARRE, fm.identify(new Dessin(p)));
 		}
+	}
+
+	@Test
+	public void rotation() {
+		Dessin carre = new Dessin(new Point[] {new Point(200, 200), new Point(400, 200), new Point(400, 400), new Point(200, 400)});
+		Point centre = new Point(300, 300);
+		
+		//Rotationne dans plein d'angles
+		for (int theta = 0; theta < 20; theta++) {
+			double angle = theta * Math.PI / (2*20);
+			assertEquals(Forme.CARRE, fm.identify(DessinUtils.rotate(carre, centre, angle)));
+		}
+		
+	}
+
+	@Test
+	public void composeTremblant() {
+		//Même carré que compose
+		//Va bouger chaque point aléatoirement pour simuler un dessin "tremblant"
+		List<Point> points = new ArrayList<>();
+		
+		float xStart = 500, yStart = 150, steplen = 20, steps = 10;
+		
+		for (int i = 0; i < steps; i++) {
+			points.add(new Point(xStart + steplen*i, yStart));
+		}
+		for (int i = 0; i < steps; i++) {
+			points.add(new Point(xStart + steplen*steps, yStart + steplen*i));
+		}
+		for (int i = 0; i < steps; i++) {
+			points.add(new Point(xStart + steplen*(steps-i), yStart + steplen*steps));
+		}
+		for (int i = 0; i < steps; i++) {
+			points.add(new Point(xStart, yStart + steplen*(steps-i)));
+		}
+		
+		Dessin carre = Dessin.fromList(points);
+		//Graine fixe arbitraire pour que le test soit consistant
+		Random rand = new Random(180114041513L);
+		
+		//Beaucoup d'essais
+		for (int i = 0; i < 100; i++) {
+			//TODO: Améliorer reconnaissance de forme
+			//assertEquals(Forme.CARRE, fm.identify(DessinUtils.randomTranslate(carre, rand, 10)));
+		}
+		
 	}
 
 }
