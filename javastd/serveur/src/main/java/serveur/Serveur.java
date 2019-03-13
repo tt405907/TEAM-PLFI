@@ -16,6 +16,7 @@ import commun.Forme;
 import commun.Identification;
 import commun.jeux.ResultCTR;
 import serveur.jeux.GameCTR;
+import serveur.jeux.GameEnigme;
 
 /**
  * attend une connexion, on envoie une question puis on attend une réponse,
@@ -30,8 +31,9 @@ public class Serveur {
 
     // Objets pour les jeux
     private FormeMatcher matcher = new FormeMatcher();
-    private GameCTR ctr = new GameCTR();
     private Random rand = new Random();
+    private GameCTR ctr = new GameCTR();
+    private GameEnigme enigme = new GameEnigme(rand);
 
     public Serveur(Configuration config) {
         // creation du serveur
@@ -85,6 +87,34 @@ public class Serveur {
                     System.out.println("le client n'a pas encore gagné");
                 }
 
+            }
+        });
+
+        // Demande d'énigme
+        serveur.addEventListener("demandeenigme", Identification.class, new DataListener<Identification>() {
+            @Override
+            public void onData(SocketIOClient socketIOClient, Identification identification, AckRequest ackRequest)
+                    throws Exception {
+                System.out.println(identification.getNom() + " demande une énigme");
+                leClient = new Identification(identification.getNom());
+
+                // On envoie
+                socketIOClient.sendEvent("enigme", enigme.makeEnigme());
+                System.out.println("Il devra deviner " + enigme.getFormeAttendue());
+            }
+        });
+
+        // Réponse énigme
+        serveur.addEventListener("reponseenigme", Dessin.class, new DataListener<Dessin>() {
+            @Override
+            public void onData(SocketIOClient socketIOClient, Dessin dessin, AckRequest ackRequest) throws Exception {
+                System.out.println(leClient.getNom() + " a envoyé un dessin pour répondre à l'énigme");
+                // Identifie la forme du client
+                Forme formeClient = matcher.identify(dessin);
+                boolean resultat = enigme.estFormeAttendue(formeClient);
+                if (resultat) System.out.println("Il a deviné que la forme était " + enigme.getFormeAttendue());
+                else System.out.println("Il n'a pas deviné que la forme était " + enigme.getFormeAttendue() + " (a dit " + formeClient + ")");
+                socketIOClient.sendEvent("resultatenigme", resultat);
             }
         });
 
