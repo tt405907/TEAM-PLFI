@@ -171,7 +171,7 @@ public class Serveur {
         }
 
         Configuration config = new Configuration();
-        config.setHostname("192.168.0.105");
+        config.setHostname("192.168.1.96");
         config.setPort(10101);
 
         Serveur serveur = new Serveur(config);

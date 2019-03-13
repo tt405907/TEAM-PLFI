@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".gameRTC">
+        <activity android:name=".Training">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

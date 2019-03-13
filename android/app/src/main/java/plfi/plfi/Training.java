@@ -11,9 +11,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import commun.Forme;
-
-public class gameRTC extends AppCompatActivity implements DisplayRTC {
+public class Training  extends AppCompatActivity implements DisplayRTC {
     // Mes boutons
     // Mes boutons
     Button new_content;
@@ -39,7 +37,7 @@ public class gameRTC extends AppCompatActivity implements DisplayRTC {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game_print);
+        setContentView(R.layout.activity_training);
 
         messageServeur = (TextView) findViewById(R.id.textServeur);
 
@@ -52,23 +50,23 @@ public class gameRTC extends AppCompatActivity implements DisplayRTC {
 
         // Clear notre Canvas
         new_content = (Button) findViewById(R.id.new_btn);
-        new_content.setOnClickListener(new gameRTC.ButtonNewContent());
+        new_content.setOnClickListener(new Training.ButtonNewContent());
 
         // Carre
         buttonCarre = (Button) findViewById(R.id.buttonCarre);
-        buttonCarre.setOnClickListener(new gameRTC.ButtonCarreClick());
+        buttonCarre.setOnClickListener(new Training.ButtonCarreClick());
 
         // Triangle
         buttonTriangle = (Button) findViewById(R.id.buttonTriangle);
-        buttonTriangle.setOnClickListener(new gameRTC.ButtonTriangleClick());
+        buttonTriangle.setOnClickListener(new Training.ButtonTriangleClick());
 
         // Cercle
         buttonCercle = (Button) findViewById(R.id.buttonCercle);
-        buttonCercle.setOnClickListener(new gameRTC.ButtonCercleClick());
+        buttonCercle.setOnClickListener(new Training.ButtonCercleClick());
 
         // Envoit au serveur
         save_btn = (Button) findViewById(R.id.save_btn);
-        save_btn.setOnClickListener(new gameRTC.ButtonSave_Btn());
+        save_btn.setOnClickListener(new Training.ButtonSave_Btn());
 
         gamePrint = (gamePRINT) findViewById(R.id.drawing);
 
@@ -88,9 +86,10 @@ public class gameRTC extends AppCompatActivity implements DisplayRTC {
                 onBackPressed();
 
             case R.id.menu_rtc_offline:
-                //TODO : A FINIR
+                break;
             case R.id.menu_rtc_online:
-                //TODO : A FINIR
+                Intent intent = new Intent(Training.this, gameRTCPrint.class);  //Lancer l'activité DisplayVue
+                startActivity(intent);    //Afficher la vue
 
         }
         return super.onOptionsItemSelected(item);
@@ -170,3 +169,4 @@ public class gameRTC extends AppCompatActivity implements DisplayRTC {
         }
     }
 }
+

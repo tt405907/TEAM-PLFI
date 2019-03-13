@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         else if (id == R.id.bouton1_main_menu)
         {
-            Intent intent = new Intent(MainActivity.this, gameRTC.class);  //Lancer l'activité DisplayVue
+            Intent intent = new Intent(MainActivity.this, Training.class);  //Lancer l'activité DisplayVue
             startActivity(intent);    //Afficher la vue
         } else if (id == R.id.bouton2_main_menu)
         {

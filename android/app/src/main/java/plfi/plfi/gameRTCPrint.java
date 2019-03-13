@@ -77,7 +77,7 @@ public class gameRTCPrint extends AppCompatActivity implements DisplayRTC {
         gamePrint = (gamePRINT) findViewById(R.id.drawing);
 
         controleur = new Controleur(gameRTCPrint.this);
-        Connexion connexion = new Connexion("192.168.0.105", "10101", controleur);
+        Connexion connexion = new Connexion("192.168.1.96", "10101", controleur);
         connexion.seConnecter();
         this.connexion = connexion;
 
@@ -96,9 +96,10 @@ public class gameRTCPrint extends AppCompatActivity implements DisplayRTC {
                 onBackPressed();
 
             case R.id.menu_rtc_offline:
-                //TODO : A FINIR
+                Intent intent = new Intent(gameRTCPrint.this, Training.class);  //Lancer l'activité DisplayVue
+                startActivity(intent);    //Afficher la vue
             case R.id.menu_rtc_online:
-                //TODO : A FINIR
+                break;
 
         }
         return super.onOptionsItemSelected(item);
