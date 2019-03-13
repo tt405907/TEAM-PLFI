@@ -41,4 +41,18 @@ public class FormeMatcherTriangleTest {
 		}	
 	}
 
+	@Test
+	public void rotation() {
+		Dessin triangle = new Dessin(new Point[] {new Point(300, 350), new Point(350, 350), 
+				new Point(325, (float) (300 + 25 * Math.sqrt(3)))});
+		Point centre = new Point(310, 310);
+		
+		//Rotationne dans plein d'angles
+		for (int theta = 0; theta < 80; theta++) {
+			double angle = theta * Math.PI / (20/2);
+			assertEquals(Forme.TRIANGLE, fm.identify(DessinUtils.rotate(triangle, centre, angle)));
+		}
+		
+	}
+
 }

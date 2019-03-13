@@ -41,9 +41,9 @@ public class FormeMatcher {
 		float iHu2 = huInvariant(points, 2);
 		float iHu3 = huInvariant(points, 3);
 		float iHu4 = huInvariant(points, 4);
-		System.out.println("perimetre : " + perimetre + " aire : " + aire + " m22 : " + m22 + " m04m40 : " + m04m40
-				+ " m51m40 : " + m51m40 + " m33 : " + m33 + " m80m042 : " + m80m042 + " m62m04 : " + m62m04 + " m44 : "
-				+ m44 + " iHu1 : " + iHu1 + "iHu2 : " + iHu2 + " iHu3 : " + iHu3 + " iHu4 : " + iHu4);
+//		System.out.println("perimetre : " + perimetre + " aire : " + aire + " m22 : " + m22 + " m04m40 : " + m04m40
+//				+ " m51m40 : " + m51m40 + " m33 : " + m33 + " m80m042 : " + m80m042 + " m62m04 : " + m62m04 + " m44 : "
+//				+ m44 + " iHu1 : " + iHu1 + "iHu2 : " + iHu2 + " iHu3 : " + iHu3 + " iHu4 : " + iHu4);
 
 		float c = perimetre / 4;
 		if (c * c > 0.9 * aire && c * c < 1.1 * aire) {
@@ -228,7 +228,7 @@ public class FormeMatcher {
 			}
 		}
 		points.remove(points.size() - 1);
-		System.out.println(points.size());
+		//System.out.println(points.size());
 	}
 
 	public static void main(String[] args) {

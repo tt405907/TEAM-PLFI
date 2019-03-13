@@ -67,7 +67,9 @@ public class Client {
                 @Override
                 public void call(Object... objects) {
                     System.out.println("Question!");
-                    envoyerForme();
+
+                    connexion.emit("demandeenigme", moi);
+                    //envoyerForme();
                 }
             });
             
@@ -87,6 +89,30 @@ public class Client {
                     }
                     System.out.println("On rejoue");
                     envoyerForme();
+                }
+            });
+
+
+            // Enigme
+            connexion.on("enigme", new Emitter.Listener() {
+                @Override
+                public void call(Object... objects) {
+                    System.out.println("Enigme reçue!");
+                    System.out.println(objects[0]);
+                    
+                    envoyerCarreEnigme();
+                }
+            });
+
+
+            // Réponse énigme
+            connexion.on("resultatenigme", new Emitter.Listener() {
+                @Override
+                public void call(Object... objects) {
+                    System.out.println("Résultat de l'énigme");
+                    boolean result = (Boolean)objects[0];
+                    if (result) System.out.println("Correct! :)");
+                    else System.out.println("Pas correct! :(");
                 }
             });
 
@@ -111,8 +137,12 @@ public class Client {
     
     private void envoyerForme() {
     	JSONObject json = new JSONObject(new Dessin(new Point[]{new Point(0, 0), new Point(0.5F, -9), new Point(100, 20)}));
-        System.out.println(json);
     	connexion.emit("playctr", json);
+    }
+    
+    private void envoyerCarreEnigme() {
+    	JSONObject json = new JSONObject(new Dessin(new Point[]{new Point(100, 100), new Point(300, 100), new Point(300, 300), new Point(100, 300)}));
+    	connexion.emit("reponseenigme", json);
     }
 
     private void seConnecter() {
