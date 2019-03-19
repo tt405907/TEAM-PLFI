@@ -6,12 +6,12 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/bouton1_main_menu"
-            android:icon="@drawable/image_menu_main"
+            android:icon="@drawable/dp_game_rtc"
             android:title="Game RTC" />
         <item
             android:id="@+id/bouton2_main_menu"
-            android:icon="@drawable/image_menu_main"
-            android:title="Game Print" />
+            android:icon="@drawable/dp_game_enigme"
+            android:title="Game Enigme" />
         <item
             android:id="@+id/bouton3_main_menu"
             android:icon="@drawable/image_menu_main"

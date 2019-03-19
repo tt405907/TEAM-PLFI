@@ -3,22 +3,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_main"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".MainActivity"
-    tools:showIn="@layout/bar_main"
-    android:layout_marginTop="@dimen/margintopmain"
-    android:layout_marginBottom="@dimen/marginbotmain"
-    android:layout_marginRight="@dimen/marginrightmain"
-    android:layout_marginLeft="@dimen/marginleftmain">
+
+    tools:showIn="@layout/bar_main">
     <!-- CHANGER IMAGE -->
     <Button
+        android:id="@+id/Button_main_togame_rtc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/Button_main_togame"
-        android:background="@drawable/new_pic"
-    />
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/icone_game_rtc_main_content"/>
 
-
+    <Button
+        android:id="@+id/Button_main_togame_enigme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/espacement_bouton_main"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/game_enigme_main_icon_content" />
 
 
 </LinearLayout>

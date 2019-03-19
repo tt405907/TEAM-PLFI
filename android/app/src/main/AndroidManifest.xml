@@ -12,7 +12,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+
+        <!-- MAIN ACTIVITY -->
         <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- OTHER ACTIVITY -->
+        <activity android:name=".gameEnigme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,14 +37,14 @@
 
             <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".gameRTCPrint">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        </activity><activity android:name=".gameRTCPrint">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+    </activity>
+
     </application>
 
 </manifest>

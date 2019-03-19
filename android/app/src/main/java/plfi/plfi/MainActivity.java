@@ -33,17 +33,30 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        Button btn_togamertc = (Button) findViewById(R.id.Button_main_togame);
-        btn_togamertc.setOnClickListener(new Button_togame());
+        Button btn_togamertc = (Button) findViewById(R.id.Button_main_togame_rtc);
+        btn_togamertc.setOnClickListener(new Button_togame_rtc());
+
+        Button btn_togame_enigme = (Button) findViewById(R.id.Button_main_togame_enigme);
+        btn_togame_enigme.setOnClickListener(new Button_togame_enigme());
 
     }
 
-    // Action du click
-    class Button_togame implements View.OnClickListener {
+    // Action button content main to enigme
+    class Button_togame_enigme implements View.OnClickListener{
+        @Override
+        public void onClick(View v){
+            Intent intent = new Intent( MainActivity.this , gameEnigme.class);
+            startActivity(intent);
+        }
+    }
+
+
+    // Action button content main to rtc
+    class Button_togame_rtc implements View.OnClickListener {
 
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(MainActivity.this, gameEnigme.class); // Lancer l'activité DisplayVue
+            Intent intent = new Intent(MainActivity.this, gameRTCPrint.class); // Lancer l'activité DisplayVue
             startActivity(intent); // Afficher la vue
 
         }
@@ -75,10 +88,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (id == R.id.nav_view) {
 
         } else if (id == R.id.bouton1_main_menu) {
-            Intent intent = new Intent(MainActivity.this, Training.class); // Lancer l'activité DisplayVue
+            Intent intent = new Intent(MainActivity.this, gameRTCPrint.class); // Lancer l'activité DisplayVue
             startActivity(intent); // Afficher la vue
         } else if (id == R.id.bouton2_main_menu) {
-            Intent intent = new Intent(MainActivity.this, gameRTCPrint.class); // Lancer l'activité DisplayVue
+            Intent intent = new Intent(MainActivity.this, gameEnigme.class); // Lancer l'activité DisplayVue
             startActivity(intent); // Afficher la vue
 
         } else if (id == R.id.bouton3_main_menu) {

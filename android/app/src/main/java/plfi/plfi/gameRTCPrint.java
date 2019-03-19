@@ -109,7 +109,7 @@ public class gameRTCPrint extends AppCompatActivity implements DisplayRTC {
     public void onBackPressed(){
         super.onBackPressed();
         this.finish();
-        Intent intent = new Intent (this,MainActivity.class);
+        Intent intent = new Intent (gameRTCPrint.this,MainActivity.class);
         startActivity(intent);
     }
 

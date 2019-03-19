@@ -13,4 +13,6 @@
     <dimen name="margin_text_right">15dp</dimen>
     <dimen name="margin_text_top">15dp</dimen>
     <dimen name="margin_text_bot">15dp</dimen>
+    <dimen name="espacement_bouton_main">16dp</dimen>
+    <dimen name="margin_top_main_button">15dp</dimen>
 </resources>
