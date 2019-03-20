@@ -12,20 +12,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class Training  extends AppCompatActivity implements DisplayRTC {
-    // Mes boutons
+
     // Mes boutons
     Button new_content;
     Button save_btn;
-    Button buttonCarre;
-    Button buttonTriangle;
-    Button buttonCercle;
 
     //EditText
     TextView messageServeur;
+
     // Notre canvas
     gamePRINT gamePrint;
-    Connexion connexion;
-    Controleur controleur;
 
 
     // temporaire pour tester notre truck
@@ -53,18 +49,6 @@ public class Training  extends AppCompatActivity implements DisplayRTC {
         new_content = (Button) findViewById(R.id.new_btn);
         new_content.setOnClickListener(new Training.ButtonNewContent());
 
-        // Carre
-        buttonCarre = (Button) findViewById(R.id.buttonCarre);
-        buttonCarre.setOnClickListener(new Training.ButtonCarreClick());
-
-        // Triangle
-        buttonTriangle = (Button) findViewById(R.id.buttonTriangle);
-        buttonTriangle.setOnClickListener(new Training.ButtonTriangleClick());
-
-        // Cercle
-        buttonCercle = (Button) findViewById(R.id.buttonCercle);
-        buttonCercle.setOnClickListener(new Training.ButtonCercleClick());
-
         // Envoit au serveur
         save_btn = (Button) findViewById(R.id.save_btn);
         save_btn.setOnClickListener(new Training.ButtonSave_Btn());
@@ -76,7 +60,7 @@ public class Training  extends AppCompatActivity implements DisplayRTC {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_print, menu);
+        getMenuInflater().inflate(R.menu.menu_training, menu);
         return true;
     }
 
@@ -135,37 +119,12 @@ public class Training  extends AppCompatActivity implements DisplayRTC {
         }
     }
 
-    // TODO: REFAIRE IMAGE CARRE
-    class ButtonCarreClick implements View.OnClickListener {
-        @Override
-        public void onClick(View v) {
-
-            imageId = 3;
-        }
-    }
-
-    // TODO: REFAIRE L'IMAGE TRIANGLE
-    class ButtonTriangleClick implements View.OnClickListener {
-        @Override
-        public void onClick(View v) {
-            imageId = 2;
-        }
-    }
-
-    // TODO: REFAIRE L'IMAGE CERCLE
-    class ButtonCercleClick implements View.OnClickListener {
-        @Override
-        public void onClick(View v) {
-            imageId = 4;
-
-        }
-    }
-
 
     class ButtonSave_Btn implements View.OnClickListener {
 
         @Override
         public void onClick(View v) {
+            // TODO : A FAIRE LA SEMAINE DU 28 - itération 7
 
         }
     }
