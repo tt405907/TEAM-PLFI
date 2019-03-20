@@ -40,6 +40,7 @@ public class gameEnigme extends AppCompatActivity implements DisplayEnigme {
         Toolbar toolbar = findViewById(R.id.toolbar_enigme);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.home);
 
         // Drawing
         gamePrint = (gamePRINT) findViewById(R.id.enigme_drawing);
@@ -47,6 +48,7 @@ public class gameEnigme extends AppCompatActivity implements DisplayEnigme {
         controleur = new Controleur(gameEnigme.this);
         Connexion connexion = new Connexion(getString(R.string.ipConnexion), getString(R.string.portConnexion), controleur);
         connexion.seConnecter();
+        controleur.apresConnexionEnigme();
         this.connexion = connexion;
     }
 
@@ -104,7 +106,8 @@ public class gameEnigme extends AppCompatActivity implements DisplayEnigme {
 
         @Override
         public void onClick(View v) {
-            connexion.sendForme(gamePrint.getPoints());
+
+            connexion.sendForme(gamePrint.getPoints(),"reponseenigme");
         }
     }
 

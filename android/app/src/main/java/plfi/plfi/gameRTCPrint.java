@@ -50,6 +50,7 @@ public class gameRTCPrint extends AppCompatActivity implements DisplayRTC {
         Toolbar toolbar = findViewById(R.id.toolbar_rtc_print);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.home);
 
         // image du serveur
         imageViewServeur = (ImageView) findViewById(R.id.imageServeur);
@@ -94,10 +95,11 @@ public class gameRTCPrint extends AppCompatActivity implements DisplayRTC {
         switch(item.getItemId()) {
             case android.R.id.home:
                 onBackPressed();
-
+                break;
             case R.id.menu_rtc_offline:
                 Intent intent = new Intent(gameRTCPrint.this, Training.class);  //Lancer l'activité DisplayVue
                 startActivity(intent);    //Afficher la vue
+                break;
             case R.id.menu_rtc_online:
                 break;
 
@@ -179,7 +181,7 @@ public class gameRTCPrint extends AppCompatActivity implements DisplayRTC {
         @Override
         public void onClick(View v) {
             //System.out.println("points " + gamePrint.getPoints());
-            connexion.sendForme(gamePrint.getPoints());
+            connexion.sendForme(gamePrint.getPoints(),"playctr");
         }
     }
 

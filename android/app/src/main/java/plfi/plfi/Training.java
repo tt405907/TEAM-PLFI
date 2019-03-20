@@ -44,6 +44,7 @@ public class Training  extends AppCompatActivity implements DisplayRTC {
         Toolbar toolbar = findViewById(R.id.my_toolbar_training_rtc);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.home);
 
         // image du serveur
         imageViewServeur = (ImageView) findViewById(R.id.imageServeur);

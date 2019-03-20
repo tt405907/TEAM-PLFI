@@ -83,30 +83,16 @@ public class Connexion {
                 public void call(Object... objects) {
                     System.out.println("on a reçu un résultat avec " + objects.length + " paramètre(s) ");
                     if (objects.length > 0) {
-                        JSONObject result = (JSONObject) objects[0];
-                        res = result;
-                        System.out.println(res);
-                        try {
-                            JSONObject r = res;
-                            Boolean enigme = r.getBoolean("reponseenigme");
-                            String out ;
-                            if (enigme){
-                                out = " JUSTE";
-                            }
-                            else {
-                                out = "  FAUX";
-                            }
-                            controleur.enigmeReponseTextview(out);
-                            /*
-
-                             */
-                        } catch (JSONException e) {
-                            System.out.println(e);
+                        Boolean result = (Boolean) objects[0];
+                        String out;
+                        if (result){
+                            out = " JUSTE";
                         }
-                        /*
-                         * if (result.getResult().equals(ResultCTR.CLIENT_GAGNE)) {
-                         * System.out.println("gg no re"); return; }
-                         */
+                        else {
+                            out = "  FAUX";
+                        }
+                        controleur.enigmeReponseTextview(out);
+
                     }
                 }
             });
@@ -115,23 +101,9 @@ public class Connexion {
                 public void call(Object... objects) {
                     System.out.println("on a reçu un résultat avec " + objects.length + " paramètre(s) ");
                     if (objects.length > 0) {
-                        JSONObject result = (JSONObject) objects[0];
-                        res = result;
-                        System.out.println(res);
-                        try {
-                            JSONObject r = res;
-                            String enigme = r.getString("enigme");
-                            controleur.enigmeTextview(enigme);
-                            /*
+                        String result = (String) objects[0];
+                        controleur.enigmeTextview(result);
 
-                             */
-                        } catch (JSONException e) {
-                            System.out.println(e);
-                        }
-                        /*
-                         * if (result.getResult().equals(ResultCTR.CLIENT_GAGNE)) {
-                         * System.out.println("gg no re"); return; }
-                         */
                     }
                 }
             });
@@ -186,13 +158,13 @@ public class Connexion {
         return json;
     }
 
-    public void sendForme(List<Point> points) {
+    public void sendForme(List<Point> points,String emit) {
 
 
 
         Dessin dessin = Dessin.fromList(points);
         try {
-            this.connexion.emit("playctr", dessinToJSON(dessin));
+            this.connexion.emit(emit, dessinToJSON(dessin));
         } catch (JSONException e) {
             e.printStackTrace();
         }
