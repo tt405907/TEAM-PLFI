@@ -19,9 +19,10 @@
 * 7 - 28/03
   * Ajout du jeu de reproduction de la figure.
   * Ajout du mode entraînement
+  * Ajout de la symmétrie des formes géometriques.
 * 8 - 04/04
   * Ajout du jeu de la suite de formes.
-  * Ajout de la reconnaissance des autres formes.
+  * Ajout des statistiques par serveur par joueur pour les différents jeux.
 * 9 - 18/04 (itération finale)
   * Finalisations et corrections de bugs.
   * Soutenance.
