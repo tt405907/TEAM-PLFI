@@ -86,6 +86,11 @@ public class gameEnigme extends AppCompatActivity implements DisplayEnigme {
             @Override
             public void run() {
                 message_Serveur_Reponse.setText(reponse);
+                if(reponse.contains("JUSTE"))
+                {
+                    controleur.apresConnexionEnigme();
+                }
+
             }
         });
     }
