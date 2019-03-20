@@ -12,47 +12,61 @@ import commun.Point;
 import static serveur.DessinUtils.*;
 
 public class FormeMatcherTriangleTest {
-	private FormeMatcher fm;
-	
-	@Before
-	public void setup() {
-		fm = new FormeMatcher();
-	}
+    private FormeMatcher fm;
 
-	@Test
-	public void triangleParfait() {
-		Dessin triangle = new Dessin(new Point[] {new Point(100, 150), new Point(150, 150),
-				new Point(125, (float) (100 + 25 * Math.sqrt(3)))});
-		
-		assertEquals(Forme.TRIANGLE, fm.identify(triangle));
-	}
+    @Before
+    public void setup() {
+        fm = new FormeMatcher();
+    }
 
-	@Test
-	public void translationTriangle() {
-		Dessin triangle = new Dessin(new Point[] {new Point(300, 350), new Point(350, 350), 
-				new Point(325, (float) (300 + 25 * Math.sqrt(3)))});
-		
-		//Translate
-		for (int x = -200; x <= 200; x += 200) {
-			for (int y = -200; y <= 200; y += 200) {
-				assertEquals(Forme.TRIANGLE, fm.identify(translate(triangle, x, y)));
-			}
-			
-		}	
-	}
+    @Test
+    public void triangleParfait() {
+        Dessin triangle = new Dessin(new Point[]{new Point(100, 150), new Point(150, 150),
+                new Point(125, (float) (100 + 25 * Math.sqrt(3)))});
 
-	@Test
-	public void rotation() {
-		Dessin triangle = new Dessin(new Point[] {new Point(300, 350), new Point(350, 350), 
-				new Point(325, (float) (300 + 25 * Math.sqrt(3)))});
-		Point centre = new Point(310, 310);
-		
-		//Rotationne dans plein d'angles
-		for (int theta = 0; theta < 80; theta++) {
-			double angle = theta * Math.PI / (20/2);
-			assertEquals(Forme.TRIANGLE, fm.identify(DessinUtils.rotate(triangle, centre, angle)));
-		}
-		
-	}
+        assertEquals(Forme.TRIANGLE, fm.identify(triangle));
+    }
 
+    @Test
+    public void translationTriangle() {
+        Dessin triangle = new Dessin(new Point[]{new Point(300, 350), new Point(350, 350),
+                new Point(325, (float) (300 + 25 * Math.sqrt(3)))});
+
+        //Translate
+        for (int x = -200; x <= 200; x += 200) {
+            for (int y = -200; y <= 200; y += 200) {
+                assertEquals(Forme.TRIANGLE, fm.identify(translate(triangle, x, y)));
+            }
+
+        }
+    }
+
+    @Test
+    public void rotation() {
+        Dessin triangle = new Dessin(new Point[]{new Point(300, 350), new Point(350, 350),
+                new Point(325, (float) (300 + 25 * Math.sqrt(3)))});
+        Point centre = new Point(310, 310);
+
+        //Rotationne dans plein d'angles
+        for (int theta = 0; theta < 80; theta++) {
+            double angle = theta * Math.PI / (20 / 2);
+            assertEquals(Forme.TRIANGLE, fm.identify(DessinUtils.rotate(triangle, centre, angle)));
+        }
+
+    }
+
+    @Test
+    public void testPratique() {
+        Dessin triangle1 = new Dessin(new Point[]{new Point(302.46094, 465.91406), new Point(303.00388, 466.47205), new Point(302.45435, 465.9005), new Point(302.19214, 465.91406), new Point(302.46094, 465.37207), new Point(303.81226, 458.13995), new Point(307.48395, 448.53918), new Point(312.25705, 439.28198), new Point(318.03995, 429.01257), new Point(324.34048, 417.68445), new Point(333.198, 402.14404), new Point(345.66833, 381.41992), new Point(362.25922, 359.9444), new Point(377.52417, 335.51807), new Point(389.0752, 312.80524), new Point(402.7051, 292.41077), new Point(415.13834, 267.8946), new Point(429.04678, 244.74603), new Point(444.85376, 222.73792), new Point(460.2124, 198.57428), new Point(478.26166, 178.45178), new Point(493.66937, 161.26685), new Point(504.79968, 148.73785), new Point(512.6487, 139.04193), new Point(519.1876, 129.3534), new Point(520.78625, 122.81763), new Point(526.1442, 119.01453), new Point(529.6973, 117.9718), new Point(531.6038, 116.862854), new Point(532.8956, 116.87109), new Point(534.22845, 116.87109), new Point(535.01953, 117.68408), new Point(537.55963, 119.51489), new Point(539.4446, 121.14807), new Point(541.301, 124.36322), new Point(543.11774, 128.67053), new Point(545.5211, 136.67639), new Point(547.8618, 146.95679), new Point(551.0947, 159.11346), new Point(554.97205, 169.80835), new Point(560.2273, 182.23682), new Point(566.3765, 197.57568), new Point(574.0323, 212.24274), new Point(579.771, 226.71881), new Point(584.5572, 239.80261), new Point(590.3831, 255.05914), new Point(597.9008, 274.75934), new Point(604.7362, 291.56378), new Point(613.86163, 307.17828), new Point(622.6094, 324.00995), new Point(631.0538, 341.3744), new Point(637.4868, 355.64734), new Point(643.26575, 369.16382), new Point(647.4971, 378.42657), new Point(650.9666, 387.16425), new Point(656.0215, 399.19482), new Point(660.2939, 410.16644), new Point(664.2156, 419.8363), new Point(666.82153, 427.32806), new Point(668.185, 431.26105), new Point(669.4849, 434.45862), new Point(670.0228, 437.74396), new Point(670.41504, 438.54346), new Point(670.5469, 440.96954), new Point(669.80084, 442.58527), new Point(667.94434, 444.72955), new Point(666.5956, 445.8526), new Point(665.0337, 446.92792), new Point(663.44507, 448.01642), new Point(661.6244, 449.08325), new Point(659.5561, 449.62), new Point(656.376, 450.7152), new Point(652.30206, 451.8355), new Point(647.18085, 451.82227), new Point(641.12415, 452.36426), new Point(633.4884, 453.963), new Point(622.59564, 455.0681), new Point(611.57336, 456.69104), new Point(601.09863, 458.29303), new Point(590.4317, 459.94373), new Point(578.6438, 462.06195), new Point(560.58466, 465.7854), new Point(542.9155, 468.58984), new Point(529.3858, 470.22357), new Point(518.17255, 472.36584), new Point(505.32245, 474.5705), new Point(492.768, 476.7235), new Point(478.58917, 478.85254), new Point(465.83682, 479.966), new Point(454.43716, 478.41248), new Point(444.26907, 474.09338), new Point(434.1202, 472.46057), new Point(421.91095, 470.29834), new Point(411.23468, 469.16602), new Point(402.0073, 465.99994), new Point(393.68533, 462.6588), new Point(386.0641, 459.41803), new Point(378.16843, 457.25085), new Point(368.38266, 455.1266), new Point(359.04828, 453.4704), new Point(348.28192, 452.92853), new Point(340.28574, 453.44824), new Point(334.21695, 455.03107), new Point(328.7553, 457.1245), new Point(323.86963, 458.33936), new Point(319.10208, 458.87836), new Point(315.1786, 458.32617), new Point(312.22882, 459.40192), new Point(309.33908, 458.33392), new Point(307.74615, 457.25024), new Point(305.6296, 455.078), new Point(304.83398, 454.26123), new Point(302.7343, 453.99353), new Point(301.95963, 452.90625), new Point(301.41074, 453.99023), new Point(300.21973, 453.99023), new Point(299.33548, 452.90625), new Point(298.50586, 451.28027), new Point(299.29688, 452.90625), new Point(299.29688, 452.90625)});
+        Dessin triangle2 = new Dessin(new Point[]{new Point(437.98828, 220.3916), new Point(438.51562, 219.84961), new Point(438.25195, 218.21912), new Point(438.25195, 218.76562), new Point(438.25195, 219.57861), new Point(438.78064, 220.93634), new Point(439.81952, 225.73224), new Point(441.13974, 232.29321), new Point(444.58295, 239.3664), new Point(449.28683, 246.89258), new Point(454.20016, 253.79974), new Point(460.37677, 264.79126), new Point(465.5229, 272.2057), new Point(472.89328, 282.54297), new Point(479.7669, 291.17554), new Point(486.2665, 299.83673), new Point(492.6764, 308.56567), new Point(499.396, 318.1327), new Point(508.2655, 328.6411), new Point(514.7587, 339.792), new Point(519.3762, 349.1853), new Point(522.4679, 358.2727), new Point(525.75085, 367.16138), new Point(529.1385, 375.67938), new Point(533.12683, 385.55426), new Point(536.269, 394.2295), new Point(546.3458, 406.9795), new Point(548.7368, 419.26678), new Point(552.60156, 427.25995), new Point(557.9572, 437.18518), new Point(562.8113, 445.09174), new Point(567.6944, 453.94818), new Point(571.3624, 463.0882), new Point(575.0095, 471.15277), new Point(577.6874, 476.65735), new Point(580.0993, 481.61517), new Point(581.8987, 484.7719), new Point(582.98596, 487.00684), new Point(583.2715, 487.59375), new Point(583.0444, 487.1269), new Point(582.74414, 486.50977), new Point(583.7848, 488.10687), new Point(583.93066, 488.40674), new Point(585.613, 487.60675), new Point(587.7051, 486.01794), new Point(590.11194, 482.7343), new Point(593.2496, 476.3255), new Point(598.1401, 468.30225), new Point(603.13873, 459.64563), new Point(610.60034, 449.227), new Point(619.55396, 438.92157), new Point(628.33026, 427.47046), new Point(641.49316, 411.77716), new Point(653.8396, 397.19763), new Point(664.34454, 384.7827), new Point(675.13904, 370.198), new Point(687.0124, 355.3236), new Point(700.6968, 338.0075), new Point(713.12225, 321.72003), new Point(724.538, 306.4721), new Point(736.22986, 290.09503), new Point(746.20734, 276.0735), new Point(756.03815, 262.39502), new Point(765.9623, 249.16235), new Point(773.53235, 238.42303), new Point(780.3832, 228.69019), new Point(785.96515, 220.48755), new Point(789.4589, 211.24298), new Point(793.16455, 205.7367), new Point(793.9488, 203.57544), new Point(794.209, 202.53119), new Point(794.209, 202.23486), new Point(792.11334, 201.96387), new Point(787.68225, 201.96387), new Point(778.96735, 200.88574), new Point(766.3853, 200.87988), new Point(753.6492, 200.87988), new Point(739.8071, 200.87988), new Point(726.903, 200.3269), new Point(710.6879, 199.7959), new Point(690.40924, 200.33789), new Point(670.5642, 201.39062), new Point(646.5694, 199.84064), new Point(622.2178, 198.72046), new Point(598.68304, 197.09705), new Point(573.8663, 196.00195), new Point(540.91565, 196.53241), new Point(512.396, 197.59644), new Point(485.76505, 199.1817), new Point(465.87482, 200.86774), new Point(452.07138, 202.47528), new Point(439.42496, 204.11902), new Point(433.5651, 205.19843), new Point(429.87335, 206.26953), new Point(429.0394, 206.80902), new Point(434.48813, 206.8418), new Point(434.56055, 206.8418), new Point(434.56055, 206.8418)});
+        Dessin triangle3 = new Dessin(new Point[]{new Point(724.33594, 466.45605), new Point(724.86066, 466.99268), new Point(725.2588, 467.81104), new Point(725.3906, 468.62402), new Point(725.6543, 468.08203), new Point(724.6288, 467.05804), new Point(724.0891, 465.94873), new Point(722.8161, 464.87268), new Point(715.96893, 460.18115), new Point(709.9569, 453.5746), new Point(700.7335, 447.02173), new Point(688.7576, 440.67212), new Point(675.2155, 433.1371), new Point(662.5272, 420.27417), new Point(649.7046, 407.88873), new Point(636.0601, 393.6139), new Point(617.7335, 382.5738), new Point(603.415, 371.35242), new Point(589.5314, 360.04657), new Point(575.30023, 345.9937), new Point(561.14026, 330.9757), new Point(545.61426, 318.3725), new Point(532.5711, 306.43512), new Point(520.6924, 294.2744), new Point(509.3786, 282.6145), new Point(499.24213, 269.65704), new Point(489.82092, 262.3697), new Point(481.1797, 255.25415), new Point(476.03854, 250.85486), new Point(474.41794, 248.63403), new Point(473.0864, 248.06378), new Point(472.79297, 247.7622), new Point(473.29977, 248.5752), new Point(473.5682, 248.5752), new Point(474.11133, 248.5752), new Point(475.86728, 250.15503), new Point(477.73325, 250.23688), new Point(480.1001, 248.60632), new Point(483.7447, 246.47015), new Point(487.92896, 244.81708), new Point(493.75906, 243.18152), new Point(500.6363, 241.54486), new Point(508.55713, 240.46979), new Point(518.55066, 237.76025), new Point(529.94354, 235.6239), new Point(545.25464, 231.2915), new Point(566.4781, 226.00171), new Point(587.4478, 219.32257), new Point(606.5117, 211.90057), new Point(627.5211, 203.82605), new Point(648.9415, 196.09344), new Point(667.7143, 189.03223), new Point(689.14685, 182.02869), new Point(707.79663, 176.16559), new Point(723.86224, 171.20465), new Point(737.7325, 167.89294), new Point(749.9641, 165.16058), new Point(759.4197, 163.51642), new Point(767.4146, 162.42432), new Point(772.20135, 162.39844), new Point(776.1157, 162.39844), new Point(780.3261, 165.48975), new Point(783.31665, 167.76233), new Point(785.43195, 168.36035), new Point(787.06494, 169.4187), new Point(787.8518, 169.96643), new Point(787.48535, 170.79932), new Point(787.10406, 172.68164), new Point(787.87195, 173.7619), new Point(787.11835, 174.83496), new Point(786.0512, 176.96613), new Point(785.2484, 179.18274), new Point(784.4594, 182.41321), new Point(783.41003, 186.74048), new Point(783.4151, 192.54474), new Point(782.346, 201.94067), new Point(782.34375, 212.53876), new Point(780.536, 224.51294), new Point(779.7341, 236.98938), new Point(777.9289, 253.37018), new Point(776.59375, 272.33856), new Point(775.2631, 289.8864), new Point(773.1946, 306.62115), new Point(770.5206, 323.11035), new Point(767.37756, 339.80426), new Point(757.63666, 357.43005), new Point(752.1088, 369.76202), new Point(745.81586, 384.34412), new Point(742.3106, 402.16437), new Point(734.4759, 425.51996), new Point(728.6291, 440.2365), new Point(723.9759, 453.45532), new Point(719.4455, 466.63007), new Point(715.98865, 476.4757), new Point(714.08185, 483.71008), new Point(711.986, 487.50604), new Point(711.54785, 489.21973), new Point(715.4552, 484.47363), new Point(715.63477, 484.3418), new Point(715.63477, 484.3418)});
+        Dessin triangle4 = new Dessin(new Point[]{new Point(550.5762, 388.40918), new Point(550.83984, 389.4615), new Point(550.83984, 389.76416), new Point(551.3672, 390.03516), new Point(552.6724, 388.96466), new Point(554.4975, 383.65613), new Point(554.53125, 375.47205), new Point(554.5405, 368.48865), new Point(553.73956, 359.6798), new Point(553.48376, 351.1151), new Point(553.47003, 342.989), new Point(554.008, 334.172), new Point(555.78955, 323.0998), new Point(556.6832, 311.28394), new Point(557.44415, 300.2962), new Point(556.6786, 290.11792), new Point(555.8664, 281.87836), new Point(554.54065, 273.64172), new Point(554.0039, 264.97186), new Point(554.5165, 255.13379), new Point(555.01807, 247.1159), new Point(555.56793, 239.62006), new Point(555.8365, 234.10345), new Point(556.8135, 231.30609), new Point(557.14667, 228.55066), new Point(556.91504, 229.04144), new Point(556.78125, 229.31647), new Point(557.1495, 230.65143), new Point(557.67633, 232.77948), new Point(562.0622, 236.5326), new Point(566.8081, 241.39343), new Point(571.79974, 246.26965), new Point(578.11066, 250.64764), new Point(583.9383, 255.52826), new Point(590.2286, 260.8896), new Point(596.40204, 266.41138), new Point(604.37305, 271.88586), new Point(613.84546, 278.2058), new Point(625.29767, 285.32513), new Point(637.7061, 293.8222), new Point(649.4978, 302.36853), new Point(664.1164, 313.34552), new Point(676.16565, 324.30444), new Point(683.589, 329.7771), new Point(688.8393, 333.53265), new Point(691.54224, 336.2768), new Point(693.7081, 338.48853), new Point(694.2685, 339.6117), new Point(694.67285, 340.44287), new Point(694.9319, 340.9754), new Point(692.1937, 345.01007), new Point(688.7642, 347.7351), new Point(684.80664, 350.4532), new Point(680.3114, 352.09125), new Point(673.7019, 355.35193), new Point(666.63257, 358.04565), new Point(657.62256, 360.76862), new Point(648.3778, 364.02704), new Point(638.55396, 367.8499), new Point(628.07477, 372.70276), new Point(619.167, 377.00415), new Point(609.5862, 381.93365), new Point(598.2418, 385.62604), new Point(582.9226, 391.69617), new Point(571.9629, 395.98505), new Point(560.6105, 401.4101), new Point(551.6765, 404.65137), new Point(544.57135, 407.89465), new Point(539.83966, 410.06122), new Point(537.3926, 410.90186), new Point(538.1836, 410.63086)});
+
+
+        assertEquals(Forme.TRIANGLE, fm.identify(triangle1));
+        assertEquals(Forme.TRIANGLE, fm.identify(triangle2));
+        assertEquals(Forme.TRIANGLE, fm.identify(triangle3));
+        assertEquals(Forme.TRIANGLE, fm.identify(triangle4));
+
+    }
 }
