@@ -22,9 +22,6 @@ public class gameRTCPrint extends AppCompatActivity implements DisplayRTC {
     // Mes boutons
     Button new_content;
     Button save_btn;
-    Button buttonCarre;
-    Button buttonTriangle;
-    Button buttonCercle;
 
     //EditText
     TextView messageServeur;
@@ -59,17 +56,6 @@ public class gameRTCPrint extends AppCompatActivity implements DisplayRTC {
         new_content = (Button) findViewById(R.id.new_btn);
         new_content.setOnClickListener(new ButtonNewContent());
 
-        // Carre
-        buttonCarre = (Button) findViewById(R.id.buttonCarre);
-        buttonCarre.setOnClickListener(new ButtonCarreClick());
-
-        // Triangle
-        buttonTriangle = (Button) findViewById(R.id.buttonTriangle);
-        buttonTriangle.setOnClickListener(new ButtonTriangleClick());
-
-        // Cercle
-        buttonCercle = (Button) findViewById(R.id.buttonCercle);
-        buttonCercle.setOnClickListener(new ButtonCercleClick());
 
         // Envoit au serveur
         save_btn = (Button) findViewById(R.id.save_btn);
@@ -148,33 +134,6 @@ public class gameRTCPrint extends AppCompatActivity implements DisplayRTC {
         }
     }
 
-    // TODO: REFAIRE IMAGE CARRE
-    class ButtonCarreClick implements View.OnClickListener {
-        @Override
-        public void onClick(View v) {
-
-            imageId = 3;
-        }
-    }
-
-    // TODO: REFAIRE L'IMAGE TRIANGLE
-    class ButtonTriangleClick implements View.OnClickListener {
-        @Override
-        public void onClick(View v) {
-            imageId = 2;
-        }
-    }
-
-    // TODO: REFAIRE L'IMAGE CERCLE
-    class ButtonCercleClick implements View.OnClickListener {
-        @Override
-        public void onClick(View v) {
-            imageId = 4;
-
-        }
-    }
-
-    // TODO: A finir ! !! TAOOOOOOOOOOOOOOO C'EST ICI POUR LE SERVEUR ! (remplace le
     // bouton VALIDER) gros copie colle )
     class ButtonSave_Btn implements View.OnClickListener {
 
