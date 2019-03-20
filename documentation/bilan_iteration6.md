@@ -8,6 +8,7 @@
   * Correction de bugs.
   * Nettoyage du client android ainsi que diverses optimisations (simplifications) de code.
   * Jeu de l'énigme fonctionnel.
+* Mise à jour des itérations pour évolution du sujet.
  
 ### Test réalisés
 
