@@ -28,6 +28,8 @@ public class gameEnigme extends AppCompatActivity implements DisplayEnigme {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_enigme);
 
+        gamePrint = (gamePRINT) findViewById(R.id.enigme_drawing);
+
         message_Serveur_Reponse = (TextView) findViewById(R.id.textview_reponse);
         message_Serveur_Enigme = (TextView) findViewById(R.id.textview_enigme);
 
@@ -93,6 +95,7 @@ public class gameEnigme extends AppCompatActivity implements DisplayEnigme {
                 {
                     controleur.apresConnexionEnigme();
                 }
+                gamePrint.reset();
 
             }
         });
@@ -104,7 +107,6 @@ public class gameEnigme extends AppCompatActivity implements DisplayEnigme {
 
         @Override
         public void onClick(View v) {
-            gamePrint = (gamePRINT) findViewById(R.id.enigme_drawing);
             gamePrint.reset();
         }
     }
