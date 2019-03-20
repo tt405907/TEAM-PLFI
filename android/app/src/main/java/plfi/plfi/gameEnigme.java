@@ -28,6 +28,9 @@ public class gameEnigme extends AppCompatActivity implements DisplayEnigme {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_enigme);
 
+        message_Serveur_Reponse = (TextView) findViewById(R.id.textview_reponse);
+        message_Serveur_Enigme = (TextView) findViewById(R.id.textview_enigme);
+
         //btn clear
         btn_clear = (Button) findViewById(R.id.enigme_new_btn);
         btn_clear.setOnClickListener(new Button_clear());
