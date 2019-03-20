@@ -45,7 +45,7 @@ public class gameEnigme extends AppCompatActivity implements DisplayEnigme {
         gamePrint = (gamePRINT) findViewById(R.id.enigme_drawing);
 
         controleur = new Controleur(gameEnigme.this);
-        Connexion connexion = new Connexion("192.168.0.105", "10101", controleur);
+        Connexion connexion = new Connexion(getString(R.string.ipConnexion), getString(R.string.portConnexion), controleur);
         connexion.seConnecter();
         this.connexion = connexion;
     }

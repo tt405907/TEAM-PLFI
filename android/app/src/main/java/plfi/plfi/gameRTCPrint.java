@@ -77,7 +77,7 @@ public class gameRTCPrint extends AppCompatActivity implements DisplayRTC {
         gamePrint = (gamePRINT) findViewById(R.id.drawing);
 
         controleur = new Controleur(gameRTCPrint.this);
-        Connexion connexion = new Connexion("192.168.1.96", "10101", controleur);
+        Connexion connexion = new Connexion(getString(R.string.ipConnexion), getString(R.string.portConnexion), controleur);
         connexion.seConnecter();
         this.connexion = connexion;
 
@@ -110,6 +110,7 @@ public class gameRTCPrint extends AppCompatActivity implements DisplayRTC {
         super.onBackPressed();
         this.finish();
         Intent intent = new Intent (gameRTCPrint.this,MainActivity.class);
+        System.out.println("CHECK LA");
         startActivity(intent);
     }
 
