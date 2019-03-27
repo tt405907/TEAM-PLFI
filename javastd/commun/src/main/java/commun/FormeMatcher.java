@@ -11,6 +11,8 @@ public class FormeMatcher {
     private List<Point> points;
 
     public Forme identify(Dessin d) {
+        if (d.asList().isEmpty())
+            return Forme.UNKNOWN;
         // Copie la liste
         points = new ArrayList<>();
         for (Point p : d.asList())
@@ -164,11 +166,21 @@ public class FormeMatcher {
         return Math.abs(a / 2);
     }
 
+    /**
+     * Une fonction auxiliaire pour le calcul de l'aire
+     * @param p1
+     * @param p2
+     * @return
+     */
     private float lambda(Point p1, Point p2) {
         return (p1.getX() * p2.getY()) - (p1.getY() * p2.getX());
     }
 
-    // on suppose les points triés par graham
+    /**
+     * On suppose les points déjà triés par le parcours de Graham.
+     * @param points
+     * @return
+     */
     private double perimetre(List<Point> points) {
         double per = distancePoint(points.get(0), points.get(points.size() - 1));
         for (int i = 0; i < points.size() - 1; i++) {
@@ -177,6 +189,12 @@ public class FormeMatcher {
         return per;
     }
 
+    /**
+     * Une simple distance entre deux points
+     * @param p1
+     * @param p2
+     * @return
+     */
     private double distancePoint(Point p1, Point p2) {
         return Math.sqrt((p1.getX() - p2.getX()) * (p1.getX() - p2.getX())
                 + (p1.getY() - p2.getY()) * (p1.getY() - p2.getY()));
@@ -199,6 +217,12 @@ public class FormeMatcher {
         return m;
     }
 
+    /**
+     * Les quatres premiers invariants de Hu (INUTILISES POUR LE MOMENT)
+     * @param points
+     * @param i le numéro de l'invariant désiré, par défaut on renvoie le premier invariant de Hu.
+     * @return
+     */
     private float huInvariant(List<Point> points, int i) {
         switch (i) {
             case 1:
@@ -222,6 +246,13 @@ public class FormeMatcher {
                 return huInvariant(points, 1);
         }
     }
+
+    /**
+     * Le parcours de Graham modifie une liste de points
+     * en ne gardant que les points de l'enveloppe convexe de la figure des points.
+     *
+     * @param points
+     */
 
     private void parcoursGraham(List<Point> points) {
         List<Point> sorted = new ArrayList<>();
