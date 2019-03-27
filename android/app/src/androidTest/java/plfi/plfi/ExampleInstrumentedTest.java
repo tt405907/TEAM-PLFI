@@ -1,12 +1,27 @@
 package plfi.plfi;
 
 import android.content.Context;
-import android.support.test.InstrumentationRegistry;
-import android.support.test.runner.AndroidJUnit4;
+import androidx.test.InstrumentationRegistry;
+import androidx.test.runner.AndroidJUnit4;
 
 import org.junit.Test;
+import org.junit.Before;
+import androidx.test.rule.ActivityTestRule;
+
+import org.junit.Rule;
 import org.junit.runner.RunWith;
 
+import androidx.test.filters.LargeTest;
+
+import static android.support.test.espresso.Espresso.onView;
+
+import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.intent.Intents.intended;
+import static androidx.test.espresso.intent.matcher.ComponentNameMatchers.hasShortClassName;
+import static androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent;
+import static androidx.test.espresso.intent.matcher.IntentMatchers.toPackage;
+import static org.hamcrest.core.AllOf.allOf;
 import static org.junit.Assert.*;
 
 /**
@@ -22,5 +37,6 @@ public class ExampleInstrumentedTest {
         Context appContext = InstrumentationRegistry.getTargetContext();
 
         assertEquals("plfi.plfi", appContext.getPackageName());
+
     }
 }

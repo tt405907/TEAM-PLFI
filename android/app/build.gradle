@@ -8,7 +8,7 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -20,10 +20,20 @@ android {
         main.java.srcDirs += '../../javastd/commun/src/main/java'
         test.java.srcDirs += '../../javastd/commun/src/test/java'
     }
+    compileOptions {
+                sourceCompatibility = '1.8'
+                targetCompatibility = '1.8'
+           }
 }
 
 dependencies {
-
+    androidTestImplementation 'androidx.test.espresso:espresso-intents:3.1.0'
+    androidTestImplementation 'androidx.test:rules:1.1.0'
+    testImplementation 'androidx.test:core:1.0.0'
+    androidTestImplementation 'androidx.test.uiautomator:uiautomator:2.2.0'
+    androidTestImplementation 'com.android.support:support-annotations:28+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
