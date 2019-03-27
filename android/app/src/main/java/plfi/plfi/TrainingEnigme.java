@@ -10,7 +10,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class gameEnigme extends AppCompatActivity implements DisplayEnigme {
+import java.util.ArrayList;
+import java.util.List;
+
+import commun.Dessin;
+import commun.Point;
+
+
+public class TrainingEnigme extends AppCompatActivity {
 
     // Button
     Button btn_clear;
@@ -21,8 +28,6 @@ public class gameEnigme extends AppCompatActivity implements DisplayEnigme {
     TextView message_Serveur_Enigme;
     // Notre canvas
     gamePRINT gamePrint;
-    Connexion connexion;
-    Controleur controleur;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,11 +56,6 @@ public class gameEnigme extends AppCompatActivity implements DisplayEnigme {
         // Drawing
         gamePrint = (gamePRINT) findViewById(R.id.enigme_drawing);
 
-        controleur = new Controleur(gameEnigme.this);
-        Connexion connexion = new Connexion(getString(R.string.ipConnexion), getString(R.string.portConnexion), controleur);
-        connexion.seConnecter();
-        controleur.apresConnexionEnigme();
-        this.connexion = connexion;
     }
 
 
@@ -80,43 +80,17 @@ public class gameEnigme extends AppCompatActivity implements DisplayEnigme {
             case android.R.id.home:
                 onBackPressed();
                 break;
-            case R.id.menu_rtc_offline:
-                Intent intent = new Intent(gameEnigme.this, Training.class);  //Lancer l'activité DisplayVue
+            case R.id.menu_rtc_online:
+                Intent intent = new Intent(TrainingEnigme.this, gameEnigme.class);  //Lancer l'activité DisplayVue
                 startActivity(intent);    //Afficher la vue
                 break;
-            case R.id.menu_rtc_online:
+            case R.id.menu_rtc_offline:
                 break;
 
         }
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void updateGameEnigme(final String enigme) {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-
-                message_Serveur_Enigme.setText(enigme);
-            }
-        });
-    }
-
-    @Override
-    public void updateGameReponseEnigme(final String reponse) {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                message_Serveur_Reponse.setText(reponse);
-                if(reponse.contains("JUSTE"))
-                {
-                    controleur.apresConnexionEnigme();
-                }
-                gamePrint.reset();
-
-            }
-        });
-    }
 
 
     // Button clear
@@ -130,11 +104,12 @@ public class gameEnigme extends AppCompatActivity implements DisplayEnigme {
 
     // Button send
     class Button_send implements View.OnClickListener {
-
         @Override
         public void onClick(View v) {
+            List<Point> points = gamePrint.getPoints();
+            Dessin dessin = Dessin.fromList(points);
 
-            connexion.sendForme(gamePrint.getPoints(),"reponseenigme");
+
         }
     }
 
