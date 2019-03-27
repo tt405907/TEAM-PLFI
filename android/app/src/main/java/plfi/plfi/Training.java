@@ -41,12 +41,15 @@ public class Training  extends AppCompatActivity implements DisplayRTC {
     // Image à afficher pour le serveur
     ImageView imageViewServeur;
 
+    TextView messageRegle;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_training);
 
         messageServeur = (TextView) findViewById(R.id.textServeur);
+        messageRegle =(TextView) findViewById(R.id.textRegle);
 
         Toolbar toolbar = findViewById(R.id.my_toolbar_training_rtc);
         setSupportActionBar(toolbar);
@@ -108,6 +111,11 @@ public class Training  extends AppCompatActivity implements DisplayRTC {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
+    //Carré bat Rond
+    //Triangle bat Carré
+    //Rond bat Triangle
 
     @Override
     public void onBackPressed(){

@@ -18,6 +18,17 @@
         android:text="MESSAGE DU SERVEUR"
         android:textAlignment="center" />
 
+    <TextView
+        android:id="@+id/textRegle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:text=" Carré bat Rond \nTriangle bat Carré \nRond bat Triangle"
+        android:textAlignment="center" />
+
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="30dp"

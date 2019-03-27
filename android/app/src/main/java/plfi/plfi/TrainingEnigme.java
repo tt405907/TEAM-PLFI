@@ -37,7 +37,7 @@ public class TrainingEnigme extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game_enigme);
+        setContentView(R.layout.activity_game_enigme_training);
 
         gamePrint = (gamePRINT) findViewById(R.id.enigme_drawing);
 
