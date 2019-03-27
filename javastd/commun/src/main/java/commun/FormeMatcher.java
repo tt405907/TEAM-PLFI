@@ -1,14 +1,8 @@
 package commun;
 
-import static commun.DessinUtils.translate;
-
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-
-import commun.Dessin;
-import commun.Forme;
-import commun.Point;
 
 /**
  * Un objet qui traduit un Dessin en Forme
@@ -22,7 +16,7 @@ public class FormeMatcher {
         for (Point p : d.asList())
             points.add(p.copy());
         this.parcoursGraham(points);
-        float perimetre = this.perimetre(points);
+        double perimetre = this.perimetre(points);
         float aire = this.area(points);
         if (points.size() <= 2)
             return Forme.SEGMENT;
@@ -45,7 +39,7 @@ public class FormeMatcher {
 //				+ " m51m40 : " + m51m40 + " m33 : " + m33 + " m80m042 : " + m80m042 + " m62m04 : " + m62m04 + " m44 : "
 //				+ m44 + " iHu1 : " + iHu1 + "iHu2 : " + iHu2 + " iHu3 : " + iHu3 + " iHu4 : " + iHu4);
 
-        float c = perimetre / 4;
+        double c = perimetre / 4;
         if (c * c > 0.9 * aire && c * c < 1.1 * aire) {
             return Forme.CARRE;
         }
@@ -54,12 +48,12 @@ public class FormeMatcher {
         /*
          * c = perimetre / 3; float h = (float) (c * Math.sqrt(3) / 2); if ((c * h / 2)
          * > 0.9 * aire && (c * h / 2) < 1.1 * aire) { return Forme.TRIANGLE; }
-         */
+         **/
         if (circleTester(points, barycentre, 0.15))
             return Forme.ROND;
-
-
-        return Forme.TRIANGLE;
+        if (triangleTester(points, 0.4))
+            return Forme.TRIANGLE;
+        return Forme.UNKNOWN;
     }
 
     private boolean fixRatio(List<Point> points) {
@@ -74,7 +68,6 @@ public class FormeMatcher {
                 return false;
             else
                 ratio = ymax - ymin;
-
         }
         if ((ymax - ymin) < 10)
             ratio = xmax - xmin;
@@ -100,7 +93,7 @@ public class FormeMatcher {
 
         int errorCount = 0;
         for (Point p : points) {
-            float d = distancePoint(barycentre, p);
+            double d = distancePoint(barycentre, p);
             if (d < (1 - errorMarge) * distanceMoyenne || d > (1 + errorMarge) * distanceMoyenne)
                 errorCount += 1;
         }
@@ -108,6 +101,59 @@ public class FormeMatcher {
         if (errorCount > points.size() / 5)
             return false;
         return true;
+    }
+
+    /**
+     * @param points     Les points dont on va tester si ils représentent un triangle
+     * @param errorMarge La marge d'erreur qu'on s'autorise avec cette méthode qui sera assez élevé car cette méthode est assez imprécise (calcul de la somme des angles)
+     * @return true si les points représent un triangle, false sinon.
+     */
+    private boolean triangleTester(List<Point> points, double errorMarge) {
+        int n = points.size();
+        if (n < 3)
+            return false;
+        double sommeAngle = 0;
+        for (int i = 0; i < n; i++) {
+            double alpha;
+            if (i == n - 2)
+                alpha = angleTroisPoints(points.get(i), points.get(i + 1), points.get(0));
+            else if (i == n - 1)
+                alpha = angleTroisPoints(points.get(i), points.get(0), points.get(1));
+            else
+                alpha = angleTroisPoints(points.get(i), points.get(i + 1), points.get(i + 2));
+            if (alpha > 90)
+                alpha = 90 - alpha / 2;
+            sommeAngle += alpha;
+        }
+        if ((sommeAngle > 180 * (1 - errorMarge)) && (sommeAngle < 180 * (1 + errorMarge)))
+            return true;
+        return false;
+    }
+
+    private double angleTroisPoints(Point p1, Point p2, Point p3) {
+
+        double a = distancePoint(p1, p2);
+        double b = distancePoint(p2, p3);
+        double c = distancePoint(p3, p1);
+        if (a < 0.001 || b < 0.001 || c < 0.001) {
+            return 0;
+        }
+        //  System.out.println(a+" " +b+" "+c);
+        double dividende = a * a + b * b - c * c;
+        double diviseur = 2 * a * b;
+
+        // l'arcos n'est défini que si le quotient est entre -1 et 1
+
+        if (dividende / diviseur <= -1) {
+
+            return 180;
+        }
+        if (dividende / diviseur >= 1) {
+            return 0;
+        }
+        double angleRad = Math.acos(dividende / diviseur);
+
+        return angleRad * 180 / Math.PI;
     }
 
     private float area(List<Point> points) {
@@ -123,16 +169,16 @@ public class FormeMatcher {
     }
 
     // on suppose les points triés par graham
-    private float perimetre(List<Point> points) {
-        float per = distancePoint(points.get(0), points.get(points.size() - 1));
+    private double perimetre(List<Point> points) {
+        double per = distancePoint(points.get(0), points.get(points.size() - 1));
         for (int i = 0; i < points.size() - 1; i++) {
             per += distancePoint(points.get(i), points.get(i + 1));
         }
         return per;
     }
 
-    private float distancePoint(Point p1, Point p2) {
-        return (float) Math.sqrt((double) (p1.getX() - p2.getX()) * (p1.getX() - p2.getX())
+    private double distancePoint(Point p1, Point p2) {
+        return Math.sqrt((p1.getX() - p2.getX()) * (p1.getX() - p2.getX())
                 + (p1.getY() - p2.getY()) * (p1.getY() - p2.getY()));
     }
 
@@ -238,65 +284,4 @@ public class FormeMatcher {
         //System.out.println(points.size());
     }
 
-    public static void main(String[] args) {
-        FormeMatcher fm = new FormeMatcher();
-        Dessin carreParfait = new Dessin(
-                new Point[]{new Point(200, 100), new Point(400, 100), new Point(400, 300), new Point(200, 300)});
-        Point[] pointsCercle = new Point[360];
-        for (int i = 0; i < 360; i++) {
-            pointsCercle[i] = new Point((float) Math.cos(i * 2 * Math.PI / 360.0) * 100 + 250,
-                    (float) Math.sin(i * 2 * Math.PI / 360.0) * 100 + 250);
-        }
-        Dessin cercleParfait = new Dessin(pointsCercle);
-        Point[] pointsTriangle = new Point[]{new Point(200, 300), new Point(300, 300),
-                new Point(250, (float) (200 + 50 * Math.sqrt(3)))};
-        Dessin triangleParfait = new Dessin(pointsTriangle);
-        Dessin segmentParfait = new Dessin(
-                new Point[]{new Point(300, 200), new Point(300, 400), new Point(300, 300)});
-
-        List<Point> points = new ArrayList<>();
-
-        float xStart = 500, yStart = 150, steplen = 9, steps = 14;
-
-        // Haut gauche -> haut droit
-        for (int i = 0; i < steps; i++) {
-            points.add(new Point(xStart + steplen * i, yStart));
-        }
-        // Haut droit -> bas droit
-        for (int i = 0; i < steps; i++) {
-            points.add(new Point(xStart + steplen * steps, yStart + steplen * i));
-        }
-        // Bas droit -> bas gauche
-        for (int i = 0; i < steps; i++) {
-            points.add(new Point(xStart + steplen * (steps - i), yStart + steplen * steps));
-        }
-        // Bas gauche -> haut gauche
-        for (int i = 0; i < steps; i++) {
-            points.add(new Point(xStart, yStart + steplen * (steps - i)));
-        }
-        Dessin CarreCompose = Dessin.fromList(points);
-
-        points = CarreCompose.asList();
-        for (int i = 0; i < 180; i++) {
-            pointsCercle[i] = new Point((float) Math.cos(i * 2 * Math.PI / 180.0) * 100 + 625,
-                    (float) Math.sin(i * 2 * Math.PI / 180.0) * 100 + 625);
-        }
-        Dessin cercle = new Dessin(pointsCercle);
-        // Translate dans pleins de directions
-        for (int x = -200; x <= 200; x += 200) {
-            for (int y = -200; y <= 200; y += 200) {
-                fm.identify(translate(cercle, x, y));
-            }
-        }
-        System.out.print("Carre parfait : ");
-        fm.identify(carreParfait);
-        System.out.print("Cercle parfait : ");
-        fm.identify(cercleParfait);
-        System.out.print("Triangle parfait : ");
-        fm.identify(triangleParfait);
-        System.out.println("Segment parfait : ");
-        fm.identify(segmentParfait);
-        System.out.println("Carre compose : ");
-        fm.identify(CarreCompose);
-    }
 }
