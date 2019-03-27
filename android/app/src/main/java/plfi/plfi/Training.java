@@ -1,6 +1,7 @@
 package plfi.plfi;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -138,7 +139,17 @@ public class Training  extends AppCompatActivity implements DisplayRTC {
                 } else {
                     imageViewServeur.setImageResource(R.drawable.carre);
                 }
+                if(winner.equals("client gagne")){
 
+                    messageServeur.setBackgroundColor(Color.GREEN);
+                }
+                else if(winner.equals("egalite")){
+
+                    messageServeur.setBackgroundColor(Color.YELLOW);
+                }
+                else{
+                    messageServeur.setBackgroundColor(Color.RED);
+                }
                 messageServeur.setText(winner);
 
 
