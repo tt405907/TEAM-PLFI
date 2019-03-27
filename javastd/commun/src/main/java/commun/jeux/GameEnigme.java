@@ -1,4 +1,4 @@
-package serveur.jeux;
+package commun.jeux;
 
 import java.util.Random;
 

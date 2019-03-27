@@ -11,18 +11,29 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.List;
+import java.util.Random;
+
+import commun.Dessin;
+import commun.Forme;
+import commun.FormeMatcher;
+import commun.Point;
+import commun.jeux.GameCTR;
+import commun.jeux.ResultCTR;
+
 public class Training  extends AppCompatActivity implements DisplayRTC {
 
     // Mes boutons
     Button new_content;
     Button save_btn;
 
+    FormeMatcher formeMatcher;
     //EditText
     TextView messageServeur;
 
     // Notre canvas
     gamePRINT gamePrint;
-
+    GameCTR gameCTR;
 
     // temporaire pour tester notre truck
     int imageId;
@@ -30,12 +41,15 @@ public class Training  extends AppCompatActivity implements DisplayRTC {
     // Image à afficher pour le serveur
     ImageView imageViewServeur;
 
+    TextView messageRegle;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_training);
 
         messageServeur = (TextView) findViewById(R.id.textServeur);
+        messageRegle =(TextView) findViewById(R.id.textRegle);
 
         Toolbar toolbar = findViewById(R.id.my_toolbar_training_rtc);
         setSupportActionBar(toolbar);
@@ -55,6 +69,9 @@ public class Training  extends AppCompatActivity implements DisplayRTC {
 
         gamePrint = (gamePRINT) findViewById(R.id.drawing);
 
+        gameCTR = new GameCTR();
+        formeMatcher = new FormeMatcher();
+
 
     }
 
@@ -63,6 +80,21 @@ public class Training  extends AppCompatActivity implements DisplayRTC {
         getMenuInflater().inflate(R.menu.menu_training, menu);
         return true;
     }
+
+
+    private Forme randomForme() {
+        int num = new Random().nextInt(3);
+        switch (num) {
+            case 0:
+                return Forme.CARRE;
+            case 1:
+                return Forme.TRIANGLE;
+            case 2:
+            default:
+                return Forme.ROND;
+        }
+    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
@@ -79,6 +111,11 @@ public class Training  extends AppCompatActivity implements DisplayRTC {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
+    //Carré bat Rond
+    //Triangle bat Carré
+    //Rond bat Triangle
 
     @Override
     public void onBackPressed(){
@@ -109,6 +146,9 @@ public class Training  extends AppCompatActivity implements DisplayRTC {
         });
     }
 
+
+
+
     // Nouvelle page
     class ButtonNewContent implements View.OnClickListener {
 
@@ -124,7 +164,12 @@ public class Training  extends AppCompatActivity implements DisplayRTC {
 
         @Override
         public void onClick(View v) {
-            // TODO : A FAIRE LA SEMAINE DU 28 - itération 7
+            List<Point> points = gamePrint.getPoints();
+            Dessin dessin = Dessin.fromList(points);
+            Forme forme = formeMatcher.identify(dessin);
+
+            ResultCTR resultCTR = gameCTR.play(forme,randomForme());
+            updateGame(resultCTR.getResult(),resultCTR.getFormeServeur().toString());
 
         }
     }

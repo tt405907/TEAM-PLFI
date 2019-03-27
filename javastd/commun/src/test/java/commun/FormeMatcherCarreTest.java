@@ -1,4 +1,4 @@
-package serveur;
+package commun;
 
 import static org.junit.Assert.assertEquals;
 

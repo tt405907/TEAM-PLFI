@@ -30,7 +30,7 @@ public class gameRTCPrint extends AppCompatActivity implements DisplayRTC {
     Connexion connexion;
     Controleur controleur;
 
-
+    TextView messageRegle;
     // temporaire pour tester notre truck
     int imageId;
 
@@ -43,6 +43,7 @@ public class gameRTCPrint extends AppCompatActivity implements DisplayRTC {
         setContentView(R.layout.activity_game_print);
 
         messageServeur = (TextView) findViewById(R.id.textServeur);
+        messageRegle =(TextView) findViewById(R.id.textRegle);
 
         Toolbar toolbar = findViewById(R.id.toolbar_rtc_print);
         setSupportActionBar(toolbar);

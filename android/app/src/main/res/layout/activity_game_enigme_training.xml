@@ -1,15 +1,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Training" >
+    tools:context=".TrainingEnigme">
 
-    <include layout="@layout/my_toolbar_training_rtc"/>
+    <include layout="@layout/my_toolbar_enigme"/>
 
     <TextView
-        android:id="@+id/textServeur"
+        android:id="@+id/training"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="0dp"
@@ -19,14 +19,16 @@
         android:textAlignment="center" />
 
     <TextView
-        android:id="@+id/textRegle"
+        android:id="@+id/textview_enigme"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:text=" Carré bat Rond \nTriangle bat Carré \nRond bat Triangle"
-        android:textAlignment="center" />
+        android:layout_height="150dp"
+        android:gravity="top"
+        android:layout_marginLeft="@dimen/margin_text_left"
+        android:layout_marginRight="@dimen/margin_text_right"
+        android:layout_marginTop="@dimen/margin_text_top"
+        android:layout_marginBottom="@dimen/margin_text_bot"
+        android:text="Mode entrainement"
+        android:textSize="15dp" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -45,16 +47,15 @@
             android:layout_weight="1"
             android:text="@string/choix_forme_client" />
 
-
         <Button
-            android:id="@+id/new_btn"
+            android:id="@+id/enigme_new_btn"
             android:layout_width="30dp"
             android:layout_height="fill_parent"
             android:background="@drawable/new_pic"
             android:contentDescription="@string/start_new" />
 
         <Button
-            android:id="@+id/save_btn"
+            android:id="@+id/enigme_save_btn"
             android:layout_width="30dp"
             android:layout_height="fill_parent"
             android:layout_marginLeft="10dp"
@@ -63,9 +64,8 @@
 
 
     </LinearLayout>
-
     <plfi.plfi.gamePRINT
-        android:id="@+id/drawing"
+        android:id="@+id/enigme_drawing"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_marginLeft="5dp"
@@ -76,25 +76,19 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
+        android:layout_height="match_parent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:orientation="horizontal">
         <TextView
-            android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginBottom="15dp"
-            android:layout_weight="1"
-            android:text="@string/choix_forme_serveur" />
-
-        <ImageView
-            android:id="@+id/imageServeur"
+            android:text="@string/r_ponse_serveur"/>
+        <TextView
+            android:id="@+id/textview_reponse"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:paddingTop="10dp"
-            custom:srcCompat="@drawable/image_init_serveur" />
+            android:text="@string/attente_de_votre_envoit_de_figure"/>
     </LinearLayout>
 
 
