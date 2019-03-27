@@ -1,4 +1,4 @@
-package serveur.jeux;
+package commun.jeux;
 
 import commun.Forme;
 import commun.jeux.ResultCTR;

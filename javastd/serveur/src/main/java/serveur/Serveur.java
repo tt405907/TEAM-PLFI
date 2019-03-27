@@ -13,10 +13,11 @@ import com.corundumstudio.socketio.listener.DataListener;
 
 import commun.Dessin;
 import commun.Forme;
+import commun.FormeMatcher;
 import commun.Identification;
+import commun.jeux.GameCTR;
+import commun.jeux.GameEnigme;
 import commun.jeux.ResultCTR;
-import serveur.jeux.GameCTR;
-import serveur.jeux.GameEnigme;
 
 /**
  * attend une connexion, on envoie une question puis on attend une réponse,

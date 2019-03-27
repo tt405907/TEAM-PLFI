@@ -1,5 +1,6 @@
-package serveur;
+package commun;
 
+import static commun.DessinUtils.*;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
@@ -8,8 +9,6 @@ import org.junit.Test;
 import commun.Dessin;
 import commun.Forme;
 import commun.Point;
-
-import static serveur.DessinUtils.*;
 
 public class FormeMatcherTriangleTest {
     private FormeMatcher fm;

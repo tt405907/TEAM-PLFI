@@ -1,6 +1,6 @@
-package serveur;
+package commun;
 
-import static serveur.DessinUtils.translate;
+import static commun.DessinUtils.translate;
 
 import java.util.ArrayList;
 import java.util.Comparator;
