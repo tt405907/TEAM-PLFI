@@ -12,20 +12,25 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import commun.Dessin;
+import commun.Forme;
+import commun.FormeMatcher;
 import commun.Point;
-
+import commun.jeux.GameEnigme;
 
 public class TrainingEnigme extends AppCompatActivity {
 
     // Button
     Button btn_clear;
     Button btn_send;
-
+    GameEnigme gameEnigme;
     //EditText
     TextView message_Serveur_Reponse;
     TextView message_Serveur_Enigme;
+
+    FormeMatcher formeMatcher;
     // Notre canvas
     gamePRINT gamePrint;
 
@@ -55,9 +60,24 @@ public class TrainingEnigme extends AppCompatActivity {
 
         // Drawing
         gamePrint = (gamePRINT) findViewById(R.id.enigme_drawing);
+        gameEnigme = new GameEnigme(new Random());
+
+        setEnigme();
+
+        formeMatcher = new FormeMatcher();
 
     }
 
+    public void setEnigme(){
+        String enigme = gameEnigme.makeEnigme();
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+
+                message_Serveur_Enigme.setText(enigme);
+            }
+        });
+    }
 
 
     @Override
@@ -108,7 +128,27 @@ public class TrainingEnigme extends AppCompatActivity {
         public void onClick(View v) {
             List<Point> points = gamePrint.getPoints();
             Dessin dessin = Dessin.fromList(points);
+            Forme forme = formeMatcher.identify(dessin);
+            boolean b = gameEnigme.estFormeAttendue(forme);
+            String out;
+            if (b){
+                out = " JUSTE";
+            }
+            else {
+                out = "  FAUX";
+            }
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    message_Serveur_Reponse.setText(out);
+                    if(b)
+                    {
+                        setEnigme();
+                    }
+                    gamePrint.reset();
 
+                }
+            });
 
         }
     }

@@ -37,7 +37,19 @@
 
             <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity><activity android:name=".gameRTCPrint">
+        </activity>
+
+        <activity android:name=".TrainingEnigme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
+
+        <activity android:name=".gameRTCPrint">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
 

@@ -81,7 +81,7 @@ public class gameEnigme extends AppCompatActivity implements DisplayEnigme {
                 onBackPressed();
                 break;
             case R.id.menu_rtc_offline:
-                Intent intent = new Intent(gameEnigme.this, Training.class);  //Lancer l'activité DisplayVue
+                Intent intent = new Intent(gameEnigme.this, TrainingEnigme.class);  //Lancer l'activité DisplayVue
                 startActivity(intent);    //Afficher la vue
                 break;
             case R.id.menu_rtc_online:
