@@ -1,6 +1,7 @@
 package plfi.plfi;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -29,6 +30,7 @@ public class TrainingEnigme extends AppCompatActivity {
     //EditText
     TextView message_Serveur_Reponse;
     TextView message_Serveur_Enigme;
+    TextView messageTraining;
 
     FormeMatcher formeMatcher;
     // Notre canvas
@@ -43,6 +45,7 @@ public class TrainingEnigme extends AppCompatActivity {
 
         message_Serveur_Reponse = (TextView) findViewById(R.id.textview_reponse);
         message_Serveur_Enigme = (TextView) findViewById(R.id.textview_enigme);
+        messageTraining = (TextView) findViewById(R.id.training);
 
         //btn clear
         btn_clear = (Button) findViewById(R.id.enigme_new_btn);
@@ -133,9 +136,11 @@ public class TrainingEnigme extends AppCompatActivity {
             String out;
             if (b){
                 out = " JUSTE";
+                messageTraining.setBackgroundColor(Color.GREEN);
             }
             else {
                 out = "  FAUX";
+                messageTraining.setBackgroundColor(Color.RED);
             }
             runOnUiThread(new Runnable() {
                 @Override
@@ -149,6 +154,7 @@ public class TrainingEnigme extends AppCompatActivity {
 
                 }
             });
+
 
         }
     }
