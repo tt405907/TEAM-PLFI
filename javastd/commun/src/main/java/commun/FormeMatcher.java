@@ -81,12 +81,24 @@ public class FormeMatcher {
         return true;
     }
 
+    /**
+     * Un simple calcul du barycentre d'une figure à base des moments.
+     * @param points les points représentant la figure
+     * @return un point représenant le barycentre de la figure
+     */
     private Point barycentre(List<Point> points) {
         float xg = moment(points, 1, 0) / points.size();
         float yg = moment(points, 0, 1) / points.size();
         return new Point(xg, yg);
     }
 
+    /**
+     * on teste si les points passés en entrée correspondent à un cercle.
+     * @param points
+     * @param barycentre le centre du cercle testé
+     * @param errorMarge la marge d'erreur qu'on s'accorde, qui sert pour déterminer si un point appartient au cercle.
+     * @return
+     */
     private boolean circleTester(List<Point> points, Point barycentre, double errorMarge) {
         float distanceMoyenne = 0;
         for (Point p : points)
@@ -108,7 +120,7 @@ public class FormeMatcher {
     /**
      * @param points     Les points dont on va tester si ils représentent un triangle
      * @param errorMarge La marge d'erreur qu'on s'autorise avec cette méthode qui sera assez élevé car cette méthode est assez imprécise (calcul de la somme des angles)
-     * @return true si les points représent un triangle, false sinon.
+     * @return true si les points représentent un triangle, false sinon.
      */
     private boolean triangleTester(List<Point> points, double errorMarge) {
         int n = points.size();
@@ -132,6 +144,13 @@ public class FormeMatcher {
         return false;
     }
 
+    /**
+     *
+     * @param p1 le premier point formant l'angle, calculé dans le sens trigonométrique
+     * @param p2 le second point
+     * @param p3 le troisième point
+     * @return  l'angle entre trois points, exprimé en degrés
+     */
     private double angleTroisPoints(Point p1, Point p2, Point p3) {
 
         double a = distancePoint(p1, p2);
@@ -190,7 +209,7 @@ public class FormeMatcher {
     }
 
     /**
-     * Une simple distance entre deux points
+     * Une simple distance entre deux points, exprimée en float
      * @param p1
      * @param p2
      * @return
@@ -250,8 +269,7 @@ public class FormeMatcher {
     /**
      * Le parcours de Graham modifie une liste de points
      * en ne gardant que les points de l'enveloppe convexe de la figure des points.
-     *
-     * @param points
+     * @param points la liste de points modifiée lors du parcours
      */
 
     private void parcoursGraham(List<Point> points) {
