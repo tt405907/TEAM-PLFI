@@ -7,7 +7,7 @@ import commun.Identification;
 public class Controleur {
 
     Connexion connexion;
-
+    boolean isEnigme;
     int dernierCoup = -1;
     String nom = "mon nom";
     int level = 1000;
@@ -17,13 +17,19 @@ public class Controleur {
 
     public Controleur(DisplayRTC view) {
         setView(view);
+        this.isEnigme = false;
     }
 
-    public Controleur(DisplayEnigme view) {setViewEnigme(view);}
+    public Controleur(DisplayEnigme view) {setViewEnigme(view);
+    this.isEnigme = true;}
 
 
     public Connexion getConnexion() {
         return connexion;
+    }
+
+    public boolean isEnigme(){
+        return this.isEnigme;
     }
 
     public void setConnexion(Connexion connexion) {
@@ -38,6 +44,10 @@ public class Controleur {
 
     public void apresConnexionEnigme(){
         connexion.envoyerIdEnigme(moi);
+    }
+
+    public void getStats(){
+        connexion.demanderStats(moi);
     }
 
     public String getNom(){
@@ -55,6 +65,15 @@ public class Controleur {
 
     public void resultCTR(String winner, String imageserv) {
         view.updateGame(winner,imageserv);
+    }
+
+
+    public void resultStatsEnigme(String bonnes,String total,String mauvaise){
+        viewEnigme.updateStats(bonnes,mauvaise,total);
+    }
+
+    public void resultStatsTCR(String triangle,String carre,String rond,String victoires,String defaites,String egalites,String total){
+        view.updateStats(triangle,carre,rond,victoires,defaites,egalites,total);
     }
 
     public void enigmeTextview(String enigme){
@@ -75,4 +94,5 @@ public class Controleur {
         return view;
     }
     public  DisplayEnigme getViewEnigme() {return viewEnigme;}
-}
+
+    }

@@ -11,7 +11,7 @@
     <TextView
         android:id="@+id/textview_enigme"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="wrap_content"
         android:gravity="top"
         android:layout_marginLeft="@dimen/margin_text_left"
         android:layout_marginRight="@dimen/margin_text_right"
@@ -66,19 +66,54 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:orientation="horizontal">
+        android:layout_marginRight="15dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/r_ponse_serveur" />
+
+            <TextView
+                android:id="@+id/textview_reponse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/attente_de_votre_envoit_de_figure" />
+
+
+        </LinearLayout>
         <TextView
+            android:id="@+id/stat_good"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/r_ponse_serveur"/>
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:text="@string/attention_stats" />
+
         <TextView
-            android:id="@+id/textview_reponse"
+            android:id="@+id/stat_bad"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/attente_de_votre_envoit_de_figure"/>
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:text="@string/attention_stats" />
+
+        <TextView
+            android:id="@+id/stat_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:text="@string/attention_stats" />
     </LinearLayout>
 
 

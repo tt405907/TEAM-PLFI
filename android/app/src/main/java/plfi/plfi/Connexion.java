@@ -107,6 +107,55 @@ public class Connexion {
                     }
                 }
             });
+
+            connexion.on("stats", new Emitter.Listener() {
+                @Override
+                public void call(Object... objects) {
+                    System.out.println("stats");
+                    if (objects.length > 0) {
+                        JSONObject result = (JSONObject) objects[0];
+                        res = result;
+                        System.out.println(res);
+                        try {
+                            JSONObject r = res;
+                            JSONObject statEnigme = res.getJSONObject("statsEnigme");
+                            JSONObject TCR = res.getJSONObject("statsTCR");
+                            if(controleur.isEnigme() == true){
+                                String bonne = statEnigme.getString("bonnes");
+                                String mauvaise = statEnigme.getString("mauvaises");
+                                String total = statEnigme.getString("total");
+                                controleur.resultStatsEnigme(bonne,total,mauvaise);
+                            }
+                            else if(controleur.isEnigme == false){
+                                System.out.println("stat tcr");
+                                statEnigme = TCR;
+                                String triangle = statEnigme.getString("triangles");
+                                String carre = statEnigme.getString("carres");
+                                String rond = statEnigme.getString("ronds");
+
+                                String total = statEnigme.getString("total");
+                                String defaite = statEnigme.getString("defaites");
+                                String bonne = statEnigme.getString("victoires");
+                                String egalite = statEnigme.getString("egalites");
+
+                                controleur.resultStatsTCR(triangle,carre,rond,bonne,defaite,egalite,total);
+
+                            }
+                            /*
+
+                             */
+                        } catch (JSONException e) {
+                            System.out.println(e);
+                        }
+                        /*
+                         * if (result.getResult().equals(ResultCTR.CLIENT_GAGNE)) {
+                         * System.out.println("gg no re"); return; }
+                         */
+                    }
+                }
+            });
+
+
             connexion.on("resultctr", new Emitter.Listener() {
                 @Override
                 public void call(Object... objects) {
@@ -212,6 +261,16 @@ public class Connexion {
             e.printStackTrace();
         }
         connexion.emit("demandeenigme", pieceJointe);
+    }
+
+    public void demanderStats(Identification moi){
+        JSONObject pieceJointe = new JSONObject();
+        try {
+            pieceJointe.put("nom", moi.getNom());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        connexion.emit("demandestats", pieceJointe);
     }
 
 

@@ -25,21 +25,15 @@ public class gameEnigme extends AppCompatActivity implements DisplayEnigme {
     Connexion connexion;
     Controleur controleur;
 
+    TextView statGoodAnswer;
+    TextView statbadAnswer;
+    TextView statTotalAnswer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         // Test de connexion avec le serveur
-        controleur = new Controleur(gameEnigme.this);
-        Connexion connexion = new Connexion(getString(R.string.ipConnexion), getString(R.string.portConnexion), controleur);
-
-        if (connexion.seConnecter()) {
-            this.connexion = connexion;
-        } else {
-            // On met le mode offline si on à pas pu se connecter
-            Intent intent = new Intent(gameEnigme.this, TrainingEnigme.class); // Lancer l'activité DisplayVue
-            startActivity(intent); // Afficher la vue
-        }
 
         setContentView(R.layout.activity_game_enigme);
 
@@ -48,6 +42,9 @@ public class gameEnigme extends AppCompatActivity implements DisplayEnigme {
         message_Serveur_Reponse = (TextView) findViewById(R.id.textview_reponse);
         message_Serveur_Enigme = (TextView) findViewById(R.id.textview_enigme);
 
+        statbadAnswer = (TextView) findViewById(R.id.stat_bad);
+        statGoodAnswer = (TextView) findViewById(R.id.stat_good);
+        statTotalAnswer = (TextView) findViewById(R.id.stat_total);
         //btn clear
         btn_clear = (Button) findViewById(R.id.enigme_new_btn);
         btn_clear.setOnClickListener(new Button_clear());
@@ -64,6 +61,13 @@ public class gameEnigme extends AppCompatActivity implements DisplayEnigme {
 
         // Drawing
         gamePrint = (gamePRINT) findViewById(R.id.enigme_drawing);
+
+        controleur = new Controleur(gameEnigme.this);
+        Connexion connexion = new Connexion(getString(R.string.ipConnexion), getString(R.string.portConnexion), controleur);
+        connexion.seConnecter();
+        controleur.apresConnexionEnigme();
+        this.connexion = connexion;
+
 
     }
 
@@ -112,6 +116,19 @@ public class gameEnigme extends AppCompatActivity implements DisplayEnigme {
     }
 
     @Override
+    public void updateStats(final String bonnes,final String mauvaise,final String total){
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+
+                statbadAnswer.setText("Mauvaises réponses : "+mauvaise);
+                statGoodAnswer.setText("Bonnes réponses : "+bonnes);
+                statTotalAnswer.setText("Total des enigmes reçus : "+total);
+            }
+        });
+    }
+
+    @Override
     public void updateGameReponseEnigme(final String reponse) {
         runOnUiThread(new Runnable() {
             @Override
@@ -120,9 +137,10 @@ public class gameEnigme extends AppCompatActivity implements DisplayEnigme {
                 if(reponse.contains("JUSTE"))
                 {
                     message_Serveur_Enigme.setBackgroundColor(Color.GREEN);
+
                     controleur.apresConnexionEnigme();
                 }
-                else {
+                else{
                     message_Serveur_Enigme.setBackgroundColor(Color.RED);
                 }
                 gamePrint.reset();
@@ -148,6 +166,7 @@ public class gameEnigme extends AppCompatActivity implements DisplayEnigme {
         public void onClick(View v) {
 
             connexion.sendForme(gamePrint.getPoints(),"reponseenigme");
+            controleur.getStats();
         }
     }
 
