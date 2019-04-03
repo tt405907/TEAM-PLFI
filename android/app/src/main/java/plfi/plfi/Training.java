@@ -64,7 +64,7 @@ public class Training  extends AppCompatActivity implements DisplayRTC {
         new_content = (Button) findViewById(R.id.new_btn);
         new_content.setOnClickListener(new Training.ButtonNewContent());
 
-        // Envoit au serveur
+        // Envoi au serveur
         save_btn = (Button) findViewById(R.id.save_btn);
         save_btn.setOnClickListener(new Training.ButtonSave_Btn());
 
