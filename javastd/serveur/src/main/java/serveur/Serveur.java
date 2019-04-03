@@ -35,6 +35,8 @@ public class Serveur {
     private Random rand = new Random();
     private GameCTR ctr = new GameCTR();
     private GameEnigme enigme = new GameEnigme(rand);
+    
+    private CollecteurStats stats = new CollecteurStats();
 
     public Serveur(Configuration config) {
         // creation du serveur
@@ -79,6 +81,7 @@ public class Serveur {
                 // Joue la partie
                 ResultCTR res = ctr.play(formeClient, formeServeur);
                 System.out.println(res);
+                stats.addPartieTCR(leClient, res);
                 // Renvoie le résultat
                 renvoyerResultatCTR(socketIOClient, res);
                 // Si le client a battu le serveur
@@ -98,6 +101,7 @@ public class Serveur {
                     throws Exception {
                 System.out.println(identification.getNom() + " demande une énigme");
                 leClient = new Identification(identification.getNom());
+                stats.newEnigme(leClient);
 
                 // On envoie
                 socketIOClient.sendEvent("enigme", enigme.makeEnigme());
@@ -113,9 +117,27 @@ public class Serveur {
                 // Identifie la forme du client
                 Forme formeClient = matcher.identify(dessin);
                 boolean resultat = enigme.estFormeAttendue(formeClient);
-                if (resultat) System.out.println("Il a deviné que la forme était " + enigme.getFormeAttendue());
-                else System.out.println("Il n'a pas deviné que la forme était " + enigme.getFormeAttendue() + " (a dit " + formeClient + ")");
+                if (resultat) {
+                	stats.bonneReponseEnigme(leClient);
+                	System.out.println("Il a deviné que la forme était " + enigme.getFormeAttendue());
+                }
+                else {
+                	stats.mauvaiseReponseEnigme(leClient);
+                	System.out.println("Il n'a pas deviné que la forme était " + enigme.getFormeAttendue() + " (a dit " + formeClient + ")");
+                }
                 socketIOClient.sendEvent("resultatenigme", resultat);
+            }
+        });
+
+        // Demande stats
+        serveur.addEventListener("demandestats", Identification.class, new DataListener<Identification>() {
+            @Override
+            public void onData(SocketIOClient socketIOClient, Identification identification, AckRequest ackRequest)
+                    throws Exception {
+                System.out.println(identification.getNom() + " demande ses stats");
+                leClient = new Identification(identification.getNom());
+
+                socketIOClient.sendEvent("stats", stats.getStats(leClient));
             }
         });
 
@@ -172,6 +194,7 @@ public class Serveur {
         }
 
         Configuration config = new Configuration();
+        //config.setHostname("127.0.0.1");
         config.setHostname("192.168.0.108");
         config.setPort(10101);
 

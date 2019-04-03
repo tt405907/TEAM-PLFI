@@ -68,8 +68,8 @@ public class Client {
                 public void call(Object... objects) {
                     System.out.println("Question!");
 
-                    connexion.emit("demandeenigme", moi);
-                    //envoyerForme();
+                    //connexion.emit("demandeenigme", moi);
+                    envoyerForme();
                 }
             });
             
@@ -83,7 +83,7 @@ public class Client {
                         System.out.println(result);
                         if (result != null && result.getResult().equals(ResultCTR.CLIENT_GAGNE)) {
                         	System.out.println("gg no re");
-                        	connexion.close();
+                        	demanderStats();
                         	return;
                         }
                     }
@@ -117,6 +117,17 @@ public class Client {
             });
 
 
+            // Stats
+            connexion.on("stats", new Emitter.Listener() {
+                @Override
+                public void call(Object... objects) {
+                    System.out.println("Stats reçus!");
+                    System.out.println(objects[0]);
+                    connexion.close();
+                }
+            });
+
+
 
         } catch (URISyntaxException e) {
             e.printStackTrace();
@@ -143,6 +154,10 @@ public class Client {
     private void envoyerCarreEnigme() {
     	JSONObject json = new JSONObject(new Dessin(new Point[]{new Point(100, 100), new Point(300, 100), new Point(300, 300), new Point(100, 300)}));
     	connexion.emit("reponseenigme", json);
+    }
+    
+    private void demanderStats() {
+    	connexion.emit("demandestats", new JSONObject(moi));
     }
 
     private void seConnecter() {
