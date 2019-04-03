@@ -26,6 +26,8 @@ public class gameRTCPrint extends AppCompatActivity implements DisplayRTC {
 
     //EditText
     TextView messageServeur;
+
+
     // Notre canvas
     gamePRINT gamePrint;
     Connexion connexion;
