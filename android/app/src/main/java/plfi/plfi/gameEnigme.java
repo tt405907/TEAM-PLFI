@@ -1,6 +1,7 @@
 package plfi.plfi;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -110,7 +111,11 @@ public class gameEnigme extends AppCompatActivity implements DisplayEnigme {
                 message_Serveur_Reponse.setText(reponse);
                 if(reponse.contains("JUSTE"))
                 {
+                    message_Serveur_Enigme.setBackgroundColor(Color.GREEN);
                     controleur.apresConnexionEnigme();
+                }
+                else {
+                    message_Serveur_Enigme.setBackgroundColor(Color.RED);
                 }
                 gamePrint.reset();
 
