@@ -41,6 +41,20 @@ public class gameRTCPrint extends AppCompatActivity implements DisplayRTC {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Test de connexion avec le serveur
+        controleur = new Controleur(gameRTCPrint.this);
+        Connexion connexion = new Connexion(getString(R.string.ipConnexion), getString(R.string.portConnexion), controleur);
+
+        if (connexion.seConnecter()){
+            this.connexion = connexion;
+        }
+        else {
+            // On met le mode offline si on à pas pu se connecter
+            Intent intent = new Intent( gameRTCPrint.this ,Training.class); // Lancer l'activité DisplayVue
+            startActivity(intent); // Afficher la vue
+        }
+
         setContentView(R.layout.activity_game_print);
 
         messageServeur = (TextView) findViewById(R.id.textServeur);
@@ -65,10 +79,11 @@ public class gameRTCPrint extends AppCompatActivity implements DisplayRTC {
 
         gamePrint = (gamePRINT) findViewById(R.id.drawing);
 
-        controleur = new Controleur(gameRTCPrint.this);
-        Connexion connexion = new Connexion(getString(R.string.ipConnexion), getString(R.string.portConnexion), controleur);
-        connexion.seConnecter();
-        this.connexion = connexion;
+
+
+
+
+
 
     }
 

@@ -27,6 +27,19 @@ public class gameEnigme extends AppCompatActivity implements DisplayEnigme {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Test de connexion avec le serveur
+        controleur = new Controleur(gameEnigme.this);
+        Connexion connexion = new Connexion(getString(R.string.ipConnexion), getString(R.string.portConnexion), controleur);
+
+        if (connexion.seConnecter()) {
+            this.connexion = connexion;
+        } else {
+            // On met le mode offline si on à pas pu se connecter
+            Intent intent = new Intent(gameEnigme.this, TrainingEnigme.class); // Lancer l'activité DisplayVue
+            startActivity(intent); // Afficher la vue
+        }
+
         setContentView(R.layout.activity_game_enigme);
 
         gamePrint = (gamePRINT) findViewById(R.id.enigme_drawing);
@@ -51,11 +64,6 @@ public class gameEnigme extends AppCompatActivity implements DisplayEnigme {
         // Drawing
         gamePrint = (gamePRINT) findViewById(R.id.enigme_drawing);
 
-        controleur = new Controleur(gameEnigme.this);
-        Connexion connexion = new Connexion(getString(R.string.ipConnexion), getString(R.string.portConnexion), controleur);
-        connexion.seConnecter();
-        controleur.apresConnexionEnigme();
-        this.connexion = connexion;
     }
 
 
