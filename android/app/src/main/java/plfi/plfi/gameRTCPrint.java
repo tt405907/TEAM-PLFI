@@ -32,6 +32,14 @@ public class gameRTCPrint extends AppCompatActivity implements DisplayRTC {
     Controleur controleur;
 
     TextView messageRegle;
+
+    TextView triangle;
+    TextView carre;
+    TextView rond;
+    TextView victoires;
+    TextView defaites;
+    TextView egalites;
+    TextView total;
     // temporaire pour tester notre truck
     int imageId;
 
@@ -46,19 +54,22 @@ public class gameRTCPrint extends AppCompatActivity implements DisplayRTC {
         controleur = new Controleur(gameRTCPrint.this);
         Connexion connexion = new Connexion(getString(R.string.ipConnexion), getString(R.string.portConnexion), controleur);
 
-        if (connexion.seConnecter()){
-            this.connexion = connexion;
-        }
-        else {
-            // On met le mode offline si on à pas pu se connecter
-            Intent intent = new Intent( gameRTCPrint.this ,Training.class); // Lancer l'activité DisplayVue
-            startActivity(intent); // Afficher la vue
-        }
+        connexion.seConnecter();
+        this.connexion = connexion;
+
 
         setContentView(R.layout.activity_game_print);
 
         messageServeur = (TextView) findViewById(R.id.textServeur);
         messageRegle =(TextView) findViewById(R.id.textRegle);
+
+        triangle = (TextView) findViewById(R.id.triangleView) ;
+        carre = (TextView) findViewById(R.id.carreView) ;
+        rond = (TextView) findViewById(R.id.rondView) ;
+        victoires = (TextView) findViewById(R.id.victoireView) ;
+        defaites = (TextView) findViewById(R.id.defaiteView) ;
+        egalites = (TextView) findViewById(R.id.egaliteView) ;
+        total = (TextView) findViewById(R.id.totalView) ;
 
         Toolbar toolbar = findViewById(R.id.toolbar_rtc_print);
         setSupportActionBar(toolbar);
@@ -120,6 +131,24 @@ public class gameRTCPrint extends AppCompatActivity implements DisplayRTC {
     }
 
     @Override
+    public void updateStats(final String tr,final String car,final String ro,final String vic,final String def,final String eg,final String tot){
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                triangle.setText("Total des triangles : "+tr);
+                carre.setText("Total des carre : "+car);
+                rond.setText("Total des rond : "+ro);
+                victoires.setText("Total des victoires : "+vic);
+                defaites.setText("Total des defaites : "+def);
+                egalites.setText("Total des égalités : "+eg);
+                total.setText("Total : "+tot);
+
+            }
+        });
+    }
+
+
+    @Override
     public void updateGame(final String winner, final String img) {
         runOnUiThread(new Runnable() {
             @Override
@@ -170,6 +199,7 @@ public class gameRTCPrint extends AppCompatActivity implements DisplayRTC {
         public void onClick(View v) {
             //System.out.println("points " + gamePrint.getPoints());
             connexion.sendForme(gamePrint.getPoints(),"playctr");
+            controleur.getStats();
         }
     }
 

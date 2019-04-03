@@ -125,6 +125,11 @@ public class Training  extends AppCompatActivity implements DisplayRTC {
         Intent intent = new Intent (this,MainActivity.class);
         startActivity(intent);
     }
+
+    @Override
+    public void updateStats(final String triangle,final String carre,final String rond,final String victoires,final String defaites,final String egalites,final String total){
+
+    }
     @Override
     public void updateGame(final String winner, final String img) {
         runOnUiThread(new Runnable() {
