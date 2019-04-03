@@ -26,6 +26,8 @@ public class gameRTCPrint extends AppCompatActivity implements DisplayRTC {
 
     //EditText
     TextView messageServeur;
+
+
     // Notre canvas
     gamePRINT gamePrint;
     Connexion connexion;
@@ -84,7 +86,7 @@ public class gameRTCPrint extends AppCompatActivity implements DisplayRTC {
         new_content.setOnClickListener(new ButtonNewContent());
 
 
-        // Envoit au serveur
+        // Envoi au serveur
         save_btn = (Button) findViewById(R.id.save_btn);
         save_btn.setOnClickListener(new ButtonSave_Btn());
 
