@@ -52,8 +52,9 @@ public class GameRTCPrintActivityTest {
 
     @Test
     public void button_retour_GameRTCPrint() {
+
         ViewInteraction appCompatImageButton = onView(
-                allOf(withContentDescription("Navigate up"),
+                allOf(withContentDescription("Revenir en haut de la page"),
                         childAtPosition(
                                 allOf(withId(R.id.toolbar_rtc_print),
                                         childAtPosition(
@@ -62,7 +63,6 @@ public class GameRTCPrintActivityTest {
                                 0),
                         isDisplayed()));
         appCompatImageButton.perform(click());
-
         intended(AllOf.allOf(hasComponent(hasShortClassName(".MainActivity")), toPackage(PACKAGE_NAME)));
     }
 
@@ -140,7 +140,7 @@ public class GameRTCPrintActivityTest {
 
     @Test
     public void button_EnvoitServeur_Game(){
-
+        
         assertFalse(testEnvoye);
         mainActivityRule.getActivity().gamePrint.getPoints().add(new Point(5,6));
         mainActivityRule.getActivity().connexion = new Connexion("", "", mainActivityRule.getActivity().controleur) {
