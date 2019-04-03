@@ -170,12 +170,26 @@ public class Connexion {
         }
     }
 
-    public void seConnecter() {
+    public boolean seConnecter() {
         // on se connecte
         Log.e("debug", "essaie de se connecter");
-        this.connexion.connect();
-        Log.e("debug", "connecté ?");
+        try {
+            this.connexion.connect();
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
 
+
+    }
+
+    public void seDeconnecter(){
+        try{
+            this.connexion.disconnect();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public void envoyerId(Identification moi) {
