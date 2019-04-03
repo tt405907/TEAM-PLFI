@@ -24,6 +24,8 @@ import commun.jeux.ResultCTR;
 
 public class Training  extends AppCompatActivity implements DisplayRTC {
 
+    public Connexion connexion;
+    public Controleur controleur;
     // Mes boutons
     Button new_content;
     Button save_btn;
