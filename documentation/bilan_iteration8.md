@@ -10,4 +10,6 @@
  
 ### Test réalisés
 
-* Test côté android sur les différentes activités.
+* Test côté android sur les différentes activités : 
+  * Test de GameRCT en offline et online
+  * Test de GameEnigme en online
