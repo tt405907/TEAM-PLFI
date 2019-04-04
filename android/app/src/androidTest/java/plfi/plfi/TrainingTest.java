@@ -43,7 +43,6 @@ public class TrainingTest {
     private static final String PACKAGE_NAME = "plfi.plfi";
     @Rule
     public IntentsTestRule<Training> mainActivityRule = new IntentsTestRule<>(Training.class);
-    public boolean testEnvoye= false;
 
     @Test
     public void bouton_retour_Training() {
@@ -84,22 +83,10 @@ public class TrainingTest {
         assertTrue(mainActivityRule.getActivity().gamePrint.getPoints().isEmpty());
     }
 
-    public void envoye(){
-        testEnvoye=true;
-    }
 
     @Test
-    public void button_EnvoitServeur_Game(){
-
-        assertFalse(testEnvoye);
-        mainActivityRule.getActivity().gamePrint.getPoints().add(new Point(5,6));
-        mainActivityRule.getActivity().connexion = new Connexion("", "", mainActivityRule.getActivity().controleur) {
-            public void sendForme(List<Point> points, String emit) {
-                envoye();
-            }
-
-        };
-
+    public void button_EnvoitdeForme_Game(){
+        //TODO : Faire un groupement de points qui représente toutes les figures et tester que l'image envoyé et donc bien la bonne (Test inutile pour l'instant) cela sera same pour Training enigme
         ViewInteraction appCompatButton3 = onView(
                 allOf(withId(R.id.save_btn), withContentDescription("Save"),
                         childAtPosition(
@@ -110,7 +97,6 @@ public class TrainingTest {
                         isDisplayed()));
         appCompatButton3.perform(click());
 
-        assertTrue(testEnvoye);
     }
     private static Matcher<View> childAtPosition(
             final Matcher<View> parentMatcher, final int position) {
