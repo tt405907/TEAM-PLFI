@@ -11,7 +11,7 @@ import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
 import org.hamcrest.core.AllOf;
 import org.junit.Assert;
-import org.junit.Before;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,9 +21,8 @@ import java.util.List;
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.filters.LargeTest;
-import androidx.test.rule.ActivityTestRule;
+
 import androidx.test.runner.AndroidJUnit4;
-import commun.jeux.GameEnigme;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
@@ -47,7 +46,7 @@ public class GameEnigmeTest {
     private static final String PACKAGE_NAME = "plfi.plfi";
     @Rule
     public IntentsTestRule<gameEnigme> mainActivityRule = new IntentsTestRule<>(gameEnigme.class);
-    public boolean dessinEnvoye=false;
+    private boolean dessinEnvoye = false;
 
     @Test
     public void boutonRetourGameEnigme() {
@@ -172,7 +171,7 @@ public class GameEnigmeTest {
 
 
     @Test
-    public void sendEnigme(){
+    public void sendEnigme() {
         assertFalse(dessinEnvoye);
         Point[] pointsCercle = new Point[180];
         for (int i = 0; i < 180; i++) {
@@ -183,7 +182,7 @@ public class GameEnigmeTest {
             mainActivityRule.getActivity().gamePrint.getPoints().add(p);
         mainActivityRule.getActivity().connexion = new Connexion("", "", mainActivityRule.getActivity().controleur) {
             public void sendForme(List<Point> points, String emit) {
-                dessinEnvoye=true;
+                dessinEnvoye = true;
             }
 
         };
