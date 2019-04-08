@@ -1,6 +1,6 @@
 package commun.jeux;
 
-import java.util.Arrays;
+
 import java.util.Random;
 
 import commun.Forme;
@@ -8,6 +8,7 @@ import commun.Forme;
 public class GameEnigme {
     private Forme attente;
     private Random rand;
+    private Object breakpoint;
 
     public GameEnigme(Random rand) {
         this.rand = rand;
@@ -69,14 +70,4 @@ public class GameEnigme {
     };
     private static final String ERREUR = "Je suis une erreur qui est survenue sur le serveur";
 
-    public Forme getForme(String enigme) {
-        if (Arrays.asList(EN_CARRE).contains(enigme))
-            return Forme.CARRE;
-        else if (Arrays.asList(EN_TRIANGLE).contains(enigme))
-            return Forme.TRIANGLE;
-        else if (Arrays.asList(EN_ROND).contains(enigme))
-            return Forme.ROND;
-        else
-            return Forme.UNKNOWN;
-    }
 }

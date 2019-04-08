@@ -2,11 +2,12 @@ package plfi.plfi;
 
 
 import android.graphics.Color;
-
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
+import android.widget.TextView;
 
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
@@ -21,7 +22,6 @@ import java.util.List;
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.filters.LargeTest;
-
 import androidx.test.runner.AndroidJUnit4;
 import commun.Dessin;
 import commun.Point;
@@ -41,9 +41,6 @@ import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-
-import android.graphics.drawable.ColorDrawable;
-import android.widget.TextView;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
