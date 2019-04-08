@@ -2,7 +2,7 @@ package plfi.plfi;
 
 
 import android.graphics.Color;
-import android.graphics.ColorFilter;
+
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +21,7 @@ import java.util.List;
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.filters.LargeTest;
-import androidx.test.rule.ActivityTestRule;
+
 import androidx.test.runner.AndroidJUnit4;
 import commun.Dessin;
 import commun.Point;
@@ -161,8 +161,8 @@ public class TrainingTest {
     public void envoiCercleTrainingGame() {
         //un cercle dessiné à la main
         Dessin cercle1 = new Dessin(new Point[]{new Point(964.27734, 83.80957), new Point(964.1455, 83.80957), new Point(963.22266, 83.80957), new Point(957.98535, 80.58081), new Point(952.5073, 77.36157), new Point(948.5232, 74.65619), new Point(944.28906, 72.99213), new Point(940.1433, 71.36334), new Point(937.6814, 71.34375), new Point(936.3502, 71.34375), new Point(934.244, 71.86847), new Point(933.1942, 72.93872), new Point(930.8153, 74.5791), new Point(926.09424, 77.27185), new Point(919.9788, 81.10101), new Point(914.253, 85.40076), new Point(909.5659, 90.1969), new Point(907.13464, 91.90137), new Point(906.26953, 92.75244), new Point(904.9776, 95.15521), new Point(903.926, 97.8103), new Point(901.31555, 102.14551), new Point(898.1853, 105.41559), new Point(896.5632, 110.77362), new Point(895.4782, 112.456116), new Point(895.9863, 116.1864), new Point(896.7817, 119.05682), new Point(897.5326, 123.22803), new Point(897.83203, 129.17981), new Point(897.83203, 135.1427), new Point(898.3452, 139.5473), new Point(899.41406, 143.39496), new Point(900.4368, 144.47986), new Point(904.0283, 148.57764), new Point(902.8113, 148.81726), new Point(903.86365, 150.44086), new Point(907.04803, 152.09485), new Point(908.6333, 156.39825), new Point(910.9426, 158.52948), new Point(918.6176, 163.4519), new Point(920.2741, 166.67273), new Point(924.6116, 168.83142), new Point(928.11, 169.94989), new Point(932.5431, 171.55731), new Point(935.7402, 172.68243), new Point(942.0033, 170.57996), new Point(944.3843, 171.6123), new Point(948.08484, 171.11987), new Point(953.85535, 171.04657), new Point(956.8476, 169.45813), new Point(960.8064, 167.31445), new Point(964.2409, 166.21735), new Point(967.87585, 165.62915), new Point(971.8672, 163.6222), new Point(974.22406, 160.80243), new Point(977.1675, 156.4748), new Point(982.6845, 153.20166), new Point(983.72546, 149.49524), new Point(986.9364, 146.6944), new Point(989.07245, 143.46967), new Point(990.10803, 141.8153), new Point(990.6378, 139.6623), new Point(993.03784, 135.2572), new Point(996.15106, 129.39972), new Point(996.9782, 124.487366), new Point(997.7637, 121.24701), new Point(995.7094, 118.02307), new Point(993.56384, 113.64508), new Point(990.95544, 110.431946), new Point(988.30475, 104.46387), new Point(984.8884, 97.970215), new Point(982.2851, 93.151855), new Point(979.3224, 90.32269), new Point(977.7362, 88.695435), new Point(974.8156, 87.05859), new Point(971.4493, 85.457275), new Point(967.7927, 83.335144), new Point(965.0749, 81.64697), new Point(960.3725, 78.96344), new Point(958.4279, 77.33899), new Point(960.8945, 75.10083), new Point(962.959, 75.67969), new Point(962.959, 75.67969)});
-        List<Point> pointsT = cercle1.asList();
-        mainActivityRule.getActivity().gamePrint.getPoints().addAll(pointsT);
+        List<Point> pointsCe = cercle1.asList();
+        mainActivityRule.getActivity().gamePrint.getPoints().addAll(pointsCe);
         ViewInteraction appCompatButton3 = onView(
                 allOf(withId(R.id.save_btn), withContentDescription("Save"),
                         childAtPosition(

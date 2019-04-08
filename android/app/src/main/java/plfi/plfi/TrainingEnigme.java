@@ -137,11 +137,11 @@ public class TrainingEnigme extends AppCompatActivity {
             String out;
             if (b){
                 out = " JUSTE";
-                messageTraining.setBackgroundColor(Color.GREEN);
+                message_Serveur_Reponse.setBackgroundColor(Color.GREEN);
             }
             else {
                 out = "  FAUX";
-                messageTraining.setBackgroundColor(Color.RED);
+                message_Serveur_Reponse.setBackgroundColor(Color.RED);
             }
             runOnUiThread(new Runnable() {
                 @Override
