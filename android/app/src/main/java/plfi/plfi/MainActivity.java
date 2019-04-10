@@ -39,6 +39,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Button btn_togame_enigme = (Button) findViewById(R.id.Button_main_togame_enigme);
         btn_togame_enigme.setOnClickListener(new Button_togame_enigme());
 
+        Button btn_togame_reflex = (Button) findViewById(R.id.Button_main_reflex);
+        btn_togame_reflex.setOnClickListener(new Button_togame_reflex());
+
     }
 
     // Action button content main to enigme
@@ -50,6 +53,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
+    // Action button content main to reflex
+    class Button_togame_reflex implements View.OnClickListener {
+
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(MainActivity.this, gameReflex.class); // Lancer l'activité DisplayVue
+            startActivity(intent); // Afficher la vue
+        }
+    }
 
     // Action button content main to rtc
     class Button_togame_rtc implements View.OnClickListener {

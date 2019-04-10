@@ -8,14 +8,13 @@ import commun.Forme;
 public class GameEnigme {
     private Forme attente;
     private Random rand;
-    private Object breakpoint;
 
     public GameEnigme(Random rand) {
         this.rand = rand;
     }
 
-    public String makeEnigme() {
-        attente = randomForme();
+    public String makeEnigme(Forme forme) {
+        attente = forme;
         switch (attente) {
             case CARRE:
                 return EN_CARRE[rand.nextInt(EN_CARRE.length)];
@@ -26,6 +25,10 @@ public class GameEnigme {
             default:
                 return ERREUR;
         }
+    }
+
+    public String makeEnigme() {
+        return makeEnigme(randomForme());
     }
 
     public boolean estFormeAttendue(Forme f) {

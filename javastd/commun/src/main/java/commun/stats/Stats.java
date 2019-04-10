@@ -5,10 +5,12 @@ import commun.jeux.ResultCTR;
 public class Stats {
 	private StatsTCR tcr;
 	private StatsEnigme enigme;
+	private StatsReflex reflex;
 	
 	public Stats() {
 		tcr = new StatsTCR();
 		enigme = new StatsEnigme();
+		reflex = new StatsReflex();
 	}
 
 	public StatsTCR getStatsTCR() {
@@ -17,6 +19,10 @@ public class Stats {
 
 	public StatsEnigme getStatsEnigme() {
 		return enigme;
+	}
+	
+	public StatsReflex getStatsReflex() {
+		return reflex;
 	}
 	
 	public void addPartieTCR(ResultCTR result) {
@@ -31,6 +37,16 @@ public class Stats {
 	}
 	public void mauvaiseReponseEnigme() {
 		enigme.mauvaiseReponse();
+	}
+	
+	public void newPartieReflex() {
+		reflex.newPartie();
+	}
+	public void reponseReflex(boolean bonne) {
+		reflex.reponse(bonne);
+	}
+	public void newRecordReflex(int score) {
+		reflex.newRecord(score);
 	}
 
 }

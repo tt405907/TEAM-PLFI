@@ -24,6 +24,13 @@
         android:layout_marginLeft="@dimen/espacement_bouton_main"
         android:layout_marginTop="30dp"
         android:background="@drawable/game_enigme_main_icon_content" />
+    <Button
+        android:id="@+id/Button_main_reflex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/espacement_bouton_main"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/gamereflex"/>
 
 
 </LinearLayout>

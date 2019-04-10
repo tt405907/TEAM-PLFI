@@ -97,7 +97,7 @@ public class Connexion {
                 }
             });
 
-            connexion.on("resultatenigme", new Emitter.Listener() {
+            connexion.on("resultatreflex", new Emitter.Listener() {
                 @Override
                 public void call(Object... objects) {
                     System.out.println("on a reçu un résultat avec " + objects.length + " paramètre(s) ");

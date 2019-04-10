@@ -42,4 +42,17 @@ public class CollecteurStats {
 		makePresent(id);
 		stats.get(id.getNom()).mauvaiseReponseEnigme();
 	}
+	
+	public void newPartieReflex(Identification id) {
+		makePresent(id);
+		stats.get(id.getNom()).newPartieReflex();
+	}
+	public void reponseReflex(Identification id, boolean bonne) {
+		makePresent(id);
+		stats.get(id.getNom()).reponseReflex(bonne);
+	}
+	public void newRecordReflex(Identification id, int score) {
+		makePresent(id);
+		stats.get(id.getNom()).newRecordReflex(score);
+	}
 }
