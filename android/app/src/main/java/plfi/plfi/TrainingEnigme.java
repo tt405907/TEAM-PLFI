@@ -52,7 +52,7 @@ public class TrainingEnigme extends AppCompatActivity {
         btn_clear.setOnClickListener(new Button_clear());
 
         //btn_send
-        btn_send = (Button) findViewById(R.id.enigme_save_btn);
+        btn_send = (Button) findViewById(R.id.training_check);
         btn_send.setOnClickListener(new Button_send());
 
         //toolbar
