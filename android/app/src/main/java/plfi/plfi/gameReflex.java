@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 
 public class gameReflex extends AppCompatActivity implements DisplayReflex {
 
@@ -100,7 +101,6 @@ public class gameReflex extends AppCompatActivity implements DisplayReflex {
                 else{
                     timer.setBackgroundColor(Color.RED);
                 }
-                gamePrint.reset();
             }
         });
     }
@@ -128,6 +128,7 @@ public class gameReflex extends AppCompatActivity implements DisplayReflex {
 
         @Override
         public void onClick(View v) {
+            gamePrint.reset();
             new Thread(new Runnable() {
                 public void run() {
                     gamePrint.setIsStarted(true);
@@ -140,14 +141,14 @@ public class gameReflex extends AppCompatActivity implements DisplayReflex {
                                 progressBar.setProgress(progressStatus);
                                 double realt = Float.parseFloat( (String)timer.getText()) - 0.05;
                                 double arrondi = (double)Math.round(realt * 1000) / 1000;
-                                timer.setText(Double.toString(arrondi));
+                                String numberAsString = String.format ("%.2f", realt);
+                                timer.setText(numberAsString);
                             }
                         });
 
                         try {
                            // 50 milli = 0.05 s à voir si on le met aléatoire ou pas
                             Thread.sleep(50);
-                           // connexion.sendForme(gamePRINT.getPoints(),"formereflex");
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }

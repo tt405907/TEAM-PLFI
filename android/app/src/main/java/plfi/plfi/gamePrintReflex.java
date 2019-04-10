@@ -80,7 +80,7 @@ public class gamePrintReflex extends View {
 
     public void reflexActionUp(Connexion c){
         c.sendForme(points,"reponsereflex");
-
+        this.reset();
     }
 
     public ArrayList<Point> getPoints() {
