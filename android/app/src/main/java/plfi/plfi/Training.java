@@ -22,7 +22,7 @@ import commun.Point;
 import commun.jeux.GameCTR;
 import commun.jeux.ResultCTR;
 
-public class Training  extends AppCompatActivity implements DisplayRTC {
+public class Training extends AppCompatActivity implements DisplayRTC {
 
     public Connexion connexion;
     public Controleur controleur;
@@ -52,7 +52,7 @@ public class Training  extends AppCompatActivity implements DisplayRTC {
         setContentView(R.layout.activity_training);
 
         messageServeur = (TextView) findViewById(R.id.textServeur);
-        messageRegle =(TextView) findViewById(R.id.textRegle);
+        messageRegle = (TextView) findViewById(R.id.textRegle);
 
         Toolbar toolbar = findViewById(R.id.my_toolbar_training_rtc);
         setSupportActionBar(toolbar);
@@ -100,8 +100,8 @@ public class Training  extends AppCompatActivity implements DisplayRTC {
 
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item){
-        switch(item.getItemId()) {
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
             case android.R.id.home:
                 onBackPressed();
 
@@ -121,17 +121,18 @@ public class Training  extends AppCompatActivity implements DisplayRTC {
     //Rond bat Triangle
 
     @Override
-    public void onBackPressed(){
+    public void onBackPressed() {
         super.onBackPressed();
         this.finish();
-        Intent intent = new Intent (this,MainActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
     @Override
-    public void updateStats(final String triangle,final String carre,final String rond,final String victoires,final String defaites,final String egalites,final String total){
+    public void updateStats(final String triangle, final String carre, final String rond, final String victoires, final String defaites, final String egalites, final String total) {
 
     }
+
     @Override
     public void updateGame(final String winner, final String img) {
         runOnUiThread(new Runnable() {
@@ -146,25 +147,24 @@ public class Training  extends AppCompatActivity implements DisplayRTC {
                 } else {
                     imageViewServeur.setImageResource(R.drawable.carre);
                 }
-                if(winner.equals("client gagne")){
+                if (winner.equals("client gagne")) {
 
                     messageServeur.setBackgroundColor(Color.GREEN);
-                }
-                else if(winner.equals("egalite")){
+                } else if (winner.equals("egalite")) {
 
                     messageServeur.setBackgroundColor(Color.YELLOW);
-                }
-                else{
+                } else {
                     messageServeur.setBackgroundColor(Color.RED);
                 }
-                messageServeur.setText(winner);
+                if (winner.equals(ResultCTR.SERVEUR_GAGNE))
+                    messageServeur.setText("programme gagne");
+                else
+                    messageServeur.setText(winner);
 
 
             }
         });
     }
-
-
 
 
     // Nouvelle page
@@ -186,8 +186,8 @@ public class Training  extends AppCompatActivity implements DisplayRTC {
             Dessin dessin = Dessin.fromList(points);
             Forme forme = formeMatcher.identify(dessin);
 
-            ResultCTR resultCTR = gameCTR.play(forme,randomForme());
-            updateGame(resultCTR.getResult(),resultCTR.getFormeServeur().toString());
+            ResultCTR resultCTR = gameCTR.play(forme, randomForme());
+            updateGame(resultCTR.getResult(), resultCTR.getFormeServeur().toString());
 
         }
     }
