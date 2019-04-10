@@ -38,7 +38,6 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertFalse;
 
 @LargeTest
-@RunWith(AndroidJUnit4.class)
 public class GameEnigmeTest {
     private static final String PACKAGE_NAME = "plfi.plfi";
     @Rule
