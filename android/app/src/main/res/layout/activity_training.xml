@@ -58,7 +58,7 @@
             android:layout_width="30dp"
             android:layout_height="fill_parent"
             android:layout_marginLeft="10dp"
-            android:background="@drawable/save"
+            android:background="@drawable/check"
             android:contentDescription="@string/save" />
 
 
@@ -86,7 +86,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginBottom="15dp"
             android:layout_weight="1"
-            android:text="@string/choix_forme_serveur" />
+            android:text="@string/choix_forme_programme" />
 
         <ImageView
             android:id="@+id/imageServeur"

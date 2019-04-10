@@ -109,7 +109,7 @@ public class TrainingTest {
         Drawable choixServeur = this.mainActivityRule.getActivity().imageViewServeur.getDrawable();
         if (choixServeur.getConstantState() == mainActivityRule.getActivity().getResources().getDrawable(R.drawable.triangle).getConstantState()) {
             assertEquals(Color.RED, backgroundReponse.getColor());
-            assertEquals("serveur gagne", reponseServeur);
+            assertEquals("programme gagne", reponseServeur);
         } else if (choixServeur.getConstantState() == mainActivityRule.getActivity().getResources().getDrawable(R.drawable.cercle).getConstantState()) {
             assertEquals(Color.GREEN, backgroundReponse.getColor());
             assertEquals("client gagne", reponseServeur);
@@ -147,7 +147,7 @@ public class TrainingTest {
 
         } else if (choixServeur.getConstantState() == mainActivityRule.getActivity().getResources().getDrawable(R.drawable.cercle).getConstantState()) {
             assertEquals(Color.RED, backgroundReponse.getColor());
-            assertEquals("serveur gagne", reponseServeur);
+            assertEquals("programme gagne", reponseServeur);
         } else if (choixServeur.getConstantState() == mainActivityRule.getActivity().getResources().getDrawable(R.drawable.carre).getConstantState()) {
             assertEquals(Color.GREEN, backgroundReponse.getColor());
             assertEquals("client gagne", reponseServeur);
@@ -185,7 +185,7 @@ public class TrainingTest {
 
         } else if (choixServeur.getConstantState() == mainActivityRule.getActivity().getResources().getDrawable(R.drawable.carre).getConstantState()) {
             assertEquals(Color.RED, backgroundReponse.getColor());
-            assertEquals("serveur gagne", reponseServeur);
+            assertEquals("programme gagne", reponseServeur);
         }
     }
 
