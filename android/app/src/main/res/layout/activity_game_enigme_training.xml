@@ -55,11 +55,11 @@
             android:contentDescription="@string/start_new" />
 
         <Button
-            android:id="@+id/enigme_save_btn"
+            android:id="@+id/training_check"
             android:layout_width="30dp"
             android:layout_height="fill_parent"
             android:layout_marginLeft="10dp"
-            android:background="@drawable/save"
+            android:background="@drawable/check"
             android:contentDescription="@string/save" />
 
 

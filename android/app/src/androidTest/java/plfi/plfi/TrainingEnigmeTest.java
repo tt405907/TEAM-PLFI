@@ -75,7 +75,7 @@ public class TrainingEnigmeTest {
             mainActivityRule.getActivity().gamePrint.getPoints().add(p);
 
         assertFalse(mainActivityRule.getActivity().gamePrint.getPoints().isEmpty());
-        ViewInteraction appCompatButton = onView(
+        ViewInteraction appCompatButton2 = onView(
                 allOf(withId(R.id.enigme_new_btn), withContentDescription("New"),
                         childAtPosition(
                                 childAtPosition(
@@ -83,7 +83,7 @@ public class TrainingEnigmeTest {
                                         3),
                                 1),
                         isDisplayed()));
-        appCompatButton.perform(click());
+        appCompatButton2.perform(click());
 
         assertTrue(mainActivityRule.getActivity().gamePrint.getPoints().isEmpty());
 
@@ -98,7 +98,7 @@ public class TrainingEnigmeTest {
         List<Point> pointsC = carre1.asList();
         mainActivityRule.getActivity().gamePrint.getPoints().addAll(pointsC);
         ViewInteraction appCompatButton = onView(
-                allOf(withId(R.id.enigme_save_btn), withContentDescription("Save"),
+                allOf(withId(R.id.training_check), withContentDescription("Save"),
                         childAtPosition(
                                 childAtPosition(
                                         withClassName(is("android.widget.LinearLayout")),
@@ -125,7 +125,7 @@ public class TrainingEnigmeTest {
         List<Point> pointsT = triangle2.asList();
         mainActivityRule.getActivity().gamePrint.getPoints().addAll(pointsT);
         ViewInteraction appCompatButton2 = onView(
-                allOf(withId(R.id.enigme_save_btn), withContentDescription("Save"),
+                allOf(withId(R.id.training_check), withContentDescription("Save"),
                         childAtPosition(
                                 childAtPosition(
                                         withClassName(is("android.widget.LinearLayout")),
@@ -150,7 +150,7 @@ public class TrainingEnigmeTest {
         List<Point> pointsCe = cercle4.asList();
         mainActivityRule.getActivity().gamePrint.getPoints().addAll(pointsCe);
         ViewInteraction appCompatButton3 = onView(
-                allOf(withId(R.id.enigme_save_btn), withContentDescription("Save"),
+                allOf(withId(R.id.training_check), withContentDescription("Save"),
                         childAtPosition(
                                 childAtPosition(
                                         withClassName(is("android.widget.LinearLayout")),
@@ -179,7 +179,7 @@ public class TrainingEnigmeTest {
         List<Point> pointsC = carre1.asList();
         mainActivityRule.getActivity().gamePrint.getPoints().addAll(pointsC);
         ViewInteraction appCompatButton = onView(
-                allOf(withId(R.id.enigme_save_btn), withContentDescription("Save"),
+                allOf(withId(R.id.training_check), withContentDescription("Save"),
                         childAtPosition(
                                 childAtPosition(
                                         withClassName(is("android.widget.LinearLayout")),
@@ -202,7 +202,7 @@ public class TrainingEnigmeTest {
         List<Point> pointsT = triangle2.asList();
         mainActivityRule.getActivity().gamePrint.getPoints().addAll(pointsT);
         ViewInteraction appCompatButton2 = onView(
-                allOf(withId(R.id.enigme_save_btn), withContentDescription("Save"),
+                allOf(withId(R.id.training_check), withContentDescription("Save"),
                         childAtPosition(
                                 childAtPosition(
                                         withClassName(is("android.widget.LinearLayout")),
@@ -229,7 +229,7 @@ public class TrainingEnigmeTest {
         List<Point> pointsCe = cercle4.asList();
         mainActivityRule.getActivity().gamePrint.getPoints().addAll(pointsCe);
         ViewInteraction appCompatButton3 = onView(
-                allOf(withId(R.id.enigme_save_btn), withContentDescription("Save"),
+                allOf(withId(R.id.training_check), withContentDescription("Save"),
                         childAtPosition(
                                 childAtPosition(
                                         withClassName(is("android.widget.LinearLayout")),
@@ -259,7 +259,7 @@ public class TrainingEnigmeTest {
         List<Point> pointsC = carre1.asList();
         mainActivityRule.getActivity().gamePrint.getPoints().addAll(pointsC);
         ViewInteraction appCompatButton = onView(
-                allOf(withId(R.id.enigme_save_btn), withContentDescription("Save"),
+                allOf(withId(R.id.training_check), withContentDescription("Save"),
                         childAtPosition(
                                 childAtPosition(
                                         withClassName(is("android.widget.LinearLayout")),
@@ -282,7 +282,7 @@ public class TrainingEnigmeTest {
         List<Point> pointsT = triangle2.asList();
         mainActivityRule.getActivity().gamePrint.getPoints().addAll(pointsT);
         ViewInteraction appCompatButton2 = onView(
-                allOf(withId(R.id.enigme_save_btn), withContentDescription("Save"),
+                allOf(withId(R.id.training_check), withContentDescription("Save"),
                         childAtPosition(
                                 childAtPosition(
                                         withClassName(is("android.widget.LinearLayout")),
@@ -306,7 +306,7 @@ public class TrainingEnigmeTest {
         List<Point> pointsCe = cercle4.asList();
         mainActivityRule.getActivity().gamePrint.getPoints().addAll(pointsCe);
         ViewInteraction appCompatButton3 = onView(
-                allOf(withId(R.id.enigme_save_btn), withContentDescription("Save"),
+                allOf(withId(R.id.training_check), withContentDescription("Save"),
                         childAtPosition(
                                 childAtPosition(
                                         withClassName(is("android.widget.LinearLayout")),
