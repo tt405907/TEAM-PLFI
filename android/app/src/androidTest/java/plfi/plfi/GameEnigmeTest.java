@@ -52,7 +52,7 @@ public class GameEnigmeTest {
                         childAtPosition(
                                 allOf(withId(R.id.toolbar_enigme),
                                         childAtPosition(
-                                                withClassName(is("android.widget.LinearLayout")),
+                                                withClassName(is("android.widget=.LinearLayout")),
                                                 0)),
                                 0),
                         isDisplayed()));

@@ -21,4 +21,13 @@
     <string name="attente_stats">0</string>
     <string name="ipConnexion">192.168.0.108</string>
     <string name="portConnexion">10101</string>
+    <string name="game_reflex">Game Reflex</string>
+    <string name="game_enigme">Game Enigme</string>
+    <string name="game_rtc">Game RTC</string>
+    <string name="new_game_soon">New game soon</string>
+    <string name="score">SCORE :   </string>
+    <string name="score_max">SCORE MAX :</string>
+    <string name="figure">FIGURE :</string>
+    <string name="a_remplir">A REMPLIR</string>
+    <string name="start">START</string>
 </resources>

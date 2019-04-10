@@ -90,11 +90,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.bouton1_main_menu) {
             Intent intent = new Intent(MainActivity.this, gameRTCPrint.class); // Lancer l'activité DisplayVue
             startActivity(intent); // Afficher la vue
+
         } else if (id == R.id.bouton2_main_menu) {
             Intent intent = new Intent(MainActivity.this, gameEnigme.class); // Lancer l'activité DisplayVue
             startActivity(intent); // Afficher la vue
 
         } else if (id == R.id.bouton3_main_menu) {
+            Intent intent = new Intent(MainActivity.this, gameReflex.class);
+            startActivity(intent);
 
         } else if (id == R.id.bouton4_main_menu) {
             // iteration 4

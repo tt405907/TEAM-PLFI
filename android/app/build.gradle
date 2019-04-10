@@ -21,9 +21,9 @@ android {
         test.java.srcDirs += '../../javastd/commun/src/test/java'
     }
     compileOptions {
-                sourceCompatibility = '1.8'
-                targetCompatibility = '1.8'
-           }
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
 }
 
 dependencies {
