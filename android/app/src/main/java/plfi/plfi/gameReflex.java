@@ -125,7 +125,7 @@ public class gameReflex extends AppCompatActivity implements DisplayReflex {
                         try {
                             // 50 milli = 0.05 s à voir si on le met aléatoire ou pas
                             Thread.sleep(50);
-                            connexion.sendForme(gamePRINT.getPoints(),"reponsereflex");
+                            connexion.sendForme(gamePRINT.getPoints(),"formereflex");
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }

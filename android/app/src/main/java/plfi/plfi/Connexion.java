@@ -97,7 +97,7 @@ public class Connexion {
                 }
             });
 
-            connexion.on("resultatenigme", new Emitter.Listener() {
+            connexion.on("resultatreflex", new Emitter.Listener() {
                 @Override
                 public void call(Object... objects) {
                     System.out.println("on a reçu un résultat avec " + objects.length + " paramètre(s) ");
@@ -116,7 +116,7 @@ public class Connexion {
                 }
             });
             //Reception aléatoire entre carre rond carre
-            connexion.on("formeReflex", new Emitter.Listener() {
+            connexion.on("reflextarget", new Emitter.Listener() {
                 @Override
                 public void call(Object... objects) {
                     System.out.println("on a reçu un résultat avec " + objects.length + " paramètre(s) ");
@@ -302,7 +302,7 @@ public class Connexion {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        connexion.emit("demandeforme", pieceJointe);
+        connexion.emit("startreflex", pieceJointe);
     }
 
     public void demanderStats(Identification moi){
