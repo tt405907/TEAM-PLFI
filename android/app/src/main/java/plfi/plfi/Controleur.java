@@ -53,6 +53,10 @@ public class Controleur {
         connexion.demanderStats(moi);
     }
 
+    public void getStatsReflex(){
+        connexion.demanderStatsReflex(moi);
+    }
+
     public String getNom(){
         return this.nom;
     }
@@ -82,6 +86,9 @@ public class Controleur {
         view.updateStats(triangle,carre,rond,victoires,defaites,egalites,total);
     }
 
+    public void resultatStatsReflex(String toutes_mauvaises_reponses,String score_max,String parties,String toutes_bonnes_réponses){
+        viewReflex.updateGameStats(toutes_mauvaises_reponses, score_max, parties, toutes_bonnes_réponses);
+    }
     public void enigmeTextview(String enigme){
         viewEnigme.updateGameEnigme(enigme);
     }

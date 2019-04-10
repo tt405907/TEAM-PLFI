@@ -76,6 +76,16 @@ public class gameReflex extends AppCompatActivity implements DisplayReflex {
     }
 
     @Override
+    public void updateGameStats (String toutes_mauvaises_reponses,String score_max,String parties,String toutes_bonnes_réponses) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                scoreMax.setText(Integer.parseInt(score_max));
+            }
+        });
+    }
+
+    @Override
     public void updateGameReponseReflex(final String reponse) {
         runOnUiThread(new Runnable() {
             @Override
@@ -145,8 +155,10 @@ public class gameReflex extends AppCompatActivity implements DisplayReflex {
                 }
             }).start();
             progressStatus = 0;
+            score.setText(0);
             timer.setText("5");
             gamePrint.setIsStarted(false);
+            controleur.getStatsReflex();
         }
     }
 
