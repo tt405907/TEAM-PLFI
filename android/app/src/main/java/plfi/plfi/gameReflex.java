@@ -12,6 +12,9 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+
 public class gameReflex extends AppCompatActivity implements DisplayReflex {
 
     private TextView score;
@@ -21,7 +24,7 @@ public class gameReflex extends AppCompatActivity implements DisplayReflex {
     private Button btn_start;
     private ProgressBar progressBar;
     private int progressStatus = 0;
-    private gamePRINT gamePRINT;
+    private gamePrintReflex gamePrint;
     private Connexion connexion;
     private Controleur controleur;
     private Handler handler = new Handler();
@@ -37,7 +40,7 @@ public class gameReflex extends AppCompatActivity implements DisplayReflex {
         scoreMax = (TextView) findViewById(R.id.textview_score_max_reflex);
         btn_start = (Button) findViewById(R.id.start_reflex);
         progressBar = (ProgressBar) findViewById(R.id.progressBar_reflex);
-        gamePRINT = (gamePRINT) findViewById(R.id.reflex_drawing);
+        gamePrint = (gamePrintReflex) findViewById(R.id.reflex_drawing);
         timer = (TextView) findViewById(R.id.textView_timer);
         forme = (TextView) findViewById(R.id.forme_reflex);
 
@@ -85,7 +88,7 @@ public class gameReflex extends AppCompatActivity implements DisplayReflex {
                 else{
                     timer.setBackgroundColor(Color.RED);
                 }
-                gamePRINT.reset();
+                gamePrint.reset();
             }
         });
     }
@@ -107,6 +110,7 @@ public class gameReflex extends AppCompatActivity implements DisplayReflex {
         public void onClick(View v) {
             new Thread(new Runnable() {
                 public void run() {
+                    gamePrint.setIsStarted(true);
                     while (progressStatus < 100) {
                         progressStatus += 1;
                         // Update the progress bar and display the
@@ -115,13 +119,15 @@ public class gameReflex extends AppCompatActivity implements DisplayReflex {
                             public void run() {
                                 progressBar.setProgress(progressStatus);
                                 double realt = Float.parseFloat( (String)timer.getText()) - 0.05;
-                                timer.setText(Double.toString(realt));
+                                double arrondi = (double)Math.round(realt * 1000) / 1000;
+                                timer.setText(Double.toString(arrondi));
                             }
                         });
+
                         try {
-                            // 50 milli = 0.05 s à voir si on le met aléatoire ou pas
+                           // 50 milli = 0.05 s à voir si on le met aléatoire ou pas
                             Thread.sleep(50);
-                            connexion.sendForme(gamePRINT.getPoints(),"reponsereflex");
+                           // connexion.sendForme(gamePRINT.getPoints(),"formereflex");
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
@@ -130,6 +136,7 @@ public class gameReflex extends AppCompatActivity implements DisplayReflex {
             }).start();
             progressStatus = 0;
             timer.setText("5");
+            gamePrint.setIsStarted(false);
         }
     }
 

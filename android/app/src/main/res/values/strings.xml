@@ -19,7 +19,7 @@
     <string name="attente_de_votre_envoit_de_figure">Attente de votre envoit de figure</string>
     <string name="attention_stats">0</string>
     <string name="attente_stats">0</string>
-    <string name="ipConnexion">192.168.0.108</string>
+    <string name="ipConnexion">192.168.1.96</string>
     <string name="portConnexion">10101</string>
     <string name="game_reflex">Game Reflex</string>
     <string name="game_enigme">Game Enigme</string>

@@ -137,6 +137,14 @@ public class gameRTCPrint extends AppCompatActivity implements DisplayRTC {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
+                triangle.setVisibility(View.VISIBLE);
+                carre.setVisibility(View.VISIBLE);
+                rond.setVisibility(View.VISIBLE);
+                victoires.setVisibility(View.VISIBLE);
+                defaites.setVisibility(View.VISIBLE);
+                egalites.setVisibility(View.VISIBLE);
+                total.setVisibility(View.VISIBLE);
+
                 triangle.setText("Total des triangles : "+tr);
                 carre.setText("Total des carre : "+car);
                 rond.setText("Total des rond : "+ro);

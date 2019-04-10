@@ -120,7 +120,9 @@ public class gameEnigme extends AppCompatActivity implements DisplayEnigme {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-
+                statbadAnswer.setVisibility(View.VISIBLE);
+                statGoodAnswer.setVisibility(View.VISIBLE);
+                statTotalAnswer.setVisibility(View.VISIBLE);
                 statbadAnswer.setText("Mauvaises réponses : "+mauvaise);
                 statGoodAnswer.setText("Bonnes réponses : "+bonnes);
                 statTotalAnswer.setText("Total des enigmes reçus : "+total);

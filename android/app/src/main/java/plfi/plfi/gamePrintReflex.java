@@ -11,15 +11,16 @@ import android.view.MotionEvent;
 import android.view.View;
 import commun.Point;
 
-
 import java.util.ArrayList;
 import java.util.jar.Attributes;
 
-public class gamePRINT extends View {
+public class gamePrintReflex extends View {
     ArrayList<Point> points;
     Paint paint;
     Path path;
-    public gamePRINT(Context context, AttributeSet attrs) {
+    Connexion connexion;
+    Boolean isStarted;
+    public gamePrintReflex(Context context, AttributeSet attrs) {
         super(context, attrs);
         paint = new Paint();
         path = new Path();
@@ -38,6 +39,17 @@ public class gamePRINT extends View {
         canvas.drawPath(path,paint);
 
     }
+    public void setIsStarted(Boolean b){
+        isStarted = b;
+    }
+
+    public boolean getIsstarted(){
+        return isStarted;
+    }
+
+    public void setConnexion(Connexion connexion) {
+        this.connexion = connexion;
+    }
 
     @Override
     public boolean onTouchEvent(MotionEvent event){
@@ -53,6 +65,9 @@ public class gamePRINT extends View {
                 path.lineTo(xPos,yPos);
                 break;
             case MotionEvent.ACTION_UP:
+                if(isStarted ==  true ){
+                   reflexActionUp(connexion);
+                }
                 break;
             default:
                 return false;
@@ -62,7 +77,10 @@ public class gamePRINT extends View {
         return true;
     }
 
+    public void reflexActionUp(Connexion c){
+        c.sendForme(points,"reponsereflex");
 
+    }
 
     public ArrayList<Point> getPoints() {
         return points;
