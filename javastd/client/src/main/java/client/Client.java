@@ -23,6 +23,8 @@ public class Client {
 
     Identification moi = new Identification("Chicken dinner K/D GOD");
 
+    private int reflexTries;
+
     Socket connexion;
 
     // Objet de synchro
@@ -61,7 +63,6 @@ public class Client {
                 }
             });
 
-
             // on recoit une question
             connexion.on("question", new Emitter.Listener() {
                 @Override
@@ -69,7 +70,8 @@ public class Client {
                     System.out.println("Question!");
 
                     //connexion.emit("demandeenigme", moi);
-                    envoyerForme();
+                    //envoyerForme();
+                    connexion.emit("startreflex", moi);
                 }
             });
             
@@ -126,6 +128,34 @@ public class Client {
                     connexion.close();
                 }
             });
+            
+            // Reflex
+            connexion.on("reflextarget", new Emitter.Listener() {
+                @Override
+                public void call(Object... objects) {
+                    System.out.println("Forme cible reçue!");
+                    System.out.println(objects[0]);
+                    
+                    reflexTries = 5;
+                    envoyerCarreReflex();
+                    
+                }
+            });
+
+
+            // Réponse énigme
+            connexion.on("resultatreflex", new Emitter.Listener() {
+                @Override
+                public void call(Object... objects) {
+                    System.out.println("Résultat du reflex");
+                    boolean result = (Boolean)objects[0];
+                    if (result) System.out.println("Correct! :)");
+                    else System.out.println("Pas correct! :(");
+                    
+                    if (--reflexTries <= 0) demanderStats();
+                    else envoyerCarreReflex();
+                }
+            });
 
 
 
@@ -154,6 +184,11 @@ public class Client {
     private void envoyerCarreEnigme() {
     	JSONObject json = new JSONObject(new Dessin(new Point[]{new Point(100, 100), new Point(300, 100), new Point(300, 300), new Point(100, 300)}));
     	connexion.emit("reponseenigme", json);
+    }
+    
+    private void envoyerCarreReflex() {
+    	JSONObject json = new JSONObject(new Dessin(new Point[]{new Point(100, 100), new Point(300, 100), new Point(300, 300), new Point(100, 300)}));
+    	connexion.emit("formereflex", json);
     }
     
     private void demanderStats() {

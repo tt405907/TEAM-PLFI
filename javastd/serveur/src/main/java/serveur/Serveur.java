@@ -17,6 +17,7 @@ import commun.FormeMatcher;
 import commun.Identification;
 import commun.jeux.GameCTR;
 import commun.jeux.GameEnigme;
+import commun.jeux.GameReflex;
 import commun.jeux.ResultCTR;
 
 /**
@@ -35,6 +36,7 @@ public class Serveur {
     private Random rand = new Random();
     private GameCTR ctr = new GameCTR();
     private GameEnigme enigme = new GameEnigme(rand);
+    private GameReflex reflex = new GameReflex(rand);
     
     private CollecteurStats stats = new CollecteurStats();
 
@@ -129,6 +131,41 @@ public class Serveur {
             }
         });
 
+        // Début reflex
+        serveur.addEventListener("startreflex", Identification.class, new DataListener<Identification>() {
+            @Override
+            public void onData(SocketIOClient socketIOClient, Identification identification, AckRequest ackRequest)
+                    throws Exception {
+                System.out.println(identification.getNom() + " commence du reflex");
+                leClient = new Identification(identification.getNom());
+                stats.newPartieReflex(leClient);
+
+                // On envoie
+                socketIOClient.sendEvent("reflextarget", reflex.start());
+                System.out.println("Il devra dessiner des " + reflex.getFormeAttendue());
+            }
+        });
+
+        // Forme reflex
+        serveur.addEventListener("formereflex", Dessin.class, new DataListener<Dessin>() {
+            @Override
+            public void onData(SocketIOClient socketIOClient, Dessin dessin, AckRequest ackRequest) throws Exception {
+                System.out.println(leClient.getNom() + " a envoyé un dessin pour du reflex");
+                // Identifie la forme du client
+                Forme formeClient = matcher.identify(dessin);
+                boolean resultat = reflex.valider(formeClient);
+                stats.reponseReflex(leClient, resultat);
+                stats.newRecordReflex(leClient, reflex.getScore());
+                if (resultat) {
+                	System.out.println("Il a bien dessiné un " + reflex.getFormeAttendue());
+                }
+                else {
+                	System.out.println("Il n'a pas dessiné un " + reflex.getFormeAttendue() + " (a fait un " + formeClient + ")");
+                }
+                socketIOClient.sendEvent("resultatreflex", resultat);
+            }
+        });
+
         // Demande stats
         serveur.addEventListener("demandestats", Identification.class, new DataListener<Identification>() {
             @Override
@@ -194,8 +231,8 @@ public class Serveur {
         }
 
         Configuration config = new Configuration();
-        //config.setHostname("127.0.0.1");
-        config.setHostname("192.168.0.108");
+        config.setHostname("127.0.0.1");
+        //config.setHostname("192.168.0.108");
         config.setPort(10101);
 
         Serveur serveur = new Serveur(config);
