@@ -12,6 +12,9 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+
 public class gameReflex extends AppCompatActivity implements DisplayReflex {
 
     private TextView score;
@@ -115,7 +118,8 @@ public class gameReflex extends AppCompatActivity implements DisplayReflex {
                             public void run() {
                                 progressBar.setProgress(progressStatus);
                                 double realt = Float.parseFloat( (String)timer.getText()) - 0.05;
-                                timer.setText(Double.toString(realt));
+                                double arrondi = (double)Math.round(realt * 1000) / 1000;
+                                timer.setText(Double.toString(arrondi));
                             }
                         });
                         try {
