@@ -79,7 +79,12 @@ public class gamePrintReflex extends View {
     }
 
     public void reflexActionUp(Connexion c){
-        c.sendForme(points,"reponsereflex");
+        try {
+            c.sendForme(points,"reponsereflex");
+        }catch (Exception e){
+
+            e.getStackTrace();
+        }
         this.reset();
     }
 
