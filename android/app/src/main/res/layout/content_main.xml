@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="30dp"
-        android:background="@drawable/icone_game_rtc_main_content"/>
+        android:background="@drawable/icone_game_rtc_main_content" />
 
     <Button
         android:id="@+id/Button_main_togame_enigme"
@@ -24,13 +24,23 @@
         android:layout_marginLeft="@dimen/espacement_bouton_main"
         android:layout_marginTop="30dp"
         android:background="@drawable/game_enigme_main_icon_content" />
+
     <Button
         android:id="@+id/Button_main_reflex"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/espacement_bouton_main"
         android:layout_marginTop="30dp"
-        android:background="@drawable/gamereflex"/>
+        android:background="@drawable/gamereflex" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:baselineAligned="false"
+        android:translationY="575dp"
+        app:srcCompat="@drawable/clown" />
 
 
 </LinearLayout>
