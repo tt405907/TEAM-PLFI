@@ -188,6 +188,7 @@ public class Training extends AppCompatActivity implements DisplayRTC {
 
             ResultCTR resultCTR = gameCTR.play(forme, randomForme());
             updateGame(resultCTR.getResult(), resultCTR.getFormeServeur().toString());
+            gamePrint.reset();
 
         }
     }
