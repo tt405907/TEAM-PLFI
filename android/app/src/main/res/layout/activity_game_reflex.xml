@@ -59,6 +59,7 @@
             android:text="@string/figure"
             android:textSize="25dp" />
         <TextView
+            android:id="@+id/forme_reflex"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/a_remplir"
@@ -68,21 +69,41 @@
     </LinearLayout>
 
     <ProgressBar
-        android:id="@+id/progressBar"
+        android:id="@+id/progressBar_reflex"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scaleY="50"
         />
-    <Button
-        android:id="@+id/start_reflex"
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/start"/>
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/start_reflex"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="@string/start"
+            android:textSize="15dp"/>
+
+        <TextView
+            android:id="@+id/textView_timer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:textSize="17dp"
+            android:text="5"
+            android:gravity="center"/>
+
+    </LinearLayout>
 
     <plfi.plfi.gamePRINT
-        android:id="@+id/enigme_drawing"
+        android:id="@+id/reflex_drawing"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:background="#FFFFFFF11" />
 
 

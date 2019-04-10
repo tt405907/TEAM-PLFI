@@ -96,6 +96,37 @@ public class Connexion {
                     }
                 }
             });
+
+            connexion.on("resultatenigme", new Emitter.Listener() {
+                @Override
+                public void call(Object... objects) {
+                    System.out.println("on a reçu un résultat avec " + objects.length + " paramètre(s) ");
+                    if (objects.length > 0) {
+                        Boolean result = (Boolean) objects[0];
+                        String out;
+                        if (result){
+                            out = " JUSTE";
+                        }
+                        else {
+                            out = "  FAUX";
+                        }
+                        controleur.enigmeReponseTextview(out);
+
+                    }
+                }
+            });
+            //Reception aléatoire entre carre rond carre
+            connexion.on("formeReflex", new Emitter.Listener() {
+                @Override
+                public void call(Object... objects) {
+                    System.out.println("on a reçu un résultat avec " + objects.length + " paramètre(s) ");
+                    if (objects.length > 0) {
+                        String out= (String) objects[0];
+                        controleur.updateTextviewReflex(out);
+                    }
+                }
+            });
+
             connexion.on("enigme", new Emitter.Listener() {
                 @Override
                 public void call(Object... objects) {
@@ -261,6 +292,17 @@ public class Connexion {
             e.printStackTrace();
         }
         connexion.emit("demandeenigme", pieceJointe);
+    }
+
+    public void envoyerIdReflex(Identification moi) {
+        // pas de conversion automatique obj <-> json avec le json de base d'android
+        JSONObject pieceJointe = new JSONObject();
+        try {
+            pieceJointe.put("nom", moi.getNom());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        connexion.emit("demandeforme", pieceJointe);
     }
 
     public void demanderStats(Identification moi){
