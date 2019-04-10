@@ -28,6 +28,6 @@
     <string name="score">SCORE :   </string>
     <string name="score_max">SCORE MAX :</string>
     <string name="figure">FIGURE :</string>
-    <string name="a_remplir">A REMPLIR</string>
+    <string name="a_remplir">(PRESS START)</string>
     <string name="start">START</string>
 </resources>

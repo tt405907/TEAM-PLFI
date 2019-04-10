@@ -14,6 +14,7 @@ public class Controleur {
     Identification moi = new Identification("identification");
     private DisplayRTC view;
     private DisplayEnigme viewEnigme;
+    private DisplayReflex viewReflex;
 
     public Controleur(DisplayRTC view) {
         setView(view);
@@ -22,6 +23,8 @@ public class Controleur {
 
     public Controleur(DisplayEnigme view) {setViewEnigme(view);
     this.isEnigme = true;}
+
+    public Controleur(DisplayReflex view){setViewReflex(view);}
 
 
     public Connexion getConnexion() {
@@ -63,6 +66,9 @@ public class Controleur {
     }
 
 
+    public void updateTextviewReflex(String forme){
+        viewReflex.updateGameReflex(forme);
+    }
     public void resultCTR(String winner, String imageserv) {
         view.updateGame(winner,imageserv);
     }
@@ -84,15 +90,26 @@ public class Controleur {
         viewEnigme.updateGameReponseEnigme(reponse);
     }
 
+    public void reponseTextviewReflex(String reponse){
+        viewReflex.updateGameReponseReflex(reponse);
+    }
+
     public void setView(DisplayRTC view) {
         this.view = view;
     }
 
     public void setViewEnigme(DisplayEnigme view) { this.viewEnigme = view ; }
 
+    public void setViewReflex(DisplayReflex view) {
+        this.viewReflex = view;
+    }
+
     public DisplayRTC getView() {
         return view;
     }
     public  DisplayEnigme getViewEnigme() {return viewEnigme;}
+    public DisplayReflex getViewReflex(){
+        return viewReflex;
+    }
 
     }
