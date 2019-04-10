@@ -23,7 +23,7 @@
 
     <build>
         <sourceDirectory>src/main/java</sourceDirectory>  <!-- éventuellement à changer : localisation des fichiers sources -->
-		<testSourceDirectory>src/test/java</testSourceDirectory>
+
 
         <plugins>
 
