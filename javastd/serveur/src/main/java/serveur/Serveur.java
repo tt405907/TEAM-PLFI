@@ -231,8 +231,8 @@ public class Serveur {
         }
 
         Configuration config = new Configuration();
-        config.setHostname("127.0.0.1");
-        //config.setHostname("192.168.0.108");
+        //config.setHostname("127.0.0.1");
+        config.setHostname("192.168.0.108");
         config.setPort(10101);
 
         Serveur serveur = new Serveur(config);
