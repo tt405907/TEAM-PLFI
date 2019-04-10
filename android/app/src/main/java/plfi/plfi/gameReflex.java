@@ -128,7 +128,8 @@ public class gameReflex extends AppCompatActivity implements DisplayReflex {
                     }
                 }
             }).start();
-
+            progressStatus = 0;
+            timer.setText("5");
         }
     }
 
