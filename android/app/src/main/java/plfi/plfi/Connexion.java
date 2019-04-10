@@ -111,7 +111,7 @@ public class Connexion {
                         else {
                             out = "  FAUX";
                         }
-                        controleur.updateTextviewReflex(out);
+                        controleur.reponseTextviewReflex(out);
 
                     }
                 }
