@@ -2,21 +2,15 @@ package plfi.plfi;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.Handler;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 
 public class gameReflex extends AppCompatActivity implements DisplayReflex {
 
@@ -31,7 +25,7 @@ public class gameReflex extends AppCompatActivity implements DisplayReflex {
     private Connexion connexion;
     private Controleur controleur;
     private Handler handler = new Handler();
-
+    private double time;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +55,7 @@ public class gameReflex extends AppCompatActivity implements DisplayReflex {
         Connexion connexion = new Connexion(getString(R.string.ipConnexion), getString(R.string.portConnexion), controleur);
         connexion.seConnecter();
         this.connexion = connexion;
+        time = 5.0;
 
 
     }
@@ -129,6 +124,7 @@ public class gameReflex extends AppCompatActivity implements DisplayReflex {
         @Override
         public void onClick(View v) {
             gamePrint.reset();
+            time=5.0;
             new Thread(new Runnable() {
                 public void run() {
                     gamePrint.setIsStarted(true);
@@ -139,10 +135,8 @@ public class gameReflex extends AppCompatActivity implements DisplayReflex {
                         handler.post(new Runnable() {
                             public void run() {
                                 progressBar.setProgress(progressStatus);
-                                double realt = Float.parseFloat( (String)timer.getText()) - 0.05;
-                                double arrondi = (double)Math.round(realt * 1000) / 1000;
-                                String numberAsString = String.format ("%.2f", realt);
-                                timer.setText(numberAsString);
+                                time-=0.05;
+                                timer.setText(String.format("%.2f", (float)time));
                             }
                         });
 
