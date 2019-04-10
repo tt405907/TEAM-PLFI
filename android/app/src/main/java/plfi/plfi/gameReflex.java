@@ -155,7 +155,7 @@ public class gameReflex extends AppCompatActivity implements DisplayReflex {
                 }
             }).start();
             progressStatus = 0;
-            score.setText(0);
+            score.setText("0");
             timer.setText("5");
             gamePrint.setIsStarted(false);
             controleur.getStatsReflex();

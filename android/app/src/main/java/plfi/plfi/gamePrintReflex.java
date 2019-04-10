@@ -30,6 +30,7 @@ public class gamePrintReflex extends View {
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(5f);
         points = new ArrayList<>();
+        isStarted=false;
 
     }
 
