@@ -69,9 +69,9 @@ public class Client {
                 public void call(Object... objects) {
                     System.out.println("Question!");
 
-                    //connexion.emit("demandeenigme", moi);
                     //envoyerForme();
-                    connexion.emit("startreflex", moi);
+                    //connexion.emit("demandeenigme", new JSONObject(moi));
+                    connexion.emit("startreflex", new JSONObject(moi));
                 }
             });
             
