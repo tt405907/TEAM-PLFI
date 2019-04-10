@@ -7,19 +7,19 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/bouton1_main_menu"
-            android:icon="@drawable/dp_game_rtc"
+            android:icon="@drawable/rtc_menu"
             android:title="@string/game_rtc" />
         <item
             android:id="@+id/bouton2_main_menu"
-            android:icon="@drawable/dp_game_enigme"
+            android:icon="@drawable/enigme_menu"
             android:title="@string/game_enigme" />
         <item
             android:id="@+id/bouton3_main_menu"
-            android:icon="@drawable/image_menu_main"
+            android:icon="@drawable/reflex_menu"
             android:title="@string/game_reflex" />
         <item
             android:id="@+id/bouton4_main_menu"
-            android:icon="@drawable/image_menu_main"
+            android:icon="@drawable/soon_menu"
             android:title="@string/new_game_soon" />
     </group>
 
