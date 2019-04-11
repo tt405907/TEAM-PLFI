@@ -127,15 +127,16 @@ public class gameReflex extends AppCompatActivity implements DisplayReflex {
             time=5.0;
             new Thread(new Runnable() {
                 public void run() {
+
                     gamePrint.setIsStarted(true);
-                    while (progressStatus < 100) {
+                    while (time > 0.001) {
                         progressStatus += 1;
+                        time-=0.05;
                         // Update the progress bar and display the
                         //current value in the text view
                         handler.post(new Runnable() {
                             public void run() {
                                 progressBar.setProgress(progressStatus);
-                                time-=0.05;
                                 timer.setText(String.format("%.2f", (float)time));
                             }
                         });
