@@ -175,6 +175,14 @@ public class Connexion {
                             }
                             else {
                                 System.out.println("stat reflex");
+                                JSONObject stats = res.getJSONObject("statsReflex");
+                                //(String toutes_mauvaises_reponses,String score_max,String parties,String toutes_bonnes_réponses);
+                                String tmp = stats.getString("mauvaises");
+                                String sm = stats.getString("max");
+                                String p = stats.getString("parties");
+                                String tbr = stats.getString("bons");
+
+                                controleur.resultatStatsReflex(tmp,sm,p,tbr);
                             }
                             /*
 
@@ -190,35 +198,6 @@ public class Connexion {
                 }
             });
 
-            connexion.on("statsReflex", new Emitter.Listener() {
-                @Override
-                public void call(Object... objects) {
-                    System.out.println("stats");
-                    if (objects.length > 0) {
-                        JSONObject result = (JSONObject) objects[0];
-                        res = result;
-                        System.out.println(res);
-                        try {
-                            JSONObject r = res;
-                            JSONObject stats = res.getJSONObject("statsReflex");
-                            //(String toutes_mauvaises_reponses,String score_max,String parties,String toutes_bonnes_réponses);
-                            String tmp = stats.getString("mauvaises");
-                            String sm = stats.getString("max");
-                            String p = stats.getString("parties");
-                            String tbr = stats.getString("bons");
-
-                            controleur.resultatStatsReflex(tmp,sm,p,tbr);
-
-                        } catch (JSONException e) {
-                            System.out.println(e);
-                        }
-                        /*
-                         * if (result.getResult().equals(ResultCTR.CLIENT_GAGNE)) {
-                         * System.out.println("gg no re"); return; }
-                         */
-                    }
-                }
-            });
 
 
 
