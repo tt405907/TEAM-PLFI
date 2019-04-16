@@ -54,8 +54,8 @@ public class gameReflex extends AppCompatActivity implements DisplayReflex {
         controleur = new Controleur(gameReflex.this);
         Connexion connexion = new Connexion(getString(R.string.ipConnexion), getString(R.string.portConnexion), controleur);
         connexion.seConnecter();
-        controleur.apresConnexionReflex();
         this.connexion = connexion;
+        gamePrint.setConnexion(connexion);
         time = 5.0;
 
 
@@ -68,6 +68,7 @@ public class gameReflex extends AppCompatActivity implements DisplayReflex {
             public void run() {
 
                 forme.setText(newforme);
+                start();
             }
         });
     }
@@ -90,9 +91,7 @@ public class gameReflex extends AppCompatActivity implements DisplayReflex {
                 if(reponse.contains("JUSTE"))
                 {
                     timer.setBackgroundColor(Color.GREEN);
-
-                    controleur.apresConnexionEnigme();
-                    score.setText( Integer.parseInt((String) score.getText()) + 1 );
+                    //score.setText( Integer.parseInt((String) score.getText()) + 1 );
                 }
                 else{
                     timer.setBackgroundColor(Color.RED);
@@ -121,42 +120,46 @@ public class gameReflex extends AppCompatActivity implements DisplayReflex {
 
 
     class button_start implements View.OnClickListener {
-
         @Override
         public void onClick(View v) {
-            gamePrint.reset();
-            time=5.0;
-            new Thread(new Runnable() {
-                public void run() {
-
-                    gamePrint.setIsStarted(true);
-                    while (time > 0.001) {
-                        progressStatus += 1;
-                        time-=0.05;
-                        // Update the progress bar and display the
-                        //current value in the text view
-                        handler.post(new Runnable() {
-                            public void run() {
-                                progressBar.setProgress(progressStatus);
-                                timer.setText(String.format("%.2f", (float)time));
-                            }
-                        });
-
-                        try {
-                           // 50 milli = 0.05 s à voir si on le met aléatoire ou pas
-                            Thread.sleep(50);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
-            }).start();
-            progressStatus = 0;
-            score.setText("0");
-            timer.setText("5");
-            gamePrint.setIsStarted(false);
-            controleur.getStatsReflex();
+                controleur.apresConnexionReflex();
+                btn_start.setEnabled(false);
         }
     }
+    private void start (){
+        gamePrint.reset();
+        time=5.0;
+        new Thread(new Runnable() {
+            public void run() {
 
+                gamePrint.setIsStarted(true);
+                while (time > 0.001) {
+                    progressStatus += 1;
+                    time-=0.05;
+                    // Update the progress bar and display the
+                    //current value in the text view
+                    handler.post(new Runnable() {
+                        public void run() {
+                            progressBar.setProgress(progressStatus);
+                            timer.setText(String.format("%.2f", (float)time));
+                        }
+                    });
+
+                    try {
+                        // 50 milli = 0.05 s à voir si on le met aléatoire ou pas
+                        Thread.sleep(50);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                gamePrint.setIsStarted(false);
+                runOnUiThread(() -> btn_start.setEnabled(true));
+            }
+        }).start();
+        progressStatus = 0;
+        score.setText("0");
+        timer.setText("5");
+        gamePrint.setIsStarted(false);
+        controleur.getStatsReflex();
+    }
 }
