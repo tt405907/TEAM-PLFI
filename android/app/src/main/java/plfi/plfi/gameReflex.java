@@ -54,6 +54,7 @@ public class gameReflex extends AppCompatActivity implements DisplayReflex {
         controleur = new Controleur(gameReflex.this);
         Connexion connexion = new Connexion(getString(R.string.ipConnexion), getString(R.string.portConnexion), controleur);
         connexion.seConnecter();
+        controleur.apresConnexionReflex();
         this.connexion = connexion;
         time = 5.0;
 

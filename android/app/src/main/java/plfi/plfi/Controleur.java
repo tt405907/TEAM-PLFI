@@ -49,6 +49,10 @@ public class Controleur {
         connexion.envoyerIdEnigme(moi);
     }
 
+    public void apresConnexionReflex(){
+        connexion.envoyerIdReflex(moi);
+    }
+
     public void getStats(){
         connexion.demanderStats(moi);
     }
