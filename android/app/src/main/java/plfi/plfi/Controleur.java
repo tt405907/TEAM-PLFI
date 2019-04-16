@@ -8,6 +8,7 @@ public class Controleur {
 
     Connexion connexion;
     boolean isEnigme;
+    boolean isRTC;
     int dernierCoup = -1;
     String nom = "mon nom";
     int level = 1000;
@@ -18,13 +19,17 @@ public class Controleur {
 
     public Controleur(DisplayRTC view) {
         setView(view);
+        this.isRTC = true;
         this.isEnigme = false;
     }
 
     public Controleur(DisplayEnigme view) {setViewEnigme(view);
-    this.isEnigme = true;}
+    this.isEnigme = true;
+    this.isRTC = false;}
 
-    public Controleur(DisplayReflex view){setViewReflex(view);}
+    public Controleur(DisplayReflex view){setViewReflex(view);
+    this.isEnigme = false;
+    this.isRTC = false;}
 
 
     public Connexion getConnexion() {
@@ -33,6 +38,9 @@ public class Controleur {
 
     public boolean isEnigme(){
         return this.isEnigme;
+    }
+    public boolean isRTC(){
+        return this.isRTC;
     }
 
     public void setConnexion(Connexion connexion) {

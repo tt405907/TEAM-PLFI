@@ -152,13 +152,13 @@ public class Connexion {
                             JSONObject r = res;
                             JSONObject statEnigme = res.getJSONObject("statsEnigme");
                             JSONObject TCR = res.getJSONObject("statsTCR");
-                            if(controleur.isEnigme() == true){
+                            if(controleur.isEnigme()){
                                 String bonne = statEnigme.getString("bonnes");
                                 String mauvaise = statEnigme.getString("mauvaises");
                                 String total = statEnigme.getString("total");
                                 controleur.resultStatsEnigme(bonne,total,mauvaise);
                             }
-                            else if(controleur.isEnigme == false){
+                            else if(controleur.isRTC()){
                                 System.out.println("stat tcr");
                                 statEnigme = TCR;
                                 String triangle = statEnigme.getString("triangles");
@@ -172,6 +172,9 @@ public class Connexion {
 
                                 controleur.resultStatsTCR(triangle,carre,rond,bonne,defaite,egalite,total);
 
+                            }
+                            else {
+                                System.out.println("stat reflex");
                             }
                             /*
 
