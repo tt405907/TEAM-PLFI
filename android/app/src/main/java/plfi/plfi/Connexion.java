@@ -177,7 +177,7 @@ public class Connexion {
                                 System.out.println("stat reflex");
                                 JSONObject stats = res.getJSONObject("statsReflex");
                                 //(String toutes_mauvaises_reponses,String score_max,String parties,String toutes_bonnes_réponses);
-                                String tmp = stats.getString("mauvaises");
+                                String tmp = stats.getString("mauvais");
                                 String sm = stats.getString("max");
                                 String p = stats.getString("parties");
                                 String tbr = stats.getString("bons");
@@ -321,15 +321,6 @@ public class Connexion {
     }
 
     public void demanderStats(Identification moi){
-        JSONObject pieceJointe = new JSONObject();
-        try {
-            pieceJointe.put("nom", moi.getNom());
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        connexion.emit("demandestats", pieceJointe);
-    }
-    public void demanderStatsReflex(Identification moi){
         JSONObject pieceJointe = new JSONObject();
         try {
             pieceJointe.put("nom", moi.getNom());

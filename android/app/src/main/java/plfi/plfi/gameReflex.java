@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 public class gameReflex extends AppCompatActivity implements DisplayReflex {
 
+    private int scoreVal;
     private TextView score;
     private TextView scoreMax;
     private TextView timer;
@@ -33,6 +34,7 @@ public class gameReflex extends AppCompatActivity implements DisplayReflex {
         setContentView(R.layout.activity_game_reflex);
 
         // Nos initialisations
+        scoreVal = 0;
         score = (TextView) findViewById(R.id.textview_score_reflex);
         scoreMax = (TextView) findViewById(R.id.textview_score_max_reflex);
         btn_start = (Button) findViewById(R.id.start_reflex);
@@ -57,7 +59,7 @@ public class gameReflex extends AppCompatActivity implements DisplayReflex {
         this.connexion = connexion;
         gamePrint.setConnexion(connexion);
         time = 5.0;
-
+        controleur.getStats();
 
     }
 
@@ -78,7 +80,7 @@ public class gameReflex extends AppCompatActivity implements DisplayReflex {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                scoreMax.setText(Integer.parseInt(score_max));
+                scoreMax.setText(score_max);
             }
         });
     }
@@ -91,7 +93,8 @@ public class gameReflex extends AppCompatActivity implements DisplayReflex {
                 if(reponse.contains("JUSTE"))
                 {
                     timer.setBackgroundColor(Color.GREEN);
-                    //score.setText( Integer.parseInt((String) score.getText()) + 1 );
+                    scoreVal++;
+                    score.setText(Integer.toString(scoreVal));
                 }
                 else{
                     timer.setBackgroundColor(Color.RED);
@@ -154,12 +157,13 @@ public class gameReflex extends AppCompatActivity implements DisplayReflex {
                 }
                 gamePrint.setIsStarted(false);
                 runOnUiThread(() -> btn_start.setEnabled(true));
+                controleur.getStats();
             }
         }).start();
         progressStatus = 0;
         score.setText("0");
+        scoreVal = 0;
         timer.setText("5");
         gamePrint.setIsStarted(false);
-        controleur.getStatsReflex();
     }
 }

@@ -65,10 +65,6 @@ public class Controleur {
         connexion.demanderStats(moi);
     }
 
-    public void getStatsReflex(){
-        connexion.demanderStatsReflex(moi);
-    }
-
     public String getNom(){
         return this.nom;
     }
