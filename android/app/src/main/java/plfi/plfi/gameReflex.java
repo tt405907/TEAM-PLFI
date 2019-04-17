@@ -19,7 +19,7 @@ public class gameReflex extends AppCompatActivity implements DisplayReflex {
     private TextView scoreMax;
     private TextView timer;
     private TextView forme;
-    private Button btn_start;
+    public Button btn_start;
     private ProgressBar progressBar;
     private int progressStatus = 0;
     private gamePrintReflex gamePrint;
