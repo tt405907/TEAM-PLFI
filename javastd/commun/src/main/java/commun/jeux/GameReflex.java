@@ -15,7 +15,11 @@ public class GameReflex {
     }
 
     public Forme start() {
-        attente = randomForme();
+        return start(randomForme());
+    }
+
+    public Forme start(Forme forme) {
+        attente = forme;
         score = 0;
         return attente;
     }
