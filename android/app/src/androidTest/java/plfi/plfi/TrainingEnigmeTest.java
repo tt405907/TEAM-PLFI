@@ -22,7 +22,6 @@ import androidx.test.filters.LargeTest;
 import commun.Dessin;
 import commun.Forme;
 import commun.Point;
-import plfi.jeux.offline.TrainingEnigme;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;

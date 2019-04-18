@@ -1,4 +1,4 @@
-package plfi.jeux;
+package plfi.plfi;
 
 public interface DisplayEnigme {
     void updateGameEnigme(String enigme);

@@ -1,4 +1,4 @@
-package plfi.jeux.online;
+package plfi.plfi;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -11,13 +11,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
-import plfi.connexion.Connexion;
-import plfi.connexion.Controleur;
-import plfi.jeux.DisplayReflex;
-import plfi.MainActivity;
-import plfi.plfi.R;
-import plfi.view.gamePrintReflex;
 
 public class gameReflex extends AppCompatActivity implements DisplayReflex {
 
@@ -114,7 +107,7 @@ public class gameReflex extends AppCompatActivity implements DisplayReflex {
     public void onBackPressed() {
         super.onBackPressed();
         this.finish();
-        Intent intent = new Intent (gameReflex.this, MainActivity.class);
+        Intent intent = new Intent (gameReflex.this,MainActivity.class);
         startActivity(intent);
     }
 

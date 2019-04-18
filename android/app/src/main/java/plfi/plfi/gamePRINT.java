@@ -1,4 +1,4 @@
-package plfi.view;
+package plfi.plfi;
 
 import android.content.Context;
 import android.graphics.Canvas;

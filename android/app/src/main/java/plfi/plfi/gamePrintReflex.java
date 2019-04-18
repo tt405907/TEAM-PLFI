@@ -1,17 +1,18 @@
-package plfi.view;
+package plfi.plfi;
 
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.support.v7.app.AppCompatActivity;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import commun.Point;
-import plfi.connexion.Connexion;
 
 import java.util.ArrayList;
+import java.util.jar.Attributes;
 
 public class gamePrintReflex extends View {
     ArrayList<Point> points;

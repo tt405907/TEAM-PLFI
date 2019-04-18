@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="plfi.jeux.offline.Training" >
+    tools:context=".Training" >
 
     <include layout="@layout/my_toolbar_reflex"/>
 
@@ -100,7 +100,7 @@
 
     </LinearLayout>
 
-    <plfi.view.gamePrintReflex
+    <plfi.plfi.gamePrintReflex
         android:id="@+id/reflex_drawing"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

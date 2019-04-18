@@ -1,9 +1,8 @@
-package plfi.connexion;
+package plfi.plfi;
+
+import java.util.ArrayList;
 
 import commun.Identification;
-import plfi.jeux.DisplayEnigme;
-import plfi.jeux.DisplayRTC;
-import plfi.jeux.DisplayReflex;
 
 public class Controleur {
 

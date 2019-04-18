@@ -11,37 +11,37 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name="plfi.jeux.online.gameReflex"></activity>
+        <activity android:name=".gameReflex"></activity>
         <!-- MAIN ACTIVITY -->
-        <activity android:name="plfi.MainActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity> <!-- OTHER ACTIVITY -->
-        <activity android:name="plfi.jeux.online.gameEnigme">
+        <activity android:name=".gameEnigme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="plfi.jeux.offline.Training">
+        <activity android:name=".Training">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="plfi.jeux.offline.TrainingEnigme">
+        <activity android:name=".TrainingEnigme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="plfi.jeux.online.gameRTCPrint">
+        <activity android:name=".gameRTCPrint">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

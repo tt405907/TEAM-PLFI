@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="plfi.jeux.offline.Training" >
+    tools:context=".Training" >
 
     <include layout="@layout/my_toolbar_training_rtc"/>
 
@@ -64,7 +64,7 @@
 
     </LinearLayout>
 
-    <plfi.view.gamePRINT
+    <plfi.plfi.gamePRINT
         android:id="@+id/drawing"
         android:layout_width="match_parent"
         android:layout_height="200dp"

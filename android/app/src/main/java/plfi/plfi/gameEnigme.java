@@ -1,4 +1,4 @@
-package plfi.jeux.online;
+package plfi.plfi;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -11,14 +11,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import plfi.connexion.Connexion;
-import plfi.connexion.Controleur;
-import plfi.jeux.DisplayEnigme;
-import plfi.MainActivity;
-import plfi.plfi.R;
-import plfi.jeux.offline.TrainingEnigme;
-import plfi.view.gamePRINT;
-
 public class gameEnigme extends AppCompatActivity implements DisplayEnigme {
 
     // Button
@@ -29,9 +21,9 @@ public class gameEnigme extends AppCompatActivity implements DisplayEnigme {
     TextView message_Serveur_Reponse;
     TextView message_Serveur_Enigme;
     // Notre canvas
-    public gamePRINT gamePrint;
-    public Connexion connexion;
-    public Controleur controleur;
+    gamePRINT gamePrint;
+    Connexion connexion;
+    Controleur controleur;
 
     TextView statGoodAnswer;
     TextView statbadAnswer;
@@ -85,7 +77,7 @@ public class gameEnigme extends AppCompatActivity implements DisplayEnigme {
     public void onBackPressed(){
         super.onBackPressed();
         this.finish();
-        Intent intent = new Intent (this, MainActivity.class);
+        Intent intent = new Intent (this,MainActivity.class);
         startActivity(intent);
     }
 

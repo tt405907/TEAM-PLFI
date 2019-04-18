@@ -25,7 +25,6 @@ import androidx.test.filters.LargeTest;
 import androidx.test.runner.AndroidJUnit4;
 import commun.Dessin;
 import commun.Point;
-import plfi.jeux.offline.Training;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;

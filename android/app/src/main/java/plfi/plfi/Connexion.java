@@ -1,13 +1,15 @@
-package plfi.connexion;
+package plfi.plfi;
 
 import android.util.Log;
 import android.widget.ImageView;
 
+import java.net.SocketAddress;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
 
 import commun.Identification;

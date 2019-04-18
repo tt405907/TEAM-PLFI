@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="plfi.jeux.offline.TrainingEnigme">
+    tools:context=".TrainingEnigme">
 
     <include layout="@layout/my_toolbar_enigme"/>
 
@@ -64,7 +64,7 @@
 
 
     </LinearLayout>
-    <plfi.view.gamePRINT
+    <plfi.plfi.gamePRINT
         android:id="@+id/enigme_drawing"
         android:layout_width="match_parent"
         android:layout_height="200dp"

@@ -1,4 +1,4 @@
-package plfi.jeux;
+package plfi.plfi;
 
 public interface DisplayReflex {
     void updateGameReflex (String forme);
