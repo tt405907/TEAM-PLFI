@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".gamePRINT" >
+    tools:context="plfi.view.gamePRINT" >
 
     <include layout="@layout/my_toolbar_print"/>
 
@@ -64,7 +64,7 @@
 
     </LinearLayout>
 
-    <plfi.plfi.gamePRINT
+    <plfi.view.gamePRINT
         android:id="@+id/drawing"
         android:layout_width="match_parent"
         android:layout_height="200dp"

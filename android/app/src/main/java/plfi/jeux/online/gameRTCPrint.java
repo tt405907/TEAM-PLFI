@@ -1,22 +1,24 @@
-package plfi.plfi;
+package plfi.jeux.online;
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
-import commun.Forme;
+import plfi.connexion.Connexion;
+import plfi.connexion.Controleur;
+import plfi.jeux.DisplayRTC;
+import plfi.MainActivity;
+import plfi.plfi.R;
+import plfi.jeux.offline.Training;
+import plfi.view.gamePRINT;
 
 public class gameRTCPrint extends AppCompatActivity implements DisplayRTC {
 
@@ -29,9 +31,9 @@ public class gameRTCPrint extends AppCompatActivity implements DisplayRTC {
 
 
     // Notre canvas
-    gamePRINT gamePrint;
-    Connexion connexion;
-    Controleur controleur;
+    public gamePRINT gamePrint;
+    public Connexion connexion;
+    public Controleur controleur;
 
     TextView messageRegle;
 
@@ -127,7 +129,7 @@ public class gameRTCPrint extends AppCompatActivity implements DisplayRTC {
     public void onBackPressed(){
         super.onBackPressed();
         this.finish();
-        Intent intent = new Intent (gameRTCPrint.this,MainActivity.class);
+        Intent intent = new Intent (gameRTCPrint.this, MainActivity.class);
         System.out.println("CHECK LA");
         startActivity(intent);
     }

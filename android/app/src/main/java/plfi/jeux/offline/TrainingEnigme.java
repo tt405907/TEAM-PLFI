@@ -1,4 +1,4 @@
-package plfi.plfi;
+package plfi.jeux.offline;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -20,21 +19,24 @@ import commun.Forme;
 import commun.FormeMatcher;
 import commun.Point;
 import commun.jeux.GameEnigme;
+import plfi.MainActivity;
+import plfi.plfi.R;
+import plfi.view.gamePRINT;
 
 public class TrainingEnigme extends AppCompatActivity {
 
     // Button
     Button btn_clear;
     Button btn_send;
-    GameEnigme gameEnigme;
+    public GameEnigme gameEnigme;
     //EditText
-    TextView message_Serveur_Reponse;
+    public TextView message_Serveur_Reponse;
     TextView message_Serveur_Enigme;
     TextView messageTraining;
 
     FormeMatcher formeMatcher;
     // Notre canvas
-    gamePRINT gamePrint;
+    public gamePRINT gamePrint;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +90,7 @@ public class TrainingEnigme extends AppCompatActivity {
     public void onBackPressed(){
         super.onBackPressed();
         this.finish();
-        Intent intent = new Intent (this,MainActivity.class);
+        Intent intent = new Intent (this, MainActivity.class);
         startActivity(intent);
     }
 
@@ -105,7 +107,7 @@ public class TrainingEnigme extends AppCompatActivity {
                 onBackPressed();
                 break;
             case R.id.menu_rtc_online:
-                Intent intent = new Intent(TrainingEnigme.this, gameEnigme.class);  //Lancer l'activité DisplayVue
+                Intent intent = new Intent(TrainingEnigme.this, plfi.jeux.online.gameEnigme.class);  //Lancer l'activité DisplayVue
                 startActivity(intent);    //Afficher la vue
                 break;
             case R.id.menu_rtc_offline:

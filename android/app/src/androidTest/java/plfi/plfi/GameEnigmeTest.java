@@ -11,15 +11,16 @@ import org.hamcrest.core.AllOf;
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
 import java.util.List;
 
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.filters.LargeTest;
-import androidx.test.runner.AndroidJUnit4;
+
 import commun.Point;
+import plfi.connexion.Connexion;
+import plfi.jeux.online.gameEnigme;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;

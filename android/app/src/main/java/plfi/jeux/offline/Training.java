@@ -1,4 +1,4 @@
-package plfi.plfi;
+package plfi.jeux.offline;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -21,6 +21,13 @@ import commun.FormeMatcher;
 import commun.Point;
 import commun.jeux.GameCTR;
 import commun.jeux.ResultCTR;
+import plfi.jeux.online.gameRTCPrint;
+import plfi.connexion.Connexion;
+import plfi.connexion.Controleur;
+import plfi.jeux.DisplayRTC;
+import plfi.MainActivity;
+import plfi.plfi.R;
+import plfi.view.gamePRINT;
 
 public class Training extends AppCompatActivity implements DisplayRTC {
 
@@ -32,17 +39,17 @@ public class Training extends AppCompatActivity implements DisplayRTC {
 
     FormeMatcher formeMatcher;
     //EditText
-    TextView messageServeur;
+    public TextView messageServeur;
 
     // Notre canvas
-    gamePRINT gamePrint;
+    public gamePRINT gamePrint;
     GameCTR gameCTR;
 
     // temporaire pour tester notre truck
     int imageId;
 
     // Image à afficher pour le serveur
-    ImageView imageViewServeur;
+    public ImageView imageViewServeur;
 
     TextView messageRegle;
 

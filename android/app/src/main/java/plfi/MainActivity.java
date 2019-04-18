@@ -1,4 +1,4 @@
-package plfi.plfi;
+package plfi;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +12,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+
+import plfi.jeux.online.gameEnigme;
+import plfi.jeux.online.gameRTCPrint;
+import plfi.jeux.online.gameReflex;
+import plfi.plfi.R;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
